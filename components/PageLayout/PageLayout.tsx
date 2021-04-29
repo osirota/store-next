@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Head from 'next/head'
 import Image from 'next/image'
 
-import { bgWrap } from './PageLayout.module.css';
+import styles from './PageLayout.module.css';
 
 import PageHeader from '../PageHeader/PageHeader';
 
@@ -19,7 +19,7 @@ const LayoutStyled = styled(Layout)`
 
 const PageLayout = ({ children, title }) => (
 	<>
-		<div className={bgWrap}>
+		<div className={styles.bgWrap}>
 			<Image
 				alt="bg"
 				src="/bg-black.jpg"
