@@ -25,6 +25,7 @@ const PageHeader = () => (
 					<Radio.Button value="b">Shanghai</Radio.Button>
 					<Radio.Button value="c">Beijing</Radio.Button>
 					<Radio.Button value="d">Chengdu</Radio.Button>
+					<Radio.Button value="d1">Chengdu1</Radio.Button>
 				</Radio.Group>
 				<Text>We share spirit of cider, join us!</Text>
 			</div>

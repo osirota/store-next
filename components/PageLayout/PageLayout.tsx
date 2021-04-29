@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import Head from 'next/head'
 import Image from 'next/image'
 
+import { bgWrap } from './PageLayout.module.css';
+
 import PageHeader from '../PageHeader/PageHeader';
 
 const { Header, Footer, Content } = Layout;
@@ -13,20 +15,19 @@ const LayoutStyled = styled(Layout)`
 	margin: 0 auto;
 	padding: 30px 0 10px;
 `;
-const ImageStyled = styled(Image)`
-	z-index: -1;
-`;
 
 
 const PageLayout = ({ children, title }) => (
 	<>
-		<ImageStyled
-			alt="bg"
-			src="/bg-black.jpg"
-			layout="fill"
-			objectFit="cover"
-			quality={100}
-		/>
+		<div className={bgWrap}>
+			<Image
+				alt="bg"
+				src="/bg-black.jpg"
+				layout="fill"
+				objectFit="cover"
+				quality={100}
+			/>
+		</div>
 		<LayoutStyled>
 			<Head>
 				<title>{title}</title>
