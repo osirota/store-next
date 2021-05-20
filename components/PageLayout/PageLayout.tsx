@@ -1,25 +1,37 @@
 import React from 'react';
-import { Layout } from 'antd';
+import { 
+	Container,
+	Box,
+ } from '@material-ui/core';
 import styled from 'styled-components';
 import Head from 'next/head'
 import Image from 'next/image'
 
-import styles from './PageLayout.module.css';
-
 import PageHeader from '../PageHeader/PageHeader';
 
-const { Header, Footer, Content } = Layout;
-
-const LayoutStyled = styled(Layout)`
+const ContainerStyled = styled(Container)`
 	max-width: 1140px;
 	margin: 0 auto;
 	padding: 30px 0 10px;
 `;
 
+const Wrapper = styled.div`
+	position: fixed;
+	height: 100vh;
+	width: 100vw;
+	overflow: hidden;
+	z-index: -1;
+`;
 
-const PageLayout = ({ children, title }) => (
+type PageLayoutProps = {
+	title: string;
+	children: React.ReactNode;
+}
+
+
+const PageLayout = ({ children, title }: PageLayoutProps) => (
 	<>
-		<div className={styles.bgWrap}>
+		<Wrapper>
 			<Image
 				alt="bg"
 				src="/bg-black.jpg"
@@ -27,23 +39,21 @@ const PageLayout = ({ children, title }) => (
 				objectFit="cover"
 				quality={100}
 			/>
-		</div>
-		<LayoutStyled>
+		</Wrapper>
+		<PageHeader />
+		<ContainerStyled disableGutters maxWidth={false}>
 			<Head>
 				<title>{title}</title>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			<Header>
-				<PageHeader />
-			</Header>
-			<Content>
+			<Box component="main">
 				{children}
-			</Content>
-			<Footer>
+			</Box>
+			<Box component="footer">
 				footer
-			</Footer>
-		</LayoutStyled>
+			</Box>
+		</ContainerStyled>
 	</>
 )
 

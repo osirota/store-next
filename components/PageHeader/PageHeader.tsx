@@ -1,54 +1,85 @@
-import React from 'react';
-import { Layout, Radio, Typography, List } from 'antd';
-import Image from 'next/image'
+import React, { useState } from 'react';
+import {
+  AppBar,
+  Link,
+  Container,
+  Box,
+  Typography,
+} from '@material-ui/core';
+import {
+  ToggleButton,
+  ToggleButtonGroup,
+} from '@material-ui/lab';
+import styled from 'styled-components';
+import Image from 'next/image';
 
-const { Header } = Layout;
-const { Text, Link } = Typography;
+const AppBarStyled = styled(AppBar)`
+  background-color: transparent;
+  box-shadow: none;
+`;
 
-const data = [
-	'про нас',
-	'блог',
-	'сидр та перри',
-	'наши партнеры',
-	'контакты',
+const LinkStyled = styled(Link)`
+  margin: 0 10px;
+  text-transform: uppercase;
+`;
+
+const TypographyStyled = styled(Typography)`
+  margin: 20px 0 0;
+`;
+
+const PageHeader = () => {
+  const [toggle, setToggle] = useState('УКР');
+  const handleToggle = (_, newAlignment: string) => {
+    setToggle(newAlignment);
+  };
+
+  return (
+    <AppBarStyled color="transparent" position="sticky">
+      <Container disableGutters maxWidth={false}>
+        <Box display="flex" alignItems="center" justifyContent="space-between">
+          <Box display="flex" alignItems="flex-start">
+            <Image src="/logo.png" alt="logo" width="130px" height="134px" />
+            <Box display="flex" flexDirection="column" ml="20px">
+              <ToggleButtonGroup size="small" exclusive value={toggle} onChange={handleToggle}>
+                {PageHeader.langList.map((item) => (
+                  <ToggleButton value={item} key={item}>
+                    {item}
+                  </ToggleButton>
+                ))}
+              </ToggleButtonGroup>
+              <TypographyStyled color="textSecondary">
+                We share spirit of cider,<br/>
+                join us!
+              </TypographyStyled>
+            </Box>
+          </Box>
+
+          <Box display="inline-flex">
+            {PageHeader.navList.map((item) => (
+              <LinkStyled href="" key={item} color="textPrimary">
+                {item}
+              </LinkStyled>
+            ))}
+          </Box>
+        </Box>
+      </Container>
+    </AppBarStyled>
+  )
+};
+
+PageHeader.navList = [
+  'про нас',
+  'блог',
+  'сидр та перри',
+  'наши партнеры',
+  'контакты',
 ];
 
-const PageHeader = () => (
-	<Header>
-		<div className="">
-			<div className="logo">
-				<Image src="/logo.png" alt="logo" width="130px" height="134px" />
-			</div>
-			<div>
-				<Radio.Group defaultValue="a" size="small" style={{ marginTop: 16 }}>
-					<Radio.Button value="a">Hangzhou</Radio.Button>
-					<Radio.Button value="b">Shanghai</Radio.Button>
-					<Radio.Button value="c">Beijing</Radio.Button>
-					<Radio.Button value="d">Chengdu</Radio.Button>
-					<Radio.Button value="d1">Chengdu1</Radio.Button>
-				</Radio.Group>
-				<Text>We share spirit of cider, join us!</Text>
-			</div>
-		</div>
-
-		<List
-			grid={{
-				gutter: 16,
-				xs: 1,
-				sm: 2,
-				md: 4,
-				lg: 4,
-				xl: 6,
-				xxl: 3,
-			}}
-			dataSource={data}
-			renderItem={item => (
-				<List.Item>
-					<Link title={item}>{item}</Link>
-				</List.Item>
-			)}
-		/>
-	</Header>
-);
+PageHeader.langList = [
+  'УКР',
+  'РУС',
+  'ESP',
+  'ENG',
+];
 
 export default PageHeader;
