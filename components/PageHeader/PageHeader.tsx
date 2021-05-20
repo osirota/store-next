@@ -29,7 +29,7 @@ const TypographyStyled = styled(Typography)`
 
 const PageHeader = () => {
   const [toggle, setToggle] = useState('УКР');
-  const handleToggle = (_, newAlignment: string) => {
+  const handleToggle = (_: any, newAlignment: string) => {
     setToggle(newAlignment);
   };
 
