@@ -34,6 +34,12 @@ const theme = createMuiTheme({
         }
       },
     },
+    MuiButton: {
+      outlinedPrimary: {
+        color: '#fff',
+        border: '1px solid #fff',
+      },
+    },
     MuiCssBaseline: {
       '@global': {
         '@font-face': [lcchalk],
