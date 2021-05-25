@@ -50,10 +50,8 @@ const PageLayout = ({ children, title }: PageLayoutProps) => (
 			<Box component="main">
 				{children}
 			</Box>
-			<Box component="footer">
-				footer
-			</Box>
 		</ContainerStyled>
+		<PageHeader isFooter />
 	</>
 )
 

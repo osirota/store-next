@@ -8,6 +8,8 @@ import Image from 'next/image';
 
 import PageLayout from 'components/PageLayout/PageLayout';
 import ProductsCarousel from 'components/ProductsCarousel';
+import PartnerCarousel from 'components/PartnerCarousel';
+import BlogCarousel from 'components/BlogCarousel';
 
 import Mail from '../public/icons/mail.svg';
 
@@ -75,7 +77,9 @@ const LandingPage = () => (
     </Box>
 
     <ProductsCarousel title="Новинки" />
+    <BlogCarousel title="Блог" />
     <ProductsCarousel title="Сидр та Перрі" />
+    <PartnerCarousel title="Наші партнери" />
   </PageLayout>
 );
 

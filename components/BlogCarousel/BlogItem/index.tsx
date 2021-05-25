@@ -5,28 +5,11 @@ import styled from 'styled-components';
 
 const CardStyled = styled(Card)`
   background: transparent;
-  padding: 1rem;
   box-shadow: none;
-  height: 460px;
-  [data-image] {
-    transform: rotate(0deg);
-    transition: all .5s;
-  }
-
-  .MuiCardActions-root {
-    display: none;
-  }
 
   :hover {
-    background: url('/bg-product.png') center no-repeat;
+    background: url('/bg-blog.png') center no-repeat;
     border-radius: 40px;
-    [data-image] {
-      transform: rotate(-16deg);
-      transition: all .5s;
-    }
-    .MuiCardActions-root {
-      display: flex;
-    }
   }
 `;
 
@@ -44,7 +27,7 @@ const ImgaeWrapper = styled(Box)`
   }
 `;
 
-type ProductItemProps = {
+type BlogItemProps = {
   item?: {
     id: string,
     url: string,
@@ -55,28 +38,23 @@ type ProductItemProps = {
   } 
 };
 
-const ProductItem = ({ item }: ProductItemProps) => {
+const BlogItem = ({ item }: BlogItemProps) => {
   return (
     <CardStyled>
       <CardContent>
-        <ImgaeWrapper data-image>
-          <Image src="/bottle.png" height="225px" width="270px" />
+        <ImgaeWrapper data-image display="flex" alignItems="center" justifyContent="center">
+          <Image src="/blog.png" height="225px" width="270px" />
         </ImgaeWrapper>
         <Typography variant="h6" component="h6" color="textSecondary" align="center" gutterBottom>
-          Сидр "Poma Aurea"   4.7%
+          Як виготовлять сидр, який ми куплямо
         </Typography>
         <Typography variant="body2" component="p" gutterBottom>
-          Склад: вода, яблука (40%), лимонна кислота, сироп глюкозно- фруктозний.
-        </Typography>
-        <Typography variant="body2" component="p" color="textSecondary" gutterBottom>
-          26.99 грн
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat commodo cla ...
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button variant="outlined" color="primary" fullWidth>Купити</Button>
-      </CardActions>
     </CardStyled>
   )
 };
 
-export default ProductItem;
+export default BlogItem;
