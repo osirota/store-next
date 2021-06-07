@@ -63,6 +63,9 @@ const theme = createMuiTheme({
         '& .MuiFormLabel-root': {
           color: '#fff',
         },
+        '& .MuiInputBase-root': {
+          color: '#fff',
+        },
         '& .MuiInput-underline:before': {
           borderBottom: '1px solid #fff',
         },

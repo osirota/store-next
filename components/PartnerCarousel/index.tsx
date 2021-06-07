@@ -19,6 +19,12 @@ const SliderStyled = styled(Box)`
   }
 `;
 
+const GlassWrapper = styled(Box)`
+  position: absolute;
+  right: -189px;
+  bottom: -220px;
+`;
+
 type PartnerCarouselProps = {
   title?: string,
   items?: {
@@ -42,34 +48,37 @@ const PartnerCarousel = ({ title = 'PartnerCarousel', items }: PartnerCarouselPr
     autoplaySpeed: 2000,
   };
   return (
-    <Box mt="5rem">
-        <Typography variant="h4" component="h4" color="textSecondary" align="center" gutterBottom>{title}</Typography>
-        <SliderStyled>
-          <Slider {...settings}>
-            <Box display="flex" alignItems="center" justifyContent="center">
-              <Image src="/partner.png"  width="160px" height="80px" />
-            </Box>
-            <Box display="flex" alignItems="center" justifyContent="center">
-              <Image src="/partner.png"  width="160px" height="80px" />
-            </Box>
-            <Box display="flex" alignItems="center" justifyContent="center">
-              <Image src="/partner.png"  width="160px" height="80px" />
-            </Box>
-            <Box display="flex" alignItems="center" justifyContent="center">
-              <Image src="/partner.png"  width="160px" height="80px" />
-            </Box>
-            <Box display="flex" alignItems="center" justifyContent="center">
-              <Image src="/partner.png"  width="160px" height="80px" />
-            </Box>
-            <Box display="flex" alignItems="center" justifyContent="center">
-              <Image src="/partner.png"  width="160px" height="80px" />
-            </Box>
-            <Box display="flex" alignItems="center" justifyContent="center">
-              <Image src="/partner.png"  width="160px" height="80px" />
-            </Box>
-          </Slider>
-        </SliderStyled>
-      </Box>
+    <Box mt="5rem" position="relative">
+      <GlassWrapper>
+        <Image src="/glass.png" width={150} height={250} />
+      </GlassWrapper>
+      <Typography variant="h4" component="h4" color="textSecondary" align="center" gutterBottom>{title}</Typography>
+      <SliderStyled>
+        <Slider {...settings}>
+          <Box display="flex" alignItems="center" justifyContent="center">
+            <Image src="/partner.png"  width="160px" height="80px" />
+          </Box>
+          <Box display="flex" alignItems="center" justifyContent="center">
+            <Image src="/partner.png"  width="160px" height="80px" />
+          </Box>
+          <Box display="flex" alignItems="center" justifyContent="center">
+            <Image src="/partner.png"  width="160px" height="80px" />
+          </Box>
+          <Box display="flex" alignItems="center" justifyContent="center">
+            <Image src="/partner.png"  width="160px" height="80px" />
+          </Box>
+          <Box display="flex" alignItems="center" justifyContent="center">
+            <Image src="/partner.png"  width="160px" height="80px" />
+          </Box>
+          <Box display="flex" alignItems="center" justifyContent="center">
+            <Image src="/partner.png"  width="160px" height="80px" />
+          </Box>
+          <Box display="flex" alignItems="center" justifyContent="center">
+            <Image src="/partner.png"  width="160px" height="80px" />
+          </Box>
+        </Slider>
+      </SliderStyled>
+    </Box>
   )
 };
 

@@ -7,7 +7,7 @@ import {
 } from '@material-ui/core';
 import { withFormik, Form } from 'formik';
 import Image from 'next/image';
-import Slider from 'react-slick';
+import styled from 'styled-components';
 
 import PageLayout from 'components/PageLayout/PageLayout';
 import ProductsCarousel from 'components/ProductsCarousel';
@@ -20,6 +20,12 @@ import Mail from '../public/icons/mail.svg';
 import Facebook from '../public/icons/facebook.svg';
 import Instagram from '../public/icons/instagram.svg';
 import Phone from '../public/icons/phone.svg';
+import Apple from '../public/apple.svg';
+
+const AppleWrapper = styled(Box)`
+  position: absolute;
+  left: 0;
+`
 
 
 const LandingPage = () => (
@@ -71,6 +77,9 @@ const LandingPage = () => (
     </Box>
 
     <Box mt="10rem" p="2rem 0 0 32rem">
+      <AppleWrapper>
+        <Image src="/apple.png" alt="apple" width={600} height={600} />
+      </AppleWrapper>
       <Typography variant="h4" color="textSecondary">Про нас</Typography>
       <Box mt="2rem">
         <Typography>

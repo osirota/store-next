@@ -111,8 +111,8 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
 					<Typography color="primary">Ваше замовлення</Typography>
 					<List>
 						{['Inbox', 'Starred', 'Send email', 'Drafts', '1', '2', '3', '5'].map((text) => (
-							<ListItemStyled>
-								<ListItem key={text}>
+							<ListItemStyled key={text}>
+								<ListItem>
 									<ListItemSecondaryAction>
 											<IconButton>
 												<Cancel />
