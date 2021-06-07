@@ -47,7 +47,7 @@ const SwipeableDrawerStyled = styled(SwipeableDrawer)`
 	}
 `;
 
-const ListItemStyled = styled(ListItem)`
+const ListItemStyled = styled(Box)`
 	border: 1px solid;
 	margin: 1rem 0;
 `;
@@ -111,35 +111,37 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
 					<Typography color="primary">Ваше замовлення</Typography>
 					<List>
 						{['Inbox', 'Starred', 'Send email', 'Drafts', '1', '2', '3', '5'].map((text) => (
-							<ListItemStyled key={text}>
-								<ListItemSecondaryAction>
-										<IconButton>
-											<Cancel />
-										</IconButton>
-								</ListItemSecondaryAction>
-								<Box>
-									<Typography color="primary">Сидр "Poma Aurea"</Typography>
-									<Box display="flex" alignItems="center">
+							<ListItemStyled>
+								<ListItem key={text}>
+									<ListItemSecondaryAction>
+											<IconButton>
+												<Cancel />
+											</IconButton>
+									</ListItemSecondaryAction>
+									<Box>
+										<Typography color="primary">Сидр "Poma Aurea"</Typography>
 										<Box display="flex" alignItems="center">
-											<IconButton>
-												<Remove />
-											</IconButton>
-											<Typography color="primary">2</Typography>
-											<IconButton>
-												<Add />
-											</IconButton>
+											<Box display="flex" alignItems="center">
+												<IconButton>
+													<Remove />
+												</IconButton>
+												<Typography color="primary">2</Typography>
+												<IconButton>
+													<Add />
+												</IconButton>
+											</Box>
+											<Typography color="primary">220 грн</Typography>
 										</Box>
-										<Typography color="primary">220 грн</Typography>
 									</Box>
-								</Box>
-								<ListItemAvatar>
-								<Image
-									alt="bg"
-									src="/bottle.png"
-									width={100}
-									height={100}
-								/>
-								</ListItemAvatar>
+									<ListItemAvatar>
+									<Image
+										alt="bg"
+										src="/bottle.png"
+										width={100}
+										height={100}
+									/>
+									</ListItemAvatar>
+								</ListItem>
 							</ListItemStyled>
 						))}
 					</List>
