@@ -26,12 +26,14 @@ const ProductsCarousel = ({ title = 'ProductsCarousel', items }: ProductsCarouse
   return (
     <Box mt="10rem">
         <Typography variant="h4" component="h4" color="textSecondary" align="center" gutterBottom>{title}</Typography>
-        <Slider {...settings}>
-          <ProductItem />
-          <ProductItem />
-          <ProductItem />
-          <ProductItem />
-        </Slider>
+        <Box mt="4rem">
+          <Slider {...settings}>
+            <ProductItem />
+            <ProductItem />
+            <ProductItem />
+            <ProductItem />
+          </Slider>
+        </Box>
       </Box>
   )
 };

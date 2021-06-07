@@ -3,6 +3,11 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import lcchalk from 'public/fonts/lcchalk';
 
 const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#fff',
+    },
+  },
   typography: {
     fontFamily: 'LC Chalk, Arial',
   },
@@ -38,11 +43,29 @@ const theme = createMuiTheme({
       outlinedPrimary: {
         color: '#fff',
         border: '1px solid #fff',
+        borderRadius: '40px',
+        transition: 'all .5s',
+        background: 'transparent',
+        '&:hover': {
+          border: '1px solid transparent',
+          transition: 'all .5s',
+          background: 'transparent',
+        }
       },
     },
     MuiCssBaseline: {
       '@global': {
         '@font-face': [lcchalk],
+      },
+    },
+    MuiTextField: {
+      root: {
+        '& .MuiFormLabel-root': {
+          color: '#fff',
+        },
+        '& .MuiInput-underline:before': {
+          borderBottom: '1px solid #fff',
+        },
       },
     },
   },

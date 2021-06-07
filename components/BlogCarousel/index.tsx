@@ -24,13 +24,15 @@ const BlogCarousel = ({ title = 'BlogCarousel', items }: BlogCarouselProps) => {
     slidesToScroll: 1
   };
   return (
-    <Box mt="10rem">
+    <Box mt="5rem">
       <Typography variant="h4" component="h4" color="textSecondary" align="center" gutterBottom>{title}</Typography>
-      <Slider {...settings}>
-        <BlogItem />
-        <BlogItem />
-        <BlogItem />
-      </Slider>
+      <Box mt="4rem">
+        <Slider {...settings}>
+          <BlogItem />
+          <BlogItem />
+          <BlogItem />
+        </Slider>
+        </Box>
       <Box display="flex" alignItems="center" justifyContent="center" mt="3rem"> 
         <Button variant="outlined" color="primary" size="large">Перейти в блог</Button>
       </Box>

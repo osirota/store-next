@@ -5,7 +5,7 @@ import Image from 'next/image';
 import styled from 'styled-components';
 
 const SliderStyled = styled(Box)`
-  
+  margin: 4rem 0 0;
   cursor: pointer;
   & .slick-slide {
     display: flex;
@@ -34,13 +34,15 @@ type PartnerCarouselProps = {
 const PartnerCarousel = ({ title = 'PartnerCarousel', items }: PartnerCarouselProps) => {
   const settings = {
     dots: false,
-    infinite: false,
+    infinite: true,
     speed: 500,
     slidesToShow: 5,
-    slidesToScroll: 1
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
   };
   return (
-    <Box mt="10rem">
+    <Box mt="5rem">
         <Typography variant="h4" component="h4" color="textSecondary" align="center" gutterBottom>{title}</Typography>
         <SliderStyled>
           <Slider {...settings}>

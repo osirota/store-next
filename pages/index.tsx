@@ -3,15 +3,23 @@ import {
   Box,
   Typography,
   Grid,
+  Button,
 } from '@material-ui/core';
+import { withFormik, Form } from 'formik';
 import Image from 'next/image';
+import Slider from 'react-slick';
 
 import PageLayout from 'components/PageLayout/PageLayout';
 import ProductsCarousel from 'components/ProductsCarousel';
 import PartnerCarousel from 'components/PartnerCarousel';
 import BlogCarousel from 'components/BlogCarousel';
+import Field from 'patterns/Field';
+import { mapPropsToValues, handleSubmit, validationSchema } from 'utils/landing/landing-form';
 
 import Mail from '../public/icons/mail.svg';
+import Facebook from '../public/icons/facebook.svg';
+import Instagram from '../public/icons/instagram.svg';
+import Phone from '../public/icons/phone.svg';
 
 
 const LandingPage = () => (
@@ -19,7 +27,7 @@ const LandingPage = () => (
     <Box mt="40px">
       <Grid container spacing={2}>
         <Grid xs={7} item>
-            <Box display="flex" flexDirection="column" justifyContent="space-between" paddingTop="10rem">
+            <Box display="flex" flexDirection="column" justifyContent="space-between" paddingTop="10rem" height="100%">
               <Box>
                 <Typography color="textSecondary" variant="h3">
                   Підбірка найкращих сидрів спеціально для Вас
@@ -32,15 +40,15 @@ const LandingPage = () => (
               </Box>
               <Box display="flex" alignItems="center" justifyContent="space-between">
                 <Link href="tel:80000000" color="textPrimary">
-                  <Mail /> +38 (097) 33-234-23
+                  <Phone /> +38 (097) 33-234-23
                 </Link>
                 <Box display="flex" justifyContent="space-between" alignItems="center">
                   <Link href="https://www.instagram.com/livekharkov/">
-                    <Mail />
+                    <Facebook />
                   </Link>
                   <Box m="0 2rem">
                     <Link href="https://www.instagram.com/livekharkov/">
-                      <Mail />
+                      <Instagram />
                     </Link>
                   </Box>
                   <Link href="mailto:oleh.sirota@gmail.com">
@@ -62,7 +70,7 @@ const LandingPage = () => (
       </Grid>
     </Box>
 
-    <Box mt="10rem" p="8rem 0 0 32rem">
+    <Box mt="10rem" p="2rem 0 0 32rem">
       <Typography variant="h4" color="textSecondary">Про нас</Typography>
       <Box mt="2rem">
         <Typography>
@@ -80,7 +88,59 @@ const LandingPage = () => (
     <BlogCarousel title="Блог" />
     <ProductsCarousel title="Сидр та Перрі" />
     <PartnerCarousel title="Наші партнери" />
+
+    <Box mt="10rem">
+      <Typography variant="h4" color="textSecondary" align="center">Контакты</Typography>
+      <Box mt="2rem" display="flex" justifyContent="space-between">
+        <Box width="45%">
+          <Form noValidate>
+            <Field
+              name="name"
+              label="Имя"
+            />
+            <Field
+              name="email"
+              label="Email"
+            />
+            <Field
+              name="phone"
+              label="Номер телефона"
+            />
+            <Field
+              name="text"
+              label="Повідомлення"
+            />
+            <Box display="flex" alignItems="center" justifyContent="center" mt="2rem">
+              <Button variant="outlined" color="primary" size="large">Зв'язатись з нами</Button>
+            </Box>
+          </Form>
+        </Box>
+        <Box display="flex" alignItems="center" flexDirection="column" width="45%" pt="2rem">
+          <Link href="tel:80000000" color="textPrimary">
+            <Phone /> +38 (097) 33-234-23
+          </Link>
+          <Box display="flex" justifyContent="space-between" alignItems="center" mt="2rem">
+            <Link href="https://www.instagram.com/livekharkov/">
+              <Facebook />
+            </Link>
+            <Box m="0 2rem">
+              <Link href="https://www.instagram.com/livekharkov/">
+                <Instagram />
+              </Link>
+            </Box>
+            <Link href="mailto:oleh.sirota@gmail.com">
+              <Mail />
+            </Link>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   </PageLayout>
 );
 
-export default LandingPage;
+export default withFormik({
+  enableReinitialize: true,
+  mapPropsToValues,
+  handleSubmit,
+  validationSchema,
+})(LandingPage);

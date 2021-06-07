@@ -1,44 +1,32 @@
-import React, { useState } from 'react';
-import {
-  AppBar,
-  Link,
-  Container,
-  Box,
-  Typography,
-  Grid,
-  Divider,
-} from '@material-ui/core';
-import {
-  ToggleButton,
-  ToggleButtonGroup,
-} from '@material-ui/lab';
-import Image from 'next/image';
-import styled from 'styled-components';
-
+import React, { useState } from 'react'
+import { AppBar, Link, Container, Box, Typography, Divider } from '@material-ui/core'
+import { ToggleButton, ToggleButtonGroup } from '@material-ui/lab'
+import Image from 'next/image'
+import styled from 'styled-components'
 
 const AppBarStyled = styled(AppBar)`
   background-color: transparent;
   box-shadow: none;
-`;
+`
 
 const LinkStyled = styled(Link)`
   margin: 0 10px;
   text-transform: uppercase;
-`;
+`
 const DividerStyled = styled(Divider)`
   margin: 5rem 0;
   background-color: #fff;
-`;
+`
 
 type PageHeaderProps = {
-  isFooter?: boolean,
+  isFooter?: boolean
 }
 
-const PageHeader = ({ isFooter = false }: PageHeaderProps) => {
-  const [toggle, setToggle] = useState('УКР');
+const PageHeader = ({ isFooter }: PageHeaderProps) => {
+  const [toggle, setToggle] = useState('УКР')
   const handleToggle = (_: any, newAlignment: string) => {
-    setToggle(newAlignment);
-  };
+    setToggle(newAlignment)
+  }
 
   return (
     <AppBarStyled color="transparent" position="static">
@@ -57,11 +45,11 @@ const PageHeader = ({ isFooter = false }: PageHeaderProps) => {
               </ToggleButtonGroup>
               <Box mt="20px">
                 <Typography color="textSecondary">
-                  We share spirit of cider,<br/>
+                  We share spirit of cider,
+                  <br />
                   join us!
                 </Typography>
               </Box>
-              
             </Box>
           </Box>
 
@@ -76,21 +64,14 @@ const PageHeader = ({ isFooter = false }: PageHeaderProps) => {
       </Container>
     </AppBarStyled>
   )
-};
+}
 
-PageHeader.navList = [
-  'про нас',
-  'блог',
-  'сидр та перри',
-  'наши партнеры',
-  'контакты',
-];
+PageHeader.defaultProps = {
+  isFooter: false,
+}
 
-PageHeader.langList = [
-  'УКР',
-  'РУС',
-  'ESP',
-  'ENG',
-];
+PageHeader.navList = ['про нас', 'блог', 'сидр та перри', 'наши партнеры', 'контакты']
 
-export default PageHeader;
+PageHeader.langList = ['УКР', 'РУС', 'ESP', 'ENG']
+
+export default PageHeader

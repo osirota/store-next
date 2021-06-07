@@ -30,12 +30,21 @@
       }
     },
     "rules": {
-        "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".ts"] }],
-        "prettier/prettier": ["error", {}, { "usePrettierrc": true }],
-        "jsx-a11y/rule-name": 2
+      "max-len":  [2, 130, 2, {
+        "ignoreUrls": true,
+        "ignoreComments": false
+      }],
+      "import/prefer-default-export": 0,
+      "import/no-unresolved": 0,
+      "import/no-extraneous-dependencies": 0,
+      "import/no-named-as-default": 0,
+      "react/jsx-props-no-spreading": 0,
+      "object-curly-newline": 0,
+      "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".ts"] }],
+      "prettier/prettier": ["error", {}, { "usePrettierrc": true }],
     },
     "plugins": [
       "jsx-a11y"
     ],
-    "ignorePatterns": ["node_modules/*", ".next/*", ".out/*", "!.prettierrc.js'"],
+    "ignorePatterns": ["node_modules/*", ".next/*", ".out/*", "!.prettierrc.js'"]
   }
