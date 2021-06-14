@@ -50,6 +50,9 @@ const SliderWrapper = styled(Box)`
 
 const ImageWrapper = styled(Box)`
   z-index: -1;
+  & div {
+    top: 10rem!important;
+  }
 `;
 
 
