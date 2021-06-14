@@ -51,7 +51,8 @@ const SliderWrapper = styled(Box)`
 const ImageWrapper = styled(Box)`
   z-index: -1;
   & div {
-    top: 10rem!important;
+    top: 15rem!important;
+    height: 100%;
   }
 `;
 
@@ -61,7 +62,7 @@ const LandingPage = () => {
 
   return (
     <PageLayout title="Landing">
-      <Box pt="40px">
+      <Box pt="5rem">
         <Grid container spacing={2}>
           <ImageWrapper>
             <Image layout="fill" objectFit="cover" src="/apple-bg.gif" quality={100} />
