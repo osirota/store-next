@@ -46,7 +46,11 @@ const SliderWrapper = styled(Box)`
   .swiper-container-3d .swiper-slide-shadow-right, .swiper-container-3d .swiper-slide-shadow-left {
     background-image: none;
   }
-`
+`;
+
+const ImageWrapper = styled(Box)`
+  z-index: -1;
+`;
 
 
 const LandingPage = () => {
@@ -54,8 +58,11 @@ const LandingPage = () => {
 
   return (
     <PageLayout title="Landing">
-      <Box mt="40px">
+      <Box pt="40px">
         <Grid container spacing={2}>
+          <ImageWrapper>
+            <Image layout="fill" objectFit="cover" src="/apple-bg.gif" quality={100} />
+          </ImageWrapper>
           <Grid xs={7} item>
               <Box display="flex" flexDirection="column" justifyContent="space-between" paddingTop="10rem" height="100%">
                 <Box>
