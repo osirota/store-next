@@ -7,6 +7,9 @@ const theme = createMuiTheme({
     primary: {
       main: '#fff',
     },
+    background: {
+      default: "#000"
+    },
   },
   typography: {
     fontFamily: 'LC Chalk, Arial',

@@ -80,15 +80,6 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
 
 	return (
 		<>
-			<Wrapper>
-				<Image
-					alt="bg"
-					src="/bg-black.jpg"
-					layout="fill"
-					objectFit="cover"
-					quality={100}
-				/>
-			</Wrapper>
 			<PageHeader />
 			<ContainerStyled disableGutters maxWidth={false}>
 				<Head>
