@@ -64,7 +64,7 @@ const LandingPage = () => {
 
   return (
     <PageLayout title="Landing">
-      <Box pt="40px">
+      <Box pt="5rem">
         <Grid container spacing={2}>
           <ImageWrapper>
             <Image layout="fill" objectFit="cover" src="/apple-bg.gif" quality={100} />
