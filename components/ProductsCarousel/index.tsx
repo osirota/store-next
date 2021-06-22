@@ -1,5 +1,5 @@
 import React from 'react';
-import Slider from 'react-slick';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { Box, Typography } from '@material-ui/core';
 import ProductItem from 'components/ProductsCarousel/ProductItem';
 
@@ -17,22 +17,31 @@ type ProductsCarouselProps = {
 
 const ProductsCarousel = ({ title = 'ProductsCarousel', items }: ProductsCarouselProps) => {
   const settings = {
-    dots: false,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1
+    breakpoints: {
+      "640": {
+        "slidesPerView": 1,
+        "spaceBetween": 20
+      },
+      "768": {
+        "slidesPerView": 2,
+        "spaceBetween": 40
+      },
+      "1024": {
+        "slidesPerView": 4,
+        "spaceBetween": 50
+      }
+    },
   };
   return (
     <Box mt="10rem">
         <Typography variant="h4" component="h4" color="textSecondary" align="center" gutterBottom>{title}</Typography>
         <Box mt="4rem">
-          <Slider {...settings}>
-            <ProductItem />
-            <ProductItem />
-            <ProductItem />
-            <ProductItem />
-          </Slider>
+          <Swiper {...settings}>
+            <SwiperSlide><ProductItem /></SwiperSlide>
+            <SwiperSlide><ProductItem /></SwiperSlide>
+            <SwiperSlide><ProductItem /></SwiperSlide>
+            <SwiperSlide><ProductItem /></SwiperSlide>
+          </Swiper>
         </Box>
       </Box>
   )

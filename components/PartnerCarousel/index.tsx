@@ -1,5 +1,5 @@
 import React from 'react';
-import Slider from 'react-slick';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { Box, Typography } from '@material-ui/core';
 import Image from 'next/image';
 import styled from 'styled-components';
@@ -7,15 +7,24 @@ import styled from 'styled-components';
 const SliderStyled = styled(Box)`
   margin: 4rem 0 0;
   cursor: pointer;
-  & .slick-slide {
+  & .swiper-slide {
     display: flex;
     align-items: center;
     justify-content: center;
     background: transparent;
   }
-  & .slick-slide:hover {
+  & .swiper-slide:hover {
     background: url('/bg-product.png') center no-repeat;
     border-radius: 40px;
+  }
+  & .swiper-button-next, & .swiper-button-prev {
+    color: #fff;
+  }
+  & .swiper-button-prev, .swiper-container-rtl .swiper-button-next {
+    left: 0;
+  }
+  & .swiper-button-next, .swiper-container-rtl .swiper-button-prev {
+    right: 0;
   }
 `;
 
@@ -23,6 +32,12 @@ const GlassWrapper = styled(Box)`
   position: absolute;
   right: -189px;
   bottom: -220px;
+  @media(max-width: 1300px) {
+    right: -70px;
+  }
+  @media(max-width: 1200px) {
+    display: none;
+  }
 `;
 
 type PartnerCarouselProps = {
@@ -39,13 +54,25 @@ type PartnerCarouselProps = {
 
 const PartnerCarousel = ({ title = 'PartnerCarousel', items }: PartnerCarouselProps) => {
   const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 2000,
+    loop: true,
+    autoplay: {
+      "delay": 1500,
+    },
+    breakpoints: {
+      "640": {
+        "slidesPerView": 1,
+        "spaceBetween": 20
+      },
+      "768": {
+        "slidesPerView": 2,
+        "spaceBetween": 40
+      },
+      "1024": {
+        "slidesPerView": 8,
+        "spaceBetween": 10
+      }
+    },
+    navigation: true,
   };
   return (
     <Box mt="5rem" position="relative">
@@ -54,29 +81,15 @@ const PartnerCarousel = ({ title = 'PartnerCarousel', items }: PartnerCarouselPr
       </GlassWrapper>
       <Typography variant="h4" component="h4" color="textSecondary" align="center" gutterBottom>{title}</Typography>
       <SliderStyled>
-        <Slider {...settings}>
-          <Box display="flex" alignItems="center" justifyContent="center">
-            <Image src="/partner.png"  width="160px" height="80px" />
-          </Box>
-          <Box display="flex" alignItems="center" justifyContent="center">
-            <Image src="/partner.png"  width="160px" height="80px" />
-          </Box>
-          <Box display="flex" alignItems="center" justifyContent="center">
-            <Image src="/partner.png"  width="160px" height="80px" />
-          </Box>
-          <Box display="flex" alignItems="center" justifyContent="center">
-            <Image src="/partner.png"  width="160px" height="80px" />
-          </Box>
-          <Box display="flex" alignItems="center" justifyContent="center">
-            <Image src="/partner.png"  width="160px" height="80px" />
-          </Box>
-          <Box display="flex" alignItems="center" justifyContent="center">
-            <Image src="/partner.png"  width="160px" height="80px" />
-          </Box>
-          <Box display="flex" alignItems="center" justifyContent="center">
-            <Image src="/partner.png"  width="160px" height="80px" />
-          </Box>
-        </Slider>
+        <Swiper {...settings}>
+          {[1,2,3,4,5,6,7,8,9].map((i) => (
+            <SwiperSlide key={i}>
+              <Box display="flex" alignItems="center" justifyContent="center">
+                <Image src="/partner.png"  width="160px" height="80px" />
+              </Box>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </SliderStyled>
     </Box>
   )

@@ -27,6 +27,9 @@ import Apple from '../public/apple.svg';
 const AppleWrapper = styled(Box)`
   position: absolute;
   left: 0;
+  @media(max-width: 1300px) {
+    display: none;
+  }
 `
 const SliderWrapper = styled(Box)`
   .swiper-container {
@@ -56,6 +59,14 @@ const ImageWrapper = styled(Box)`
     width: 43%;
     left: 27rem!important;
   }
+  @media(max-width: 1300px) {
+    & div {
+      top: 25rem!important;
+      height: 84%;
+      width: 66%;
+      left: 11rem!important;
+    }
+  }
 `;
 
 
@@ -64,7 +75,10 @@ const LandingPage = () => {
 
   return (
     <PageLayout title="Landing">
-      <Box pt="5rem">
+      <Box pt="5rem" p={{
+        xs: "2rem 5rem 0",
+        lg: "0",
+      }}>
         <Grid container spacing={2}>
           <ImageWrapper>
             <Image layout="fill" objectFit="cover" src="/apple-bg.gif" quality={100} />
@@ -156,7 +170,10 @@ const LandingPage = () => {
         </Grid>
       </Box>
 
-      <Box mt="10rem" p="2rem 0 0 32rem">
+      <Box mt="10rem" p={{
+        xs: "2rem 5rem 0",
+        lg: "2rem 0 0 32rem"
+      }}>
         <AppleWrapper>
           <Image src="/apple.png" alt="apple" width={600} height={600} />
         </AppleWrapper>
@@ -178,10 +195,17 @@ const LandingPage = () => {
       <ProductsCarousel title="Сидр та Перрі" />
       <PartnerCarousel title="Наші партнери" />
 
-      <Box mt="10rem">
+      <Box 
+        mt="10rem" 
+        p={{
+          xs: "2rem 5rem 0",
+          lg: "0"
+        }}
+        width="100%"
+      >
         <Typography variant="h4" color="textSecondary" align="center">Контакты</Typography>
-        <Box mt="2rem" display="flex" justifyContent="space-between">
-          <Box width="45%">
+        <Box mt="2rem" display="flex" justifyContent="space-between" alignItems="center" flexDirection={{ xs: "column", lg: "row"}} width={{ xs: "90%", lg: "100%"}}>
+          <Box width={{ xs: "90%", lg: "45%"}}>
             <Form noValidate>
               <Field
                 name="name"

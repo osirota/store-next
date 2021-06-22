@@ -28,9 +28,22 @@ const CardStyled = styled(Card)`
       display: flex;
     }
   }
+  @media(max-width: 1024px) {
+    :hover {
+      background: transparent;
+    }
+  }
 `;
 
-const ImgaeWrapper = styled(Box)`
+const CardContentStyled = styled(CardContent) `
+@media(max-width: 1024px) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+`;
+
+const ImageWrapper = styled(Box)`
   position: relative;
   &::before {
     content: '';
@@ -58,10 +71,10 @@ type ProductItemProps = {
 const ProductItem = ({ item }: ProductItemProps) => {
   return (
     <CardStyled>
-      <CardContent>
-        <ImgaeWrapper data-image>
+      <CardContentStyled>
+        <ImageWrapper data-image>
           <Image src="/bottle.png" height="225px" width="270px" />
-        </ImgaeWrapper>
+        </ImageWrapper>
         <Typography variant="h6" component="h6" color="textSecondary" align="center" gutterBottom>
           Сидр "Poma Aurea"   4.7%
         </Typography>
@@ -71,7 +84,7 @@ const ProductItem = ({ item }: ProductItemProps) => {
         <Typography variant="body2" component="p" color="textSecondary" gutterBottom>
           26.99 грн
         </Typography>
-      </CardContent>
+      </CardContentStyled>
       <CardActions>
         <Button variant="outlined" color="primary" fullWidth>Купити</Button>
       </CardActions>
