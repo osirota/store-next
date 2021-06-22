@@ -37,6 +37,7 @@ const FabStyled = styled(Fab)`
 	position: fixed;
 	right: 2rem;
 	bottom: 2rem;
+	z-index: 2;
 `;
 
 const SwipeableDrawerStyled = styled(SwipeableDrawer)`

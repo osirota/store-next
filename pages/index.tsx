@@ -35,6 +35,10 @@ const SliderWrapper = styled(Box)`
   .swiper-container {
     width: 300px;
     height: 100%;
+
+    @media(max-width: 775px) {
+      width: 200px;
+    }
   }
 
   .swiper-slide {
@@ -76,14 +80,14 @@ const LandingPage = () => {
   return (
     <PageLayout title="Landing">
       <Box pt="5rem" p={{
-        xs: "2rem 5rem 0",
+        xs: "2rem 1rem 0",
         lg: "0",
       }}>
         <Grid container spacing={2}>
           <ImageWrapper>
             <Image layout="fill" objectFit="cover" src="/apple-bg.gif" quality={100} />
           </ImageWrapper>
-          <Grid xs={7} item>
+          <Grid lg={7} xs={12} item>
               <Box display="flex" flexDirection="column" justifyContent="space-between" paddingTop="10rem" height="100%">
                 <Box>
                   <Typography color="textSecondary" variant="h3">
@@ -116,7 +120,7 @@ const LandingPage = () => {
               </Box>
           </Grid>
 
-          <Grid container xs={5} item alignItems="center" justify="center" direction="column">
+          <Grid container lg={5} xs={12} item alignItems="center" justify="center" direction="column">
             <SliderWrapper>
               <Swiper 
                 effect={'cube'} 
@@ -171,7 +175,7 @@ const LandingPage = () => {
       </Box>
 
       <Box mt="10rem" p={{
-        xs: "2rem 5rem 0",
+        xs: "2rem 1rem 0",
         lg: "2rem 0 0 32rem"
       }}>
         <AppleWrapper>
@@ -198,7 +202,7 @@ const LandingPage = () => {
       <Box 
         mt="10rem" 
         p={{
-          xs: "2rem 5rem 0",
+          xs: "2rem 1rem 0",
           lg: "0"
         }}
         width="100%"
@@ -228,7 +232,7 @@ const LandingPage = () => {
               </Box>
             </Form>
           </Box>
-          <Box display="flex" alignItems="center" flexDirection="column" width="45%" pt="2rem">
+          <Box display="flex" alignItems="center" flexDirection="column" width={{ xs: "90%", lg: "45%"}} pt="2rem">
             <Link href="tel:80000000" color="textPrimary">
               <Phone /> +38 (097) 33-234-23
             </Link>

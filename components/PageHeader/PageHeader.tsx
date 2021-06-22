@@ -95,7 +95,15 @@ const PageHeader = ({ isFooter }: PageHeaderProps) => {
 				onClose={toggleDrawer}
 				onOpen={toggleDrawer}
 			>
-				123
+        <Box display="flex" flexDirection="column">
+            {PageHeader.navList.map((item) => (
+              <Box mt="2rem">
+                <LinkStyled href="" key={item} color="textSecondary">
+                  {item}
+                </LinkStyled>
+              </Box>
+            ))}
+          </Box>
 			</SwipeableDrawerStyled>
     </AppBarStyled>
   )

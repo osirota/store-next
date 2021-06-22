@@ -54,10 +54,6 @@ type PartnerCarouselProps = {
 
 const PartnerCarousel = ({ title = 'PartnerCarousel', items }: PartnerCarouselProps) => {
   const settings = {
-    loop: true,
-    autoplay: {
-      "delay": 1500,
-    },
     breakpoints: {
       "640": {
         "slidesPerView": 1,
@@ -68,7 +64,7 @@ const PartnerCarousel = ({ title = 'PartnerCarousel', items }: PartnerCarouselPr
         "spaceBetween": 40
       },
       "1024": {
-        "slidesPerView": 8,
+        "slidesPerView": 3,
         "spaceBetween": 10
       }
     },
