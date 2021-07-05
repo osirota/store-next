@@ -43,7 +43,7 @@ const SwipeableDrawerStyled = styled(SwipeableDrawer)`
 `;
 
 type PageHeaderProps = {
-  isFooter?: boolean
+  isFooter?: boolean;
 };
 
 const PageHeader = ({ isFooter }: PageHeaderProps) => {
@@ -55,14 +55,18 @@ const PageHeader = ({ isFooter }: PageHeaderProps) => {
   const [drawerState, setDrawerState] = useState(false);
 
   const toggleDrawer = () => {
-    setDrawerState(!drawerState)
+    setDrawerState(!drawerState);
   };
 
   return (
     <AppBarStyled color="transparent" position="static">
       <Container disableGutters maxWidth={false}>
         {isFooter && <DividerStyled />}
-        <HeaderWrapper display="flex" alignItems="center" justifyContent="space-between">
+        <HeaderWrapper
+          display="flex"
+          alignItems="center"
+          justifyContent="space-between"
+        >
           <Box display="flex" alignItems="flex-start">
             <Image src="/logo.png" alt="logo" width="130px" height="134px" />
             <Box display="flex" flexDirection="column" ml="20px">
@@ -114,14 +118,20 @@ const PageHeader = ({ isFooter }: PageHeaderProps) => {
         </Box>
       </SwipeableDrawerStyled>
     </AppBarStyled>
-  )
-}
+  );
+};
 
 PageHeader.defaultProps = {
   isFooter: false,
 };
 
-PageHeader.navList = ['про нас', 'блог', 'сидр та перри', 'наши партнеры', 'контакты'];
+PageHeader.navList = [
+  'про нас',
+  'блог',
+  'сидр та перри',
+  'наши партнеры',
+  'контакты',
+];
 
 PageHeader.langList = ['УКР', 'РУС', 'ESP', 'ENG'];
 

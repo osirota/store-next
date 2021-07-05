@@ -44,18 +44,20 @@ const GlassWrapper = styled(Box)`
 `;
 
 type PartnerCarouselProps = {
-  title?: string,
+  title?: string;
   items?: {
-    id: string,
-    url: string,
-    description: string,
-    composition: string,
-    volume: string,
-    price: string
-  }
+    id: string;
+    url: string;
+    description: string;
+    composition: string;
+    volume: string;
+    price: string;
+  };
 };
 
-const PartnerCarousel = ({ title = 'PartnerCarousel', }: PartnerCarouselProps) => {
+const PartnerCarousel = ({
+  title = 'PartnerCarousel',
+}: PartnerCarouselProps) => {
   const settings = {
     breakpoints: {
       '640': {
@@ -78,7 +80,13 @@ const PartnerCarousel = ({ title = 'PartnerCarousel', }: PartnerCarouselProps) =
       <GlassWrapper>
         <Image src="/glass.png" width={150} height={250} />
       </GlassWrapper>
-      <Typography variant="h4" component="h4" color="textSecondary" align="center" gutterBottom>
+      <Typography
+        variant="h4"
+        component="h4"
+        color="textSecondary"
+        align="center"
+        gutterBottom
+      >
         {title}
       </Typography>
       <SliderStyled>
@@ -93,8 +101,8 @@ const PartnerCarousel = ({ title = 'PartnerCarousel', }: PartnerCarouselProps) =
         </Swiper>
       </SliderStyled>
     </Box>
-  )
-}
+  );
+};
 
 PartnerCarousel.defaultProps = {
   items: null,

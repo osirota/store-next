@@ -45,7 +45,10 @@ export default function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <title>My page</title>
-        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+        <meta
+          name="viewport"
+          content="minimum-scale=1, initial-scale=1, width=device-width"
+        />
       </Head>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
@@ -53,8 +56,8 @@ export default function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
       </ThemeProvider>
     </>
-  )
-};
+  );
+}
 
 MyApp.propTypes = {
   Component: PropTypes.node.isRequired,

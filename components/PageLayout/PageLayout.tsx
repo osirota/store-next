@@ -67,8 +67,8 @@ const ContentWrapper = styled(Box)`
 `;
 
 type PageLayoutProps = {
-  title: string,
-  children: React.ReactNode
+  title: string;
+  children: React.ReactNode;
 };
 
 const PageLayout = ({ children, title }: PageLayoutProps) => {
@@ -99,7 +99,16 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
         <ContentWrapper display="flex" flexDirection="column" p="1.25rem">
           <Typography color="primary">Ваше замовлення</Typography>
           <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts', '1', '2', '3', '5'].map((text) => (
+            {[
+              'Inbox',
+              'Starred',
+              'Send email',
+              'Drafts',
+              '1',
+              '2',
+              '3',
+              '5',
+            ].map((text) => (
               <ListItemStyled key={text}>
                 <ListItem>
                   <ListItemSecondaryAction>
@@ -123,7 +132,12 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
                     </Box>
                   </Box>
                   <ListItemAvatar>
-                    <Image alt="bg" src="/bottle.png" width={100} height={100} />
+                    <Image
+                      alt="bg"
+                      src="/bottle.png"
+                      width={100}
+                      height={100}
+                    />
                   </ListItemAvatar>
                 </ListItem>
               </ListItemStyled>
@@ -142,7 +156,7 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
         <ShoppingCart />
       </FabStyled>
     </>
-  )
+  );
 };
 
 export default PageLayout;

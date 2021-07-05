@@ -27,15 +27,15 @@ const BottleWrapper = styled(Box)`
 `;
 
 type BlogCarouselProps = {
-  title?: string,
+  title?: string;
   items?: {
-    id: string,
-    url: string,
-    description: string,
-    composition: string,
-    volume: string,
-    price: string,
-  }
+    id: string;
+    url: string;
+    description: string;
+    composition: string;
+    volume: string;
+    price: string;
+  };
 };
 
 const BlogCarousel = ({ title = 'BlogCarousel' }: BlogCarouselProps) => {
@@ -64,7 +64,13 @@ const BlogCarousel = ({ title = 'BlogCarousel' }: BlogCarouselProps) => {
       <BottleWrapper>
         <Image src="/bottles.png" width={200} height={400} />
       </BottleWrapper>
-      <Typography variant="h4" component="h4" color="textSecondary" align="center" gutterBottom>
+      <Typography
+        variant="h4"
+        component="h4"
+        color="textSecondary"
+        align="center"
+        gutterBottom
+      >
         {title}
       </Typography>
       <Box mt="4rem">
@@ -86,7 +92,7 @@ const BlogCarousel = ({ title = 'BlogCarousel' }: BlogCarouselProps) => {
         </Button>
       </Box>
     </Box>
-  )
+  );
 };
 
 BlogCarousel.defaultProps = {

@@ -29,13 +29,13 @@ const ImgaeWrapper = styled(Box)`
 
 type BlogItemProps = {
   item?: {
-    id: string,
-    url: string,
-    description: string,
-    composition: string,
-    volume: string,
-    price: string,
-  }
+    id: string;
+    url: string;
+    description: string;
+    composition: string;
+    volume: string;
+    price: string;
+  };
 };
 
 const BlogItem = ({ item }: BlogItemProps) => {
@@ -43,20 +43,32 @@ const BlogItem = ({ item }: BlogItemProps) => {
     <CardStyled>
       {item}
       <CardContent>
-        <ImgaeWrapper data-image display="flex" alignItems="center" justifyContent="center">
+        <ImgaeWrapper
+          data-image
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+        >
           <Image src="/blog.png" height="225px" width="270px" />
         </ImgaeWrapper>
-        <Typography variant="h6" component="h6" color="textSecondary" align="center" gutterBottom>
+        <Typography
+          variant="h6"
+          component="h6"
+          color="textSecondary"
+          align="center"
+          gutterBottom
+        >
           Як виготовлять сидр, який ми куплямо
         </Typography>
         <Typography variant="body2" component="p" gutterBottom>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat commodo cla ...
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat commodo cla ...
         </Typography>
       </CardContent>
     </CardStyled>
-  )
+  );
 };
 
 BlogItem.defaultProps = {

@@ -10,7 +10,11 @@ import ProductsCarousel from 'components/ProductsCarousel';
 import PartnerCarousel from 'components/PartnerCarousel';
 import BlogCarousel from 'components/BlogCarousel';
 import Field from 'patterns/Field';
-import { mapPropsToValues, handleSubmit, validationSchema } from 'utils/landing/landing-form';
+import {
+  mapPropsToValues,
+  handleSubmit,
+  validationSchema,
+} from 'utils/landing/landing-form';
 
 import Mail from '../public/icons/mail.svg';
 import Facebook from '../public/icons/facebook.svg';
@@ -79,7 +83,12 @@ const LandingPage = () => {
       >
         <Grid container spacing={2}>
           <ImageWrapper>
-            <Image layout="fill" objectFit="cover" src="/apple-bg.gif" quality={100} />
+            <Image
+              layout="fill"
+              objectFit="cover"
+              src="/apple-bg.gif"
+              quality={100}
+            />
           </ImageWrapper>
           <Grid lg={7} xs={12} item>
             <Box
@@ -95,16 +104,24 @@ const LandingPage = () => {
                 </Typography>
                 <Box width="60%" mt="2rem">
                   <Typography>
-                    Cider Enthusiasts ретельно відібрали найкращі позиції, які не залишать байдужим
-                    нікого.
+                    Cider Enthusiasts ретельно відібрали найкращі позиції, які
+                    не залишать байдужим нікого.
                   </Typography>
                 </Box>
               </Box>
-              <Box display="flex" alignItems="center" justifyContent="space-between">
+              <Box
+                display="flex"
+                alignItems="center"
+                justifyContent="space-between"
+              >
                 <Link href="tel:80000000" color="textPrimary">
                   <Phone /> +38 (097) 33-234-23
                 </Link>
-                <Box display="flex" justifyContent="space-between" alignItems="center">
+                <Box
+                  display="flex"
+                  justifyContent="space-between"
+                  alignItems="center"
+                >
                   <Link href="https://www.instagram.com/livekharkov/">
                     <Facebook />
                   </Link>
@@ -147,24 +164,51 @@ const LandingPage = () => {
                 loop
               >
                 <SwiperSlide>
-                  <Box display="flex" alignItems="center" flexDirection="column">
-                    <Image src="/sider.png" alt="bottle" width={160} height={600} />
+                  <Box
+                    display="flex"
+                    alignItems="center"
+                    flexDirection="column"
+                  >
+                    <Image
+                      src="/sider.png"
+                      alt="bottle"
+                      width={160}
+                      height={600}
+                    />
                     <Box mt="1.5rem">
                       <Typography>Сидр Poma Aurea</Typography>
                     </Box>
                   </Box>
                 </SwiperSlide>
                 <SwiperSlide>
-                  <Box display="flex" alignItems="center" flexDirection="column">
-                    <Image src="/sider.png" alt="bottle" width={160} height={600} />
+                  <Box
+                    display="flex"
+                    alignItems="center"
+                    flexDirection="column"
+                  >
+                    <Image
+                      src="/sider.png"
+                      alt="bottle"
+                      width={160}
+                      height={600}
+                    />
                     <Box mt="1.5rem">
                       <Typography>Сидр Poma Aurea</Typography>
                     </Box>
                   </Box>
                 </SwiperSlide>
                 <SwiperSlide>
-                  <Box display="flex" alignItems="center" flexDirection="column">
-                    <Image src="/sider.png" alt="bottle" width={160} height={600} />
+                  <Box
+                    display="flex"
+                    alignItems="center"
+                    flexDirection="column"
+                  >
+                    <Image
+                      src="/sider.png"
+                      alt="bottle"
+                      width={160}
+                      height={600}
+                    />
                     <Box mt="1.5rem">
                       <Typography>Сидр Poma Aurea</Typography>
                     </Box>
@@ -191,15 +235,18 @@ const LandingPage = () => {
         </Typography>
         <Box mt="2rem">
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem
+            ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum
+            dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit
+            amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+            ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+            labore et dolore magna aliqua. Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+            labore et dolore magna aliqua.
           </Typography>
         </Box>
       </Box>
@@ -234,7 +281,12 @@ const LandingPage = () => {
               <Field name="email" label="Email" />
               <Field name="phone" label="Номер телефона" />
               <Field name="text" label="Повідомлення" />
-              <Box display="flex" alignItems="center" justifyContent="center" mt="2rem">
+              <Box
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                mt="2rem"
+              >
                 <Button variant="outlined" color="primary" size="large">
                   Звязатись з нами
                 </Button>
@@ -251,7 +303,12 @@ const LandingPage = () => {
             <Link href="tel:80000000" color="textPrimary">
               <Phone /> +38 (097) 33-234-23
             </Link>
-            <Box display="flex" justifyContent="space-between" alignItems="center" mt="2rem">
+            <Box
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+              mt="2rem"
+            >
               <Link href="https://www.instagram.com/livekharkov/">
                 <Facebook />
               </Link>
@@ -268,8 +325,8 @@ const LandingPage = () => {
         </Box>
       </Box>
     </PageLayout>
-  )
-}
+  );
+};
 
 export default withFormik({
   enableReinitialize: true,

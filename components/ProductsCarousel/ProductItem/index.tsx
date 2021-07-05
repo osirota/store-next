@@ -1,6 +1,13 @@
 import React from 'react';
 import Image from 'next/image';
-import { Card, CardContent, CardActions, Button, Typography, Box } from '@material-ui/core';
+import {
+  Card,
+  CardContent,
+  CardActions,
+  Button,
+  Typography,
+  Box,
+} from '@material-ui/core';
 import styled from 'styled-components';
 
 const CardStyled = styled(Card)`
@@ -59,7 +66,7 @@ const ImageWrapper = styled(Box)`
 
 type ProductItemProps = {
   item?: {
-    id: string,
+    id: string;
     url: string;
     description: string;
     composition: string;
@@ -76,13 +83,25 @@ const ProductItem = ({ item }: ProductItemProps) => {
         <ImageWrapper data-image>
           <Image src="/bottle.png" height="225px" width="270px" />
         </ImageWrapper>
-        <Typography variant="h6" component="h6" color="textSecondary" align="center" gutterBottom>
+        <Typography
+          variant="h6"
+          component="h6"
+          color="textSecondary"
+          align="center"
+          gutterBottom
+        >
           Сидр Poma Aurea 4.7%
         </Typography>
         <Typography variant="body2" component="p" gutterBottom>
-          Склад: вода, яблука (40%), лимонна кислота, сироп глюкозно- фруктозний.
+          Склад: вода, яблука (40%), лимонна кислота, сироп глюкозно-
+          фруктозний.
         </Typography>
-        <Typography variant="body2" component="p" color="textSecondary" gutterBottom>
+        <Typography
+          variant="body2"
+          component="p"
+          color="textSecondary"
+          gutterBottom
+        >
           26.99 грн
         </Typography>
       </CardContentStyled>
