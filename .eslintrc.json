@@ -1,50 +1,50 @@
 {
-    "root": true,
-    "parser": "babel-eslint",
-    "extends": [
-      "eslint:recommended",
-      "plugin:react/recommended",
-      "plugin:import/errors",
-      "plugin:import/warnings",
-      "plugin:jsx-a11y/recommended",
-      "plugin:react-hooks/recommended",
-      "airbnb",
-      "plugin:prettier/recommended"
-    ],
-    "env": {
-      "browser": true,
-      "commonjs": true,
-      "es6": true,
-      "node": true
-    },
-    "parserOptions": {
-      "ecmaVersion": 2018,
-      "sourceType": "module",
-      "ecmaFeatures": {
-        "jsx": true
-      }
-    },
-    "settings": {
-      "react": {
-        "version": "detect"
-      }
-    },
-    "rules": {
-      "max-len":  [2, 130, 2, {
-        "ignoreUrls": true,
-        "ignoreComments": false
-      }],
-      "import/prefer-default-export": 0,
-      "import/no-unresolved": 0,
-      "import/no-extraneous-dependencies": 0,
-      "import/no-named-as-default": 0,
-      "react/jsx-props-no-spreading": 0,
-      "object-curly-newline": 0,
-      "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".ts"] }],
-      "prettier/prettier": ["error", {}, { "usePrettierrc": true }],
-    },
-    "plugins": [
-      "jsx-a11y"
-    ],
-    "ignorePatterns": ["node_modules/*", ".next/*", ".out/*", "!.prettierrc.js'"]
-  }
+  "root": true,
+  "parser": "babel-eslint",
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:jsx-a11y/recommended",
+    "plugin:react-hooks/recommended",
+    "airbnb",
+    "plugin:prettier/recommended"
+  ],
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "max-len":  [2, 130, 2, {
+      "ignoreUrls": true,
+      "ignoreComments": false
+    }],
+    "import/prefer-default-export": 0,
+    "import/no-unresolved": 0,
+    "import/no-extraneous-dependencies": 0,
+    "import/no-named-as-default": 0,
+    "react/jsx-props-no-spreading": 0,
+    "object-curly-newline": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".ts"] }],
+    "prettier/prettier": ["error", {}, { "usePrettierrc": true }]
+  },
+  "plugins": [
+    "jsx-a11y"
+  ],
+  "ignorePatterns": ["node_modules/*", ".next/*", ".out/*", "!.prettierrc.js'"]
+}

@@ -1,10 +1,18 @@
 import React, { useState } from 'react'
-import { AppBar, Link, Container, Box, Typography, Divider, IconButton, SwipeableDrawer } from '@material-ui/core'
-import { ToggleButton, ToggleButtonGroup } from '@material-ui/lab'
+import {
+  AppBar,
+  Link,
+  Container,
+  Box,
+  Typography,
+  Divider,
+  IconButton,
+  SwipeableDrawer,
+} from '@material-ui/core'
 import Image from 'next/image'
 import styled from 'styled-components'
 
-import Menu from '../../public/icons/menu.svg';
+import Menu from '../../public/icons/menu.svg'
 
 const AppBarStyled = styled(AppBar)`
   background-color: transparent;
@@ -20,19 +28,19 @@ const DividerStyled = styled(Divider)`
   background-color: #fff;
 `
 const HeaderWrapper = styled(Box)`
-  @media(max-width: 992px) {
+  @media (max-width: 992px) {
     padding: 0 3rem 2rem;
     border-bottom: 1px solid #fff;
   }
-`;
+`
 
 const SwipeableDrawerStyled = styled(SwipeableDrawer)`
-	color: red;
-	& .MuiDrawer-paper {
-		width: 400px;
-		background-color: #b2b2b2;
-	}
-`;
+  color: red;
+  & .MuiDrawer-paper {
+    width: 400px;
+    background-color: #b2b2b2;
+  }
+`
 
 type PageHeaderProps = {
   isFooter?: boolean
@@ -44,11 +52,11 @@ const PageHeader = ({ isFooter }: PageHeaderProps) => {
     setToggle(newAlignment)
   }
 
-  const [drawerState, setDrawerState] = useState(false);
+  const [drawerState, setDrawerState] = useState(false)
 
-	const toggleDrawer = () => {
-		setDrawerState(!drawerState);
-	};
+  const toggleDrawer = () => {
+    setDrawerState(!drawerState)
+  }
 
   return (
     <AppBarStyled color="transparent" position="static">
@@ -75,14 +83,14 @@ const PageHeader = ({ isFooter }: PageHeaderProps) => {
             </Box>
           </Box>
 
-          <Box display={{ xs: "none", md: "inline-flex"  }}>
+          <Box display={{ xs: 'none', md: 'inline-flex' }}>
             {PageHeader.navList.map((item) => (
               <LinkStyled href="" key={item} color="textPrimary">
                 {item}
               </LinkStyled>
             ))}
           </Box>
-          <Box display={{  xs: "flex", md: "none" }}>
+          <Box display={{ xs: 'flex', md: 'none' }}>
             <IconButton onClick={toggleDrawer}>
               <Menu />
             </IconButton>
@@ -90,21 +98,21 @@ const PageHeader = ({ isFooter }: PageHeaderProps) => {
         </HeaderWrapper>
       </Container>
       <SwipeableDrawerStyled
-				anchor="left"
-				open={drawerState}
-				onClose={toggleDrawer}
-				onOpen={toggleDrawer}
-			>
+        anchor="left"
+        open={drawerState}
+        onClose={toggleDrawer}
+        onOpen={toggleDrawer}
+      >
         <Box display="flex" flexDirection="column">
-            {PageHeader.navList.map((item) => (
-              <Box mt="2rem">
-                <LinkStyled href="" key={item} color="textSecondary">
-                  {item}
-                </LinkStyled>
-              </Box>
-            ))}
-          </Box>
-			</SwipeableDrawerStyled>
+          {PageHeader.navList.map((item) => (
+            <Box mt="2rem" key={item}>
+              <LinkStyled href="" key={item} color="textSecondary">
+                {item}
+              </LinkStyled>
+            </Box>
+          ))}
+        </Box>
+      </SwipeableDrawerStyled>
     </AppBarStyled>
   )
 }
