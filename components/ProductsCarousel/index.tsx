@@ -1,11 +1,11 @@
 import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Box, Typography } from '@material-ui/core'
-import ProductItem from 'components/ProductsCarousel/ProductItem'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Box, Typography } from '@material-ui/core';
+import ProductItem from 'components/ProductsCarousel/ProductItem';
 
 type ProductsCarouselProps = {
   title?: string
-}
+};
 
 const ProductsCarousel = ({ title = 'ProductsCarousel' }: ProductsCarouselProps) => {
   const settings = {
@@ -23,7 +23,7 @@ const ProductsCarousel = ({ title = 'ProductsCarousel' }: ProductsCarouselProps)
         spaceBetween: 50,
       },
     },
-  }
+  };
   return (
     <Box mt="10rem">
       <Typography variant="h4" component="h4" color="textSecondary" align="center" gutterBottom>
@@ -51,6 +51,6 @@ const ProductsCarousel = ({ title = 'ProductsCarousel' }: ProductsCarouselProps)
 
 ProductsCarousel.defaultProps = {
   title: null,
-}
+};
 
-export default ProductsCarousel
+export default ProductsCarousel;

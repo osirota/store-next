@@ -1,8 +1,8 @@
 import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Box, Typography } from '@material-ui/core'
-import Image from 'next/image'
-import styled from 'styled-components'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Box, Typography } from '@material-ui/core';
+import Image from 'next/image';
+import styled from 'styled-components';
 
 const SliderStyled = styled(Box)`
   margin: 4rem 0 0;
@@ -29,7 +29,7 @@ const SliderStyled = styled(Box)`
   .swiper-container-rtl .swiper-button-prev {
     right: 0;
   }
-`
+`;
 
 const GlassWrapper = styled(Box)`
   position: absolute;
@@ -41,7 +41,7 @@ const GlassWrapper = styled(Box)`
   @media (max-width: 1200px) {
     display: none;
   }
-`
+`;
 
 type PartnerCarouselProps = {
   title?: string,
@@ -53,7 +53,7 @@ type PartnerCarouselProps = {
     volume: string,
     price: string
   }
-}
+};
 
 const PartnerCarousel = ({ title = 'PartnerCarousel', }: PartnerCarouselProps) => {
   const settings = {
@@ -72,7 +72,7 @@ const PartnerCarousel = ({ title = 'PartnerCarousel', }: PartnerCarouselProps) =
       },
     },
     navigation: true,
-  }
+  };
   return (
     <Box mt="5rem" position="relative">
       <GlassWrapper>
@@ -99,6 +99,6 @@ const PartnerCarousel = ({ title = 'PartnerCarousel', }: PartnerCarouselProps) =
 PartnerCarousel.defaultProps = {
   items: null,
   title: null,
-}
+};
 
-export default PartnerCarousel
+export default PartnerCarousel;

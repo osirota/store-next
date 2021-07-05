@@ -11,19 +11,19 @@ import {
   ListItemAvatar,
   IconButton,
   Button,
-} from '@material-ui/core'
-import { ShoppingCart, Add, Remove, Cancel } from '@material-ui/icons'
-import styled from 'styled-components'
-import Head from 'next/head'
-import Image from 'next/image'
+} from '@material-ui/core';
+import { ShoppingCart, Add, Remove, Cancel } from '@material-ui/icons';
+import styled from 'styled-components';
+import Head from 'next/head';
+import Image from 'next/image';
 
-import PageHeader from 'components/PageHeader/PageHeader'
+import PageHeader from 'components/PageHeader/PageHeader';
 
 const ContainerStyled = styled(Container)`
   max-width: 1140px;
   margin: 0 auto;
   padding: 30px 0 10px;
-`
+`;
 
 // const Wrapper = styled.div`
 //   position: fixed;
@@ -38,7 +38,7 @@ const FabStyled = styled(Fab)`
   right: 2rem;
   bottom: 2rem;
   z-index: 2;
-`
+`;
 
 const SwipeableDrawerStyled = styled(SwipeableDrawer)`
   color: red;
@@ -46,12 +46,12 @@ const SwipeableDrawerStyled = styled(SwipeableDrawer)`
     width: 400px;
     background-color: #b2b2b2;
   }
-`
+`;
 
 const ListItemStyled = styled(Box)`
   border: 1px solid;
   margin: 1rem 0;
-`
+`;
 
 const CompleteWrapper = styled(Box)`
   display: flex;
@@ -59,24 +59,24 @@ const CompleteWrapper = styled(Box)`
   justify-content: space-around;
   border-top: 1px solid;
   padding: 1rem 0 0;
-`
+`;
 
 const ContentWrapper = styled(Box)`
   max-height: 90vh;
   overflow: overlay;
-`
+`;
 
 type PageLayoutProps = {
   title: string,
   children: React.ReactNode
-}
+};
 
 const PageLayout = ({ children, title }: PageLayoutProps) => {
-  const [drawerState, setDrawerState] = useState(false)
+  const [drawerState, setDrawerState] = useState(false);
 
   const toggleDrawer = () => {
-    setDrawerState(!drawerState)
-  }
+    setDrawerState(!drawerState);
+  };
 
   return (
     <>
@@ -143,6 +143,6 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
       </FabStyled>
     </>
   )
-}
+};
 
-export default PageLayout
+export default PageLayout;

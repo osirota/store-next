@@ -1,9 +1,9 @@
 import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react'
-import Image from 'next/image'
-import styled from 'styled-components'
-import { Box, Typography, Button } from '@material-ui/core'
-import BlogItem from 'components/BlogCarousel/BlogItem'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import Image from 'next/image';
+import styled from 'styled-components';
+import { Box, Typography, Button } from '@material-ui/core';
+import BlogItem from 'components/BlogCarousel/BlogItem';
 
 const BarrelWrapper = styled(Box)`
   position: absolute;
@@ -15,7 +15,8 @@ const BarrelWrapper = styled(Box)`
   @media (max-width: 1024px) {
     display: none;
   }
-`
+`;
+
 const BottleWrapper = styled(Box)`
   position: absolute;
   bottom: -280px;
@@ -23,7 +24,7 @@ const BottleWrapper = styled(Box)`
   @media (max-width: 1300px) {
     left: -65px;
   }
-`
+`;
 
 type BlogCarouselProps = {
   title?: string,
@@ -35,7 +36,7 @@ type BlogCarouselProps = {
     volume: string,
     price: string,
   }
-}
+};
 
 const BlogCarousel = ({ title = 'BlogCarousel' }: BlogCarouselProps) => {
   const settings = {
@@ -53,7 +54,8 @@ const BlogCarousel = ({ title = 'BlogCarousel' }: BlogCarouselProps) => {
         spaceBetween: 50,
       },
     },
-  }
+  };
+
   return (
     <Box mt="5rem" position="relative">
       <BarrelWrapper>
@@ -85,11 +87,11 @@ const BlogCarousel = ({ title = 'BlogCarousel' }: BlogCarouselProps) => {
       </Box>
     </Box>
   )
-}
+};
 
 BlogCarousel.defaultProps = {
   title: null,
   items: null,
-}
+};
 
-export default BlogCarousel
+export default BlogCarousel;

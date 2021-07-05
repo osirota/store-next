@@ -1,21 +1,21 @@
 import React from 'react';
-import { Link, Box, Typography, Grid, Button } from '@material-ui/core'
-import { withFormik, Form } from 'formik'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import Image from 'next/image'
-import styled from 'styled-components'
+import { Link, Box, Typography, Grid, Button } from '@material-ui/core';
+import { withFormik, Form } from 'formik';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import Image from 'next/image';
+import styled from 'styled-components';
 
-import PageLayout from 'components/PageLayout/PageLayout'
-import ProductsCarousel from 'components/ProductsCarousel'
-import PartnerCarousel from 'components/PartnerCarousel'
-import BlogCarousel from 'components/BlogCarousel'
-import Field from 'patterns/Field'
-import { mapPropsToValues, handleSubmit, validationSchema } from 'utils/landing/landing-form'
+import PageLayout from 'components/PageLayout/PageLayout';
+import ProductsCarousel from 'components/ProductsCarousel';
+import PartnerCarousel from 'components/PartnerCarousel';
+import BlogCarousel from 'components/BlogCarousel';
+import Field from 'patterns/Field';
+import { mapPropsToValues, handleSubmit, validationSchema } from 'utils/landing/landing-form';
 
-import Mail from '../public/icons/mail.svg'
-import Facebook from '../public/icons/facebook.svg'
-import Instagram from '../public/icons/instagram.svg'
-import Phone from '../public/icons/phone.svg'
+import Mail from '../public/icons/mail.svg';
+import Facebook from '../public/icons/facebook.svg';
+import Instagram from '../public/icons/instagram.svg';
+import Phone from '../public/icons/phone.svg';
 
 const AppleWrapper = styled(Box)`
   position: absolute;
@@ -23,7 +23,7 @@ const AppleWrapper = styled(Box)`
   @media (max-width: 1300px) {
     display: none;
   }
-`
+`;
 const SliderWrapper = styled(Box)`
   .swiper-container {
     width: 300px;
@@ -47,7 +47,7 @@ const SliderWrapper = styled(Box)`
   .swiper-container-3d .swiper-slide-shadow-left {
     background-image: none;
   }
-`
+`;
 
 const ImageWrapper = styled(Box)`
   z-index: -1;
@@ -65,7 +65,7 @@ const ImageWrapper = styled(Box)`
       left: 11rem !important;
     }
   }
-`
+`;
 
 const LandingPage = () => {
   return (
@@ -276,4 +276,4 @@ export default withFormik({
   mapPropsToValues,
   handleSubmit,
   validationSchema,
-})(LandingPage)
+})(LandingPage);

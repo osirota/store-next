@@ -1,7 +1,7 @@
 import React from 'react';
-import Image from 'next/image'
-import { Card, CardContent, Typography, Box } from '@material-ui/core'
-import styled from 'styled-components'
+import Image from 'next/image';
+import { Card, CardContent, Typography, Box } from '@material-ui/core';
+import styled from 'styled-components';
 
 const CardStyled = styled(Card)`
   background: transparent;
@@ -11,7 +11,7 @@ const CardStyled = styled(Card)`
     background: url('/bg-blog.png') center no-repeat;
     border-radius: 40px;
   }
-`
+`;
 
 const ImgaeWrapper = styled(Box)`
   position: relative;
@@ -25,7 +25,7 @@ const ImgaeWrapper = styled(Box)`
     height: 128px;
     background-image: url('/icons/circule.svg');
   }
-`
+`;
 
 type BlogItemProps = {
   item?: {
@@ -36,7 +36,7 @@ type BlogItemProps = {
     volume: string,
     price: string,
   }
-}
+};
 
 const BlogItem = ({ item }: BlogItemProps) => {
   return (
@@ -57,10 +57,10 @@ const BlogItem = ({ item }: BlogItemProps) => {
       </CardContent>
     </CardStyled>
   )
-}
+};
 
 BlogItem.defaultProps = {
   item: null,
-}
+};
 
-export default BlogItem
+export default BlogItem;

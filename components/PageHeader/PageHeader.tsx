@@ -8,31 +8,31 @@ import {
   Divider,
   IconButton,
   SwipeableDrawer,
-} from '@material-ui/core'
-import Image from 'next/image'
-import styled from 'styled-components'
+} from '@material-ui/core';
+import Image from 'next/image';
+import styled from 'styled-components';
 
-import Menu from '../../public/icons/menu.svg'
+import Menu from '../../public/icons/menu.svg';
 
 const AppBarStyled = styled(AppBar)`
   background-color: transparent;
   box-shadow: none;
-`
+`;
 
 const LinkStyled = styled(Link)`
   margin: 0 10px;
   text-transform: uppercase;
-`
+`;
 const DividerStyled = styled(Divider)`
   margin: 5rem 0;
   background-color: #fff;
-`
+`;
 const HeaderWrapper = styled(Box)`
   @media (max-width: 992px) {
     padding: 0 3rem 2rem;
     border-bottom: 1px solid #fff;
   }
-`
+`;
 
 const SwipeableDrawerStyled = styled(SwipeableDrawer)`
   color: red;
@@ -40,11 +40,11 @@ const SwipeableDrawerStyled = styled(SwipeableDrawer)`
     width: 400px;
     background-color: #b2b2b2;
   }
-`
+`;
 
 type PageHeaderProps = {
   isFooter?: boolean
-}
+};
 
 const PageHeader = ({ isFooter }: PageHeaderProps) => {
   // const [toggle, setToggle] = useState('УКР')
@@ -52,11 +52,11 @@ const PageHeader = ({ isFooter }: PageHeaderProps) => {
   //   setToggle(newAlignment)
   // }
 
-  const [drawerState, setDrawerState] = useState(false)
+  const [drawerState, setDrawerState] = useState(false);
 
   const toggleDrawer = () => {
     setDrawerState(!drawerState)
-  }
+  };
 
   return (
     <AppBarStyled color="transparent" position="static">
@@ -119,10 +119,10 @@ const PageHeader = ({ isFooter }: PageHeaderProps) => {
 
 PageHeader.defaultProps = {
   isFooter: false,
-}
+};
 
-PageHeader.navList = ['про нас', 'блог', 'сидр та перри', 'наши партнеры', 'контакты']
+PageHeader.navList = ['про нас', 'блог', 'сидр та перри', 'наши партнеры', 'контакты'];
 
-PageHeader.langList = ['УКР', 'РУС', 'ESP', 'ENG']
+PageHeader.langList = ['УКР', 'РУС', 'ESP', 'ENG'];
 
-export default PageHeader
+export default PageHeader;
