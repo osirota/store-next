@@ -75,8 +75,6 @@ const ImageWrapper = styled(Box)`
 
 
 const LandingPage = () => {
-
-
   return (
     <PageLayout title="Landing">
       <Box pt="5rem" p={{

@@ -15,12 +15,11 @@ export const mapPropsToValues = () => ({
 });
 
 export const handleSubmit = (values: FormValues) => {
-  console.log(values);
 };
 
 export const validationSchema = Yup.object().shape({
   name: Yup.string()
-    .required('Name is required'),
+    .required('Names is required'),
   email: Yup.string()
     .required('Email is required')
     .email('Email is invalid'),
