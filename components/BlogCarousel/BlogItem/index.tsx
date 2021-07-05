@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 import Image from 'next/image'
-import { Card, CardContent, CardActions, Button, Typography, Box } from '@material-ui/core'
+import { Card, CardContent, Typography, Box } from '@material-ui/core'
 import styled from 'styled-components'
 
 const CardStyled = styled(Card)`
@@ -29,18 +29,19 @@ const ImgaeWrapper = styled(Box)`
 
 type BlogItemProps = {
   item?: {
-    id: string
-    url: string
-    description: string
-    composition: string
-    volume: string
-    price: string
+    id: string,
+    url: string,
+    description: string,
+    composition: string,
+    volume: string,
+    price: string,
   }
 }
 
 const BlogItem = ({ item }: BlogItemProps) => {
   return (
     <CardStyled>
+      {item}
       <CardContent>
         <ImgaeWrapper data-image display="flex" alignItems="center" justifyContent="center">
           <Image src="/blog.png" height="225px" width="270px" />
@@ -56,6 +57,10 @@ const BlogItem = ({ item }: BlogItemProps) => {
       </CardContent>
     </CardStyled>
   )
+}
+
+BlogItem.defaultProps = {
+  item: null,
 }
 
 export default BlogItem

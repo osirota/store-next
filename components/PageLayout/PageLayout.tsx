@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import {
   Container,
   Box,
@@ -25,13 +25,13 @@ const ContainerStyled = styled(Container)`
   padding: 30px 0 10px;
 `
 
-const Wrapper = styled.div`
-  position: fixed;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-  z-index: -1;
-`
+// const Wrapper = styled.div`
+//   position: fixed;
+//   height: 100vh;
+//   width: 100vw;
+//   overflow: hidden;
+//   z-index: -1;
+// `
 
 const FabStyled = styled(Fab)`
   position: fixed;
@@ -67,7 +67,7 @@ const ContentWrapper = styled(Box)`
 `
 
 type PageLayoutProps = {
-  title: string
+  title: string,
   children: React.ReactNode
 }
 
@@ -108,7 +108,7 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
                     </IconButton>
                   </ListItemSecondaryAction>
                   <Box>
-                    <Typography color="primary">Сидр "Poma Aurea"</Typography>
+                    <Typography color="primary">Сидр Poma Aurea</Typography>
                     <Box display="flex" alignItems="center">
                       <Box display="flex" alignItems="center">
                         <IconButton>

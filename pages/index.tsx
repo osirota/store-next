@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react';
 import { Link, Box, Typography, Grid, Button } from '@material-ui/core'
 import { withFormik, Form } from 'formik'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -16,7 +16,6 @@ import Mail from '../public/icons/mail.svg'
 import Facebook from '../public/icons/facebook.svg'
 import Instagram from '../public/icons/instagram.svg'
 import Phone from '../public/icons/phone.svg'
-import Apple from '../public/apple.svg'
 
 const AppleWrapper = styled(Box)`
   position: absolute;
@@ -151,7 +150,7 @@ const LandingPage = () => {
                   <Box display="flex" alignItems="center" flexDirection="column">
                     <Image src="/sider.png" alt="bottle" width={160} height={600} />
                     <Box mt="1.5rem">
-                      <Typography>Сидр "Poma Aurea"</Typography>
+                      <Typography>Сидр Poma Aurea</Typography>
                     </Box>
                   </Box>
                 </SwiperSlide>
@@ -159,7 +158,7 @@ const LandingPage = () => {
                   <Box display="flex" alignItems="center" flexDirection="column">
                     <Image src="/sider.png" alt="bottle" width={160} height={600} />
                     <Box mt="1.5rem">
-                      <Typography>Сидр "Poma Aurea"</Typography>
+                      <Typography>Сидр Poma Aurea</Typography>
                     </Box>
                   </Box>
                 </SwiperSlide>
@@ -167,7 +166,7 @@ const LandingPage = () => {
                   <Box display="flex" alignItems="center" flexDirection="column">
                     <Image src="/sider.png" alt="bottle" width={160} height={600} />
                     <Box mt="1.5rem">
-                      <Typography>Сидр "Poma Aurea"</Typography>
+                      <Typography>Сидр Poma Aurea</Typography>
                     </Box>
                   </Box>
                 </SwiperSlide>
@@ -237,7 +236,7 @@ const LandingPage = () => {
               <Field name="text" label="Повідомлення" />
               <Box display="flex" alignItems="center" justifyContent="center" mt="2rem">
                 <Button variant="outlined" color="primary" size="large">
-                  Зв'язатись з нами
+                  Звязатись з нами
                 </Button>
               </Box>
             </Form>

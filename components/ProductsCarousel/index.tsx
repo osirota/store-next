@@ -1,21 +1,13 @@
-import React from 'react'
+import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Box, Typography } from '@material-ui/core'
 import ProductItem from 'components/ProductsCarousel/ProductItem'
 
 type ProductsCarouselProps = {
   title?: string
-  items?: {
-    id: string
-    url: string
-    description: string
-    composition: string
-    volume: string
-    price: string
-  }
 }
 
-const ProductsCarousel = ({ title = 'ProductsCarousel', items }: ProductsCarouselProps) => {
+const ProductsCarousel = ({ title = 'ProductsCarousel' }: ProductsCarouselProps) => {
   const settings = {
     breakpoints: {
       '640': {
@@ -55,6 +47,10 @@ const ProductsCarousel = ({ title = 'ProductsCarousel', items }: ProductsCarouse
       </Box>
     </Box>
   )
+}
+
+ProductsCarousel.defaultProps = {
+  title: null,
 }
 
 export default ProductsCarousel

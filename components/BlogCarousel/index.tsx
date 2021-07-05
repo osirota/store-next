@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react'
 import Image from 'next/image'
 import styled from 'styled-components'
@@ -26,18 +26,18 @@ const BottleWrapper = styled(Box)`
 `
 
 type BlogCarouselProps = {
-  title?: string
+  title?: string,
   items?: {
-    id: string
-    url: string
-    description: string
-    composition: string
-    volume: string
-    price: string
+    id: string,
+    url: string,
+    description: string,
+    composition: string,
+    volume: string,
+    price: string,
   }
 }
 
-const BlogCarousel = ({ title = 'BlogCarousel', items }: BlogCarouselProps) => {
+const BlogCarousel = ({ title = 'BlogCarousel' }: BlogCarouselProps) => {
   const settings = {
     breakpoints: {
       '640': {
@@ -85,6 +85,11 @@ const BlogCarousel = ({ title = 'BlogCarousel', items }: BlogCarouselProps) => {
       </Box>
     </Box>
   )
+}
+
+BlogCarousel.defaultProps = {
+  title: null,
+  items: null,
 }
 
 export default BlogCarousel

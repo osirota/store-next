@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import {
   AppBar,
   Link,
@@ -47,10 +47,10 @@ type PageHeaderProps = {
 }
 
 const PageHeader = ({ isFooter }: PageHeaderProps) => {
-  const [toggle, setToggle] = useState('УКР')
-  const handleToggle = (_: any, newAlignment: string) => {
-    setToggle(newAlignment)
-  }
+  // const [toggle, setToggle] = useState('УКР')
+  // const handleToggle = (_: any, newAlignment: string) => {
+  //   setToggle(newAlignment)
+  // }
 
   const [drawerState, setDrawerState] = useState(false)
 

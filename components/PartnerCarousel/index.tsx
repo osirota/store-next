@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Box, Typography } from '@material-ui/core'
 import Image from 'next/image'
@@ -44,18 +44,18 @@ const GlassWrapper = styled(Box)`
 `
 
 type PartnerCarouselProps = {
-  title?: string
+  title?: string,
   items?: {
-    id: string
-    url: string
-    description: string
-    composition: string
-    volume: string
+    id: string,
+    url: string,
+    description: string,
+    composition: string,
+    volume: string,
     price: string
   }
 }
 
-const PartnerCarousel = ({ title = 'PartnerCarousel', items }: PartnerCarouselProps) => {
+const PartnerCarousel = ({ title = 'PartnerCarousel', }: PartnerCarouselProps) => {
   const settings = {
     breakpoints: {
       '640': {
@@ -94,6 +94,11 @@ const PartnerCarousel = ({ title = 'PartnerCarousel', items }: PartnerCarouselPr
       </SliderStyled>
     </Box>
   )
+}
+
+PartnerCarousel.defaultProps = {
+  items: null,
+  title: null,
 }
 
 export default PartnerCarousel
