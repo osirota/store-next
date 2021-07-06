@@ -28,7 +28,7 @@ if (!cached) {
   cached = global.mongoose = { conn: null, promise: null };
 }
 
-async function dbConnect() {
+async function dbConnect(): Promise<void> {
   if (cached.conn) {
     return cached.conn;
   }
@@ -42,12 +42,11 @@ async function dbConnect() {
       useFindAndModify: false,
       useCreateIndex: true,
     };
-
-    cached.promise = mongoose
-      .connect(MONGODB_URI, opts)
-      .then((mongoose: Promise) => {
-        return mongoose;
-      });
+    const url: string = MONGODB_URI || '';
+    // eslint-disable-next-line no-shadow
+    cached.promise = mongoose.connect(url, opts).then((mongoose) => {
+      return mongoose;
+    });
   }
   cached.conn = await cached.promise;
   return cached.conn;
