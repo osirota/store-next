@@ -36,7 +36,10 @@ const LandingPage = () => {
     setSnackOpen(true);
   };
 
-  const handleSnackClose = (_: any, reason: string) => {
+  const handleSnackClose = (
+    event?: React.SyntheticEvent,
+    reason?: string
+  ): void => {
     if (reason === 'clickaway') {
       return;
     }
