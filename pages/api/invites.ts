@@ -16,7 +16,6 @@ export default async function handler(req: any, res: any) {
       break;
     case 'POST':
       try {
-        console.log(req.body);
         const pet = await Invites.create(req.body);
         res.status(201).json({ success: true, data: pet });
       } catch (error) {
