@@ -1,5 +1,5 @@
 import React from 'react';
-import { withFormik, Form } from 'formik';
+import { withFormik, Form, FormikProps } from 'formik';
 import {
   Button,
   Dialog,
@@ -28,10 +28,13 @@ const DialogStyled = styled(Dialog)`
 `;
 
 interface InvitesModalProps {
-  isValid: boolean;
   open: boolean;
-  resetForm: () => void;
   closeModal: () => void;
+  handleSnackOpen: () => void;
+}
+
+interface FormValues {
+  email: string;
 }
 
 const InvitesModal = ({
@@ -39,7 +42,7 @@ const InvitesModal = ({
   resetForm,
   closeModal,
   open,
-}: InvitesModalProps) => {
+}: InvitesModalProps & FormikProps<FormValues>) => {
   const handleClose = () => {
     closeModal();
     resetForm();
@@ -75,7 +78,7 @@ const InvitesModal = ({
   );
 };
 
-export default withFormik({
+export default withFormik<InvitesModalProps, FormValues>({
   enableReinitialize: true,
   mapPropsToValues,
   handleSubmit,
