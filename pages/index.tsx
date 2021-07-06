@@ -83,7 +83,7 @@ const LandingPage = () => {
         </BoxIndex>
         <BoxIndex m="1.5rem 0">
           <Typography variant="body1" color="textSecondary">
-            Оставайтесь с нами, чтобы узнать про новики и акции
+            Оставайтесь с нами, чтобы узнать про новинки и акции
           </Typography>
         </BoxIndex>
         <Button
