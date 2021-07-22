@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import Image from 'next/image';
 import {
   Card,
@@ -10,11 +10,13 @@ import {
 } from '@material-ui/core';
 import styled from 'styled-components';
 
+import cartStore from 'store/cart';
+
 const CardStyled = styled(Card)`
   background: transparent;
   padding: 1rem;
   box-shadow: none;
-  height: 460px;
+  height: 600px;
   [data-image] {
     transform: rotate(0deg);
     transition: all 0.5s;
@@ -25,7 +27,6 @@ const CardStyled = styled(Card)`
   }
 
   :hover {
-    background: url('/bg-product.png') center no-repeat;
     border-radius: 40px;
     [data-image] {
       transform: rotate(-16deg);
@@ -64,49 +65,109 @@ const ImageWrapper = styled(Box)`
   }
 `;
 
+const TasteWrapper = styled(Typography)`
+  height: 100px;
+  overflow: hidden;
+`;
+
+const TitleWrapper = styled(Typography)`
+  margin: 10px 0;
+  height: 95px;
+`;
+
+interface Products {
+  alchol: String;
+  name: String;
+  partnerId: String;
+  taste: String;
+  _id: String;
+  price: number;
+  logo: string;
+}
+
+interface LocalStorageProduct extends Products {
+  count: number;
+}
+
 type ProductItemProps = {
-  item?: {
-    id: string;
-    url: string;
-    description: string;
-    composition: string;
-    volume: string;
-    price: string;
-  };
+  item?: Products;
 };
 
 const ProductItem = ({ item }: ProductItemProps) => {
+  const [cartState, setCartState] = useState(cartStore.initialState());
+
+  useLayoutEffect(() => {
+    cartStore.subscribe(setCartState);
+    cartStore.init();
+  }, []);
+  if (!item) {
+    return null;
+  }
+
+  const handleProduct = () => {
+    if (!cartState) {
+      cartStore.setCart([{ ...item, count: 1 }]);
+      return null;
+    }
+
+    // eslint-disable-next-line no-underscore-dangle
+    if (cartState.find(({ _id }: any) => _id === item._id)) {
+      const newCart = cartState.map((product: LocalStorageProduct) => {
+        // eslint-disable-next-line no-underscore-dangle
+        if (product._id === item._id) {
+          return {
+            ...product,
+            count: product.count + 1,
+          };
+        }
+        return product;
+      });
+      cartStore.setCart(newCart);
+      return null;
+    }
+    cartStore.setCart([...cartState, { ...item, count: 1 }]);
+    return null;
+  };
+  const title = `${item.name} ${item.alchol}`;
+  const price = `${item.price} грн`;
   return (
     <CardStyled>
-      {item}
       <CardContentStyled>
         <ImageWrapper data-image>
-          <Image src="/bottle.png" height="225px" width="270px" />
+          <Image
+            layout="responsive"
+            src={item.logo}
+            height="270px"
+            width="200px"
+          />
         </ImageWrapper>
-        <Typography
+        <TitleWrapper
           variant="h6"
-          component="h6"
           color="textSecondary"
           align="center"
           gutterBottom
         >
-          Сидр Poma Aurea 4.7%
-        </Typography>
-        <Typography variant="body2" component="p" gutterBottom>
-          Склад: вода, яблука (40%), лимонна кислота, сироп глюкозно-
-          фруктозний.
-        </Typography>
+          {title}
+        </TitleWrapper>
+        <TasteWrapper variant="body2" gutterBottom>
+          {item.taste}
+        </TasteWrapper>
         <Typography
           variant="body2"
           component="p"
           color="textSecondary"
           gutterBottom
         >
-          26.99 грн
+          {price}
         </Typography>
       </CardContentStyled>
       <CardActions>
-        <Button variant="outlined" color="primary" fullWidth>
+        <Button
+          variant="outlined"
+          color="primary"
+          fullWidth
+          onClick={handleProduct}
+        >
           Купити
         </Button>
       </CardActions>

@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Box, Typography } from '@material-ui/core';
 import Image from 'next/image';
+import Link from 'next/link';
 import styled from 'styled-components';
 
 const SliderStyled = styled(Box)`
@@ -43,20 +45,21 @@ const GlassWrapper = styled(Box)`
   }
 `;
 
+interface Partner {
+  _id: string;
+  name: string;
+  logo: string;
+  description: string;
+}
+
 type PartnerCarouselProps = {
   title?: string;
-  items?: {
-    id: string;
-    url: string;
-    description: string;
-    composition: string;
-    volume: string;
-    price: string;
-  };
+  items?: Partner[];
 };
 
 const PartnerCarousel = ({
   title = 'PartnerCarousel',
+  items = [],
 }: PartnerCarouselProps) => {
   const settings = {
     breakpoints: {
@@ -69,8 +72,8 @@ const PartnerCarousel = ({
         spaceBetween: 40,
       },
       '1024': {
-        slidesPerView: 3,
-        spaceBetween: 10,
+        slidesPerView: items.length,
+        spaceBetween: 0,
       },
     },
     navigation: true,
@@ -91,11 +94,13 @@ const PartnerCarousel = ({
       </Typography>
       <SliderStyled>
         <Swiper {...settings}>
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => (
-            <SwiperSlide key={i}>
-              <Box display="flex" alignItems="center" justifyContent="center">
-                <Image src="/partner.png" width="160px" height="80px" />
-              </Box>
+          {items.map(({ logo, _id }) => (
+            <SwiperSlide key={logo}>
+              <Link href={`/partner/${_id}`}>
+                <Box display="flex" alignItems="center" justifyContent="center">
+                  <Image src={logo} width="160px" height="160px" />
+                </Box>
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>

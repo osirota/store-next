@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+/* eslint-disable no-underscore-dangle */
+import React, { useState, useLayoutEffect } from 'react';
 import {
   Container,
   Box,
@@ -16,8 +17,10 @@ import { ShoppingCart, Add, Remove, Cancel } from '@material-ui/icons';
 import styled from 'styled-components';
 import Head from 'next/head';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 import PageHeader from 'components/PageHeader/PageHeader';
+import cartStore from 'store/cart';
 
 const ContainerStyled = styled(Container)`
   max-width: 1140px;
@@ -45,6 +48,7 @@ const SwipeableDrawerStyled = styled(SwipeableDrawer)`
   & .MuiDrawer-paper {
     width: 400px;
     background-color: #b2b2b2;
+    justify-content: space-between;
   }
 `;
 
@@ -71,11 +75,66 @@ type PageLayoutProps = {
   children: React.ReactNode;
 };
 
-const PageLayout = ({ children, title }: PageLayoutProps) => {
-  const [drawerState, setDrawerState] = useState(false);
+interface Products {
+  alchol: string;
+  name: string;
+  partnerId: string;
+  taste: string;
+  _id: string;
+  price: number;
+}
 
+const calculate = {
+  increase: (count: number) => count + 1,
+  reduce: (count: number) => count - 1,
+};
+
+interface LocalStorageProduct extends Products {
+  count: number;
+}
+
+const PageLayout = ({ children, title }: PageLayoutProps) => {
+  const router = useRouter();
+  const [drawerState, setDrawerState] = useState(false);
+  const [cartState, setCartState] = useState(cartStore.initialState());
+  const totalPrice = `${cartState.reduce(
+    (acc: number, value: any) => acc + value.price * value.count,
+    0
+  )} грн`;
+
+  useLayoutEffect(() => {
+    cartStore.subscribe(setCartState);
+    cartStore.init();
+  }, []);
+
+  const price = (prices: any, count: any) => `${prices * count} грн`;
   const toggleDrawer = () => {
     setDrawerState(!drawerState);
+  };
+
+  const handleProduct = (type: string, id: string) => () => {
+    const newCart = cartState.map((product: LocalStorageProduct) => {
+      // eslint-disable-next-line no-underscore-dangle
+      if (product._id === id) {
+        return {
+          ...product,
+          count: (product.count > 0 && calculate[type](product.count)) || 0,
+        };
+      }
+      return product;
+    });
+    cartStore.setCart(newCart);
+  };
+
+  const handleRemoveProduct = (id: string) => () => {
+    const newCart = cartState.filter(
+      (product: LocalStorageProduct) => product._id !== id
+    );
+    cartStore.setCart(newCart);
+  };
+
+  const handleOrder = () => {
+    router.push('/order');
   };
 
   return (
@@ -99,57 +158,59 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
         <ContentWrapper display="flex" flexDirection="column" p="1.25rem">
           <Typography color="primary">Ваше замовлення</Typography>
           <List>
-            {[
-              'Inbox',
-              'Starred',
-              'Send email',
-              'Drafts',
-              '1',
-              '2',
-              '3',
-              '5',
-            ].map((text) => (
-              <ListItemStyled key={text}>
-                <ListItem>
-                  <ListItemSecondaryAction>
-                    <IconButton>
-                      <Cancel />
-                    </IconButton>
-                  </ListItemSecondaryAction>
-                  <Box>
-                    <Typography color="primary">Сидр Poma Aurea</Typography>
-                    <Box display="flex" alignItems="center">
+            {cartState.length > 0 &&
+              cartState.map((product: any) => (
+                <ListItemStyled key={product._id}>
+                  <ListItem>
+                    <ListItemSecondaryAction>
+                      <IconButton onClick={handleRemoveProduct(product._id)}>
+                        <Cancel />
+                      </IconButton>
+                    </ListItemSecondaryAction>
+                    <Box>
+                      <Typography color="primary">{product.name}</Typography>
                       <Box display="flex" alignItems="center">
-                        <IconButton>
-                          <Remove />
-                        </IconButton>
-                        <Typography color="primary">2</Typography>
-                        <IconButton>
-                          <Add />
-                        </IconButton>
+                        <Box display="flex" alignItems="center">
+                          <IconButton
+                            onClick={handleProduct('reduce', product._id)}
+                          >
+                            <Remove />
+                          </IconButton>
+                          <Typography color="primary">
+                            {product.count}
+                          </Typography>
+                          <IconButton
+                            onClick={handleProduct('increase', product._id)}
+                          >
+                            <Add />
+                          </IconButton>
+                        </Box>
+                        <Typography color="primary">
+                          {price(product.price, product.count)}
+                        </Typography>
                       </Box>
-                      <Typography color="primary">220 грн</Typography>
                     </Box>
-                  </Box>
-                  <ListItemAvatar>
-                    <Image
-                      alt="bg"
-                      src="/bottle.png"
-                      width={100}
-                      height={100}
-                    />
-                  </ListItemAvatar>
-                </ListItem>
-              </ListItemStyled>
-            ))}
+                    <ListItemAvatar>
+                      <Image
+                        alt="bg"
+                        src="/bottle.png"
+                        width={100}
+                        height={100}
+                      />
+                    </ListItemAvatar>
+                  </ListItem>
+                </ListItemStyled>
+              ))}
           </List>
         </ContentWrapper>
         <CompleteWrapper>
           <Box>
             <Typography color="primary">Итого:</Typography>
-            <Typography color="primary">1905 грн</Typography>
+            <Typography color="primary">{totalPrice}</Typography>
           </Box>
-          <Button>Оформить заказ</Button>
+          <Button disabled={cartState.length === 0} onClick={handleOrder}>
+            Оформить заказ
+          </Button>
         </CompleteWrapper>
       </SwipeableDrawerStyled>
       <FabStyled color="primary" onClick={toggleDrawer}>

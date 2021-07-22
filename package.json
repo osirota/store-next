@@ -21,6 +21,7 @@
     "ramda": "^0.27.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "rxjs": "^7.2.0",
     "sharp": "^0.28.3",
     "styled-components": "^5.2.1",
     "swiper": "^6.7.0",
@@ -29,6 +30,7 @@
   },
   "devDependencies": {
     "@types/node": "^15.0.2",
+    "@types/nodemailer": "^6.4.4",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/styled-components": "^5.1.9",

@@ -68,7 +68,9 @@ const PageHeader = ({ isFooter }: PageHeaderProps) => {
           justifyContent="space-between"
         >
           <Box display="flex" alignItems="flex-start">
-            <Image src="/logo.png" alt="logo" width="130px" height="134px" />
+            <Link href="/">
+              <Image src="/logo.png" alt="logo" width="130px" height="134px" />
+            </Link>
             <Box display="flex" flexDirection="column" ml="20px">
               {/* <ToggleButtonGroup size="small" exclusive value={toggle} onChange={handleToggle}>
                 {PageHeader.langList.map((item) => (

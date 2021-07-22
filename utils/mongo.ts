@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const { MONGODB_URI } = process.env;
+const { MONGODB_URL } = process.env;
 
 export interface Global {
   [x: string]: any;
@@ -10,9 +10,9 @@ export interface Global {
 
 declare var global: Global;
 
-if (!MONGODB_URI) {
+if (!MONGODB_URL) {
   throw new Error(
-    'Please define the MONGODB_URI environment variable inside .env.local'
+    'Please define the MONGODB_URL environment variable inside .env.local'
   );
 }
 
@@ -42,7 +42,7 @@ async function dbConnect(): Promise<void> {
       useFindAndModify: false,
       useCreateIndex: true,
     };
-    const url: string = MONGODB_URI || '';
+    const url: string = MONGODB_URL || '';
     // eslint-disable-next-line no-shadow
     cached.promise = mongoose.connect(url, opts).then((mongoose) => {
       return mongoose;

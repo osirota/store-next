@@ -2,13 +2,13 @@ import React from 'react';
 import { Link, Box, Typography, Grid, Button } from '@material-ui/core';
 import { withFormik, Form } from 'formik';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import useSwr from 'swr';
 import Image from 'next/image';
 import styled from 'styled-components';
 
 import PageLayout from 'components/PageLayout/PageLayout';
 import ProductsCarousel from 'components/ProductsCarousel';
 import PartnerCarousel from 'components/PartnerCarousel';
-import BlogCarousel from 'components/BlogCarousel';
 import Field from 'patterns/Field';
 import {
   mapPropsToValues,
@@ -21,13 +21,6 @@ import Facebook from '../public/icons/facebook.svg';
 import Instagram from '../public/icons/instagram.svg';
 import Phone from '../public/icons/phone.svg';
 
-const AppleWrapper = styled(Box)`
-  position: absolute;
-  left: 0;
-  @media (max-width: 1300px) {
-    display: none;
-  }
-`;
 const SliderWrapper = styled(Box)`
   .swiper-container {
     width: 300px;
@@ -56,7 +49,7 @@ const SliderWrapper = styled(Box)`
 const ImageWrapper = styled(Box)`
   z-index: -1;
   & div {
-    top: 18rem !important;
+    top: 8rem !important;
     height: 84%;
     width: 43%;
     left: 27rem !important;
@@ -70,8 +63,13 @@ const ImageWrapper = styled(Box)`
     }
   }
 `;
-
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const LandingPage = () => {
+  const { data } = useSwr('/api/landing', fetcher);
+  if (!data) {
+    return null;
+  }
+  const { partners, products } = data.data;
   return (
     <PageLayout title="Landing">
       <Box
@@ -90,7 +88,7 @@ const LandingPage = () => {
               quality={100}
             />
           </ImageWrapper>
-          <Grid lg={7} xs={12} item>
+          <Grid lg={12} xs={12} item>
             <Box
               display="flex"
               flexDirection="column"
@@ -137,16 +135,20 @@ const LandingPage = () => {
               </Box>
             </Box>
           </Grid>
+        </Grid>
+      </Box>
 
-          <Grid
-            container
-            lg={5}
-            xs={12}
-            item
-            alignItems="center"
-            justify="center"
-            direction="column"
-          >
+      <Box mt="20rem">
+        <Typography variant="h4" color="textSecondary" align="center">
+          Про нас
+        </Typography>
+        <Box
+          mt="8rem"
+          display="flex"
+          justifyContent="space-between"
+          flexDirection={{ xs: 'column', lg: 'row' }}
+        >
+          <Box width={{ xs: '90%', lg: '45%' }}>
             <SliderWrapper>
               <Swiper
                 effect="cube"
@@ -163,98 +165,44 @@ const LandingPage = () => {
                 }}
                 loop
               >
-                <SwiperSlide>
-                  <Box
-                    display="flex"
-                    alignItems="center"
-                    flexDirection="column"
-                  >
-                    <Image
-                      src="/sider.png"
-                      alt="bottle"
-                      width={160}
-                      height={600}
-                    />
-                    <Box mt="1.5rem">
-                      <Typography>Сидр Poma Aurea</Typography>
+                {products.map(({ logo, name }) => (
+                  <SwiperSlide>
+                    <Box
+                      display="flex"
+                      alignItems="center"
+                      flexDirection="column"
+                    >
+                      <Image src={logo} alt="bottle" width={300} height={500} />
+                      <Box mt="1.5rem">
+                        <Typography>{name}</Typography>
+                      </Box>
                     </Box>
-                  </Box>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <Box
-                    display="flex"
-                    alignItems="center"
-                    flexDirection="column"
-                  >
-                    <Image
-                      src="/sider.png"
-                      alt="bottle"
-                      width={160}
-                      height={600}
-                    />
-                    <Box mt="1.5rem">
-                      <Typography>Сидр Poma Aurea</Typography>
-                    </Box>
-                  </Box>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <Box
-                    display="flex"
-                    alignItems="center"
-                    flexDirection="column"
-                  >
-                    <Image
-                      src="/sider.png"
-                      alt="bottle"
-                      width={160}
-                      height={600}
-                    />
-                    <Box mt="1.5rem">
-                      <Typography>Сидр Poma Aurea</Typography>
-                    </Box>
-                  </Box>
-                </SwiperSlide>
+                  </SwiperSlide>
+                ))}
               </Swiper>
             </SliderWrapper>
-          </Grid>
-        </Grid>
-      </Box>
-
-      <Box
-        mt="10rem"
-        p={{
-          xs: '2rem 1rem 0',
-          lg: '2rem 0 0 32rem',
-        }}
-      >
-        <AppleWrapper>
-          <Image src="/apple.png" alt="apple" width={600} height={600} />
-        </AppleWrapper>
-        <Typography variant="h4" color="textSecondary">
-          Про нас
-        </Typography>
-        <Box mt="2rem">
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem
-            ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum
-            dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit
-            amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-            ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua.
-          </Typography>
+          </Box>
+          <Box width={{ xs: '90%', lg: '45%' }}>
+            <Typography>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem
+              ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum
+              dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit
+              amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit
+              amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit
+              amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua.
+            </Typography>
+          </Box>
         </Box>
       </Box>
 
-      <ProductsCarousel title="Новинки" />
-      <BlogCarousel title="Блог" />
-      <ProductsCarousel title="Сидр та Перрі" />
-      <PartnerCarousel title="Наші партнери" />
+      <ProductsCarousel title="Сидр та Перрі" items={products} />
+      <PartnerCarousel title="Наші партнери" items={partners} />
 
       <Box
         mt="10rem"
@@ -287,7 +235,12 @@ const LandingPage = () => {
                 justifyContent="center"
                 mt="2rem"
               >
-                <Button variant="outlined" color="primary" size="large">
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  size="large"
+                  type="submit"
+                >
                   Звязатись з нами
                 </Button>
               </Box>

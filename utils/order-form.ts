@@ -1,13 +1,20 @@
 import * as Yup from 'yup';
+import cartStore from 'store/cart';
 
 interface FormValues {
   name: string;
   email: string;
   phone: string;
-  text?: string;
+  city: string;
+  warehouses: string;
+  order: any;
 }
 
 interface FormikBag {
+  props: {
+    closeModal: () => void;
+    handleSnackOpen: () => void;
+  };
   resetForm: () => void;
 }
 
@@ -15,7 +22,9 @@ export const mapPropsToValues = () => ({
   name: '',
   email: '',
   phone: '',
-  text: '',
+  city: '',
+  warehouses: '',
+  order: null,
 });
 
 export const handleSubmit = async (
@@ -24,7 +33,7 @@ export const handleSubmit = async (
 ) => {
   const { resetForm } = formikBag;
   const contentType = 'application/json';
-  await fetch('/api/landing', {
+  await fetch('/api/order', {
     method: 'POST',
     headers: {
       Accept: contentType,
@@ -33,6 +42,8 @@ export const handleSubmit = async (
     body: JSON.stringify(values),
   });
   resetForm();
+  cartStore.clearCart();
+  localStorage.removeItem('cart');
 };
 
 export const validationSchema = Yup.object().shape({
@@ -47,4 +58,6 @@ export const validationSchema = Yup.object().shape({
           ).test(value)
         : true
     ),
+  city: Yup.string().required('City is required'),
+  warehouses: Yup.string().required('Warehouses is required'),
 });
