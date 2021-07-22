@@ -16,7 +16,7 @@ const CardStyled = styled(Card)`
   background: transparent;
   padding: 1rem;
   box-shadow: none;
-  height: 600px;
+  height: 730px;
   [data-image] {
     transform: rotate(0deg);
     transition: all 0.5s;

@@ -51,9 +51,15 @@ interface Products {
   price: number;
 }
 
-const calculate = {
-  increase: (count: number) => count + 1,
-  reduce: (count: number) => count - 1,
+const calculate = (type: string, count: number) => {
+  if (type === 'increase') {
+    return count + 1;
+  }
+  if (type === 'reduce') {
+    return count - 1;
+  }
+
+  return count;
 };
 
 interface LocalStorageProduct extends Products {
@@ -81,7 +87,7 @@ const Order = () => {
       if (product._id === id) {
         return {
           ...product,
-          count: (product.count > 0 && calculate[type](product.count)) || 0,
+          count: (product.count > 0 && calculate(type, product.count)) || 0,
         };
       }
       return product;
