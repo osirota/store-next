@@ -110,7 +110,7 @@ const Order = () => {
       <PageHeader />
       <ContainerStyled disableGutters maxWidth={false}>
         <Head>
-          <title>asd</title>
+          <title>Оформление Заказ</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
@@ -193,8 +193,8 @@ const Order = () => {
                       <ListItemAvatar>
                         <Image
                           alt="bg"
-                          src="/bottle.png"
-                          width={100}
+                          src={product.logo}
+                          width={60}
                           height={100}
                         />
                       </ListItemAvatar>
