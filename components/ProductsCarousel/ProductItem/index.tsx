@@ -134,12 +134,7 @@ const ProductItem = ({ item }: ProductItemProps) => {
     <CardStyled>
       <CardContentStyled>
         <ImageWrapper data-image>
-          <Image
-            layout="responsive"
-            src={item.logo}
-            height="270px"
-            width="200px"
-          />
+          <Image src={item.logo} height="270px" width="200px" />
         </ImageWrapper>
         <TitleWrapper
           variant="h6"

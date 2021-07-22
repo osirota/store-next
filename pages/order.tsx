@@ -114,8 +114,17 @@ const Order = () => {
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <Box component="main" display="flex" justifyContent="space-between">
-          <Box width={{ xs: '90%', lg: '45%' }}>
+        <Box
+          component="main"
+          display="flex"
+          justifyContent="space-between"
+          flexDirection={{ xs: 'column', lg: 'row' }}
+        >
+          <Box
+            width={{ xs: '90%', lg: '45%' }}
+            padding={{ xs: '0 1.5rem', lg: '0' }}
+            m={{ xs: '2rem 0', lg: '0' }}
+          >
             <Box m="1rem 0">
               <Typography color="textSecondary" variant="h4">
                 Оформление заказа
@@ -151,7 +160,11 @@ const Order = () => {
               </Box>
             </Form>
           </Box>
-          <Box width={{ xs: '90%', lg: '45%' }}>
+          <Box
+            width={{ xs: '90%', lg: '45%' }}
+            padding={{ xs: '0 .2rem', lg: '0' }}
+            m={{ xs: '2rem 0', lg: '0' }}
+          >
             <List>
               {cartState.length > 0 &&
                 cartState.map((product: any) => (

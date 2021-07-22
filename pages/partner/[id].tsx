@@ -21,11 +21,24 @@ const Partner = () => {
   const { partner, products } = data.data;
   return (
     <PageLayout title={products.name}>
-      <Box component="main" display="flex" justifyContent="space-between">
-        <Box width={{ xs: '90%', lg: '45%' }}>
+      <Box
+        component="main"
+        display="flex"
+        justifyContent="space-between"
+        flexDirection={{ xs: 'column', lg: 'row' }}
+      >
+        <Box
+          width={{ xs: '100%', lg: '45%' }}
+          padding={{ xs: '0 1.5rem', lg: '0' }}
+          m={{ xs: '2rem 0', lg: '0' }}
+        >
           <Image src={partner.logo} width="270px" height="250px" />
         </Box>
-        <Box width={{ xs: '90%', lg: '45%' }}>
+        <Box
+          width={{ xs: '100%', lg: '45%' }}
+          padding={{ xs: '0 1.5rem', lg: '0' }}
+          m={{ xs: '2rem 0', lg: '0' }}
+        >
           <Box mb="4rem">
             <Typography variant="h2" color="textSecondary">
               {partner.name}
