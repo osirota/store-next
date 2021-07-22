@@ -8,6 +8,7 @@ interface Product {
   price: number;
   taste: string;
   _id: string;
+  logo: string;
 }
 
 interface IMailProps {

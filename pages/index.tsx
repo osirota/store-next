@@ -63,13 +63,34 @@ const ImageWrapper = styled(Box)`
     }
   }
 `;
+interface Product {
+  alchol: string;
+  count: number;
+  name: string;
+  partnerId: string;
+  price: number;
+  taste: string;
+  _id: string;
+  logo: string;
+}
+
+interface Partner {
+  _id: string;
+  name: string;
+  logo: string;
+  description: string;
+}
+interface IFetch {
+  products: Product[];
+  partners: Partner[];
+}
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const LandingPage = () => {
   const { data } = useSwr('/api/landing', fetcher);
   if (!data) {
     return null;
   }
-  const { partners, products } = data.data;
+  const { partners, products }: IFetch = data.data;
   return (
     <PageLayout title="Landing">
       <Box

@@ -9,6 +9,7 @@ interface Products {
   name: string;
   partnerId: string;
   taste: string;
+  logo: string;
   _id: string;
   price: number;
 }
