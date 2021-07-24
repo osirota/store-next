@@ -8,7 +8,6 @@ import {
   IconButton,
   List,
   ListItem,
-  ListItemAvatar,
   ListItemSecondaryAction,
 } from '@material-ui/core';
 import { Alert, AlertTitle } from '@material-ui/lab';
@@ -170,15 +169,7 @@ const Order = () => {
                 cartState.map((product: any) => (
                   <ListItemStyled key={product._id}>
                     <ListItem>
-                      <ListItemSecondaryAction>
-                        <IconButton
-                          onClick={handleRemoveProduct(product._id)}
-                          color="primary"
-                        >
-                          <Cancel />
-                        </IconButton>
-                      </ListItemSecondaryAction>
-                      <Box>
+                      <Box flexBasis="50%">
                         <Typography color="primary">{product.name}</Typography>
                         <Box display="flex" alignItems="center">
                           <Box display="flex" alignItems="center">
@@ -203,14 +194,27 @@ const Order = () => {
                           </Typography>
                         </Box>
                       </Box>
-                      <ListItemAvatar>
+                      <Box
+                        flexBasis="50%"
+                        display="flex"
+                        alignItems="center"
+                        justifyContent="center"
+                      >
                         <Image
                           alt="bg"
                           src={product.logo}
                           width={60}
                           height={100}
                         />
-                      </ListItemAvatar>
+                      </Box>
+                      <ListItemSecondaryAction>
+                        <IconButton
+                          onClick={handleRemoveProduct(product._id)}
+                          color="primary"
+                        >
+                          <Cancel />
+                        </IconButton>
+                      </ListItemSecondaryAction>
                     </ListItem>
                   </ListItemStyled>
                 ))}

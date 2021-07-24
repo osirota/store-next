@@ -11,6 +11,7 @@ import {
 import styled from 'styled-components';
 
 import cartStore from 'store/cart';
+import snackbarStore from 'store/snackbar';
 
 const CardStyled = styled(Card)`
   background: transparent;
@@ -48,20 +49,6 @@ const CardContentStyled = styled(CardContent)`
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-`;
-
-const ImageWrapper = styled(Box)`
-  position: relative;
-  &::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 128px;
-    height: 128px;
-    background-image: url('/icons/circule.svg');
   }
 `;
 
@@ -105,6 +92,7 @@ const ProductItem = ({ item }: ProductItemProps) => {
   }
 
   const handleProduct = () => {
+    snackbarStore.showSnackbar();
     if (!cartState) {
       cartStore.setCart([{ ...item, count: 1 }]);
       return null;
@@ -131,42 +119,49 @@ const ProductItem = ({ item }: ProductItemProps) => {
   const title = `${item.name} ${item.alchol}`;
   const price = `${item.price} грн`;
   return (
-    <CardStyled>
-      <CardContentStyled>
-        <ImageWrapper data-image>
-          <Image src={item.logo} height="270px" width="200px" />
-        </ImageWrapper>
-        <TitleWrapper
-          variant="h6"
-          color="textSecondary"
-          align="center"
-          gutterBottom
-        >
-          {title}
-        </TitleWrapper>
-        <TasteWrapper variant="body2" gutterBottom>
-          {item.taste}
-        </TasteWrapper>
-        <Typography
-          variant="body2"
-          component="p"
-          color="textSecondary"
-          gutterBottom
-        >
-          {price}
-        </Typography>
-      </CardContentStyled>
-      <CardActions>
-        <Button
-          variant="outlined"
-          color="primary"
-          fullWidth
-          onClick={handleProduct}
-        >
-          Купити
-        </Button>
-      </CardActions>
-    </CardStyled>
+    <>
+      <CardStyled>
+        <CardContentStyled>
+          <Box position="relative" width="100%" height="350px" data-image>
+            <Image
+              src={item.logo}
+              alt="bottle"
+              layout="fill"
+              objectFit="contain"
+            />
+          </Box>
+          <TitleWrapper
+            variant="h6"
+            color="textSecondary"
+            align="center"
+            gutterBottom
+          >
+            {title}
+          </TitleWrapper>
+          <TasteWrapper variant="body2" gutterBottom>
+            {item.taste}
+          </TasteWrapper>
+          <Typography
+            variant="body2"
+            component="p"
+            color="textSecondary"
+            gutterBottom
+          >
+            {price}
+          </Typography>
+        </CardContentStyled>
+        <CardActions>
+          <Button
+            variant="outlined"
+            color="primary"
+            fullWidth
+            onClick={handleProduct}
+          >
+            Купити
+          </Button>
+        </CardActions>
+      </CardStyled>
+    </>
   );
 };
 

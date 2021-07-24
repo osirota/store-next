@@ -20,7 +20,7 @@ const Partner = () => {
   }
   const { partner, products } = data.data;
   return (
-    <PageLayout title={products.name}>
+    <PageLayout title={partner.name}>
       <Box
         component="main"
         display="flex"
@@ -31,8 +31,12 @@ const Partner = () => {
           width={{ xs: '100%', lg: '45%' }}
           padding={{ xs: '0 1.5rem', lg: '0' }}
           m={{ xs: '2rem 0', lg: '0' }}
+          display="flex"
+          justifyContent="center"
         >
-          <Image src={partner.logo} width="270px" height="250px" />
+          <Box position="relative" width="100%" height="240px">
+            <Image src={partner.logo} layout="fill" objectFit="contain" />
+          </Box>
         </Box>
         <Box
           width={{ xs: '100%', lg: '45%' }}

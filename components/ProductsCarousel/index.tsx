@@ -58,7 +58,7 @@ const ProductsCarousel = ({
         spaceBetween: 40,
       },
       '1024': {
-        slidesPerView: items.length >= 4 ? 4 : items.length,
+        slidesPerView: items.length >= 3 ? 3 : items.length,
         spaceBetween: 50,
       },
     },

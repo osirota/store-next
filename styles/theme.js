@@ -1,18 +1,13 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 
-import lcchalk from 'public/fonts/lcchalk';
-
 const theme = createMuiTheme({
   palette: {
     primary: {
       main: '#fff',
     },
     background: {
-      default: "#000"
+      default: '#000',
     },
-  },
-  typography: {
-    fontFamily: 'LC Chalk, Arial',
   },
   overrides: {
     MuiTypography: {
@@ -37,9 +32,9 @@ const theme = createMuiTheme({
       root: {
         color: '#ADADAD',
         border: 'none',
-        "&$selected": {
-          "color": "#fff"
-        }
+        '&$selected': {
+          color: '#fff',
+        },
       },
     },
     MuiButton: {
@@ -53,12 +48,7 @@ const theme = createMuiTheme({
           border: '1px solid transparent',
           transition: 'all .5s',
           background: 'transparent',
-        }
-      },
-    },
-    MuiCssBaseline: {
-      '@global': {
-        '@font-face': [lcchalk],
+        },
       },
     },
     MuiTextField: {

@@ -8,10 +8,11 @@ const cartStore = {
     if (data) {
       subject.next(JSON.parse(data));
     } else {
-      subject.next(['2']);
+      subject.next([]);
     }
   },
   subscribe: (setState: any) => subject.subscribe(setState),
+  unsubscribe: () => subject.unsubscribe(),
   setCart: (cart: any) => {
     localStorage.setItem('cart', JSON.stringify(cart));
     subject.next(cart);

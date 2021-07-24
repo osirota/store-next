@@ -62,6 +62,14 @@ const ImageWrapper = styled(Box)`
       left: 11rem !important;
     }
   }
+  @media (max-width: 775px) {
+    & div {
+      top: 25rem !important;
+      height: 84%;
+      width: 100%;
+      left: 0rem !important;
+    }
+  }
 `;
 interface Product {
   alchol: string;
@@ -118,13 +126,13 @@ const LandingPage = () => {
               height="100%"
             >
               <Box>
-                <Typography color="textSecondary" variant="h3">
+                <Typography color="textSecondary" variant="h4">
                   Підбірка найкращих сидрів спеціально для Вас
                 </Typography>
                 <Box width="60%" mt="2rem">
-                  <Typography>
-                    Cider Enthusiasts ретельно відібрали найкращі позиції, які
-                    не залишать байдужим нікого.
+                  <Typography variant="body1">
+                    Cider Degustator ретельно відібрали найкращі позиції, які не
+                    залишать байдужим нікого.
                   </Typography>
                 </Box>
               </Box>
@@ -133,23 +141,29 @@ const LandingPage = () => {
                 alignItems="center"
                 justifyContent="space-between"
               >
-                <Link href="tel:80000000" color="textPrimary">
-                  <Phone /> +38 (097) 33-234-23
+                <Link href="tel:+380505008863" color="textPrimary">
+                  <Phone /> +38 (050) 500-88-63
                 </Link>
                 <Box
                   display="flex"
                   justifyContent="space-between"
                   alignItems="center"
                 >
-                  <Link href="https://www.instagram.com/livekharkov/">
+                  <Link
+                    href="https://www.facebook.com/Cider-Degustator-111374164534274"
+                    target="_blank"
+                  >
                     <Facebook />
                   </Link>
                   <Box m="0 2rem">
-                    <Link href="https://www.instagram.com/livekharkov/">
+                    <Link
+                      href="https://www.instagram.com/cider_degustator/"
+                      target="_blank"
+                    >
                       <Instagram />
                     </Link>
                   </Box>
-                  <Link href="mailto:oleh.sirota@gmail.com">
+                  <Link href="mailto:ciderdegustator@gmail.com">
                     <Mail />
                   </Link>
                 </Box>
@@ -187,13 +201,20 @@ const LandingPage = () => {
                 loop
               >
                 {products.map(({ logo, name }) => (
-                  <SwiperSlide>
+                  <SwiperSlide key={name}>
                     <Box
                       display="flex"
                       alignItems="center"
                       flexDirection="column"
                     >
-                      <Image src={logo} alt="bottle" width={300} height={500} />
+                      <Box position="relative" width="100%" height="400px">
+                        <Image
+                          src={logo}
+                          alt="bottle"
+                          layout="fill"
+                          objectFit="contain"
+                        />
+                      </Box>
                       <Box mt="1.5rem">
                         <Typography>{name}</Typography>
                       </Box>
@@ -203,26 +224,29 @@ const LandingPage = () => {
               </Swiper>
             </SliderWrapper>
           </Box>
-          <Box width={{ xs: '90%', lg: '45%' }}>
+          <Box
+            width={{ xs: '90%', lg: '45%' }}
+            p={{ xs: '0 0.5rem', lg: '0' }}
+            m={{ xs: '1rem 0 0', lg: '0' }}
+          >
             <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem
-              ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum
-              dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit
-              amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit
-              amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit
-              amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua.
+              В основу философии компании «Cider Degustator» мы вкладываем смысл
+              о том, что совершенно каждый человек является специалистом,
+              определяющим на вкус качество продукта. Иными словами, человек –
+              оценивает напиток, пользуясь собственными органами чувств.
+              Многочисленные пробы в дегустации, улучшают рецепторы к оценке
+              орналептическихсвойств продукта и расширениялинейки вкусов и
+              запахов. Цель нашей компании - разнообразие и открытие новых
+              ощущений. Раскрытие личных возможностей в области восприятия.
+              Показать «дегустирующему» неизведанные границы и определить его
+              предпочтения и желания. Ведь что бы удивить, приходится много
+              пробоватьчтобы добиться различныхсочетаний вкуса
             </Typography>
           </Box>
         </Box>
       </Box>
 
-      <ProductsCarousel title="Сидр та Перрі" items={products} />
+      <ProductsCarousel title="Сидри" items={products} />
       <PartnerCarousel title="Наші партнери" items={partners} />
 
       <Box
@@ -274,8 +298,8 @@ const LandingPage = () => {
             width={{ xs: '90%', lg: '45%' }}
             pt="2rem"
           >
-            <Link href="tel:80000000" color="textPrimary">
-              <Phone /> +38 (097) 33-234-23
+            <Link href="tel:+380505008863" color="textPrimary">
+              <Phone /> +38 (050) 500-88-63
             </Link>
             <Box
               display="flex"
@@ -283,15 +307,21 @@ const LandingPage = () => {
               alignItems="center"
               mt="2rem"
             >
-              <Link href="https://www.instagram.com/livekharkov/">
+              <Link
+                href="https://www.facebook.com/Cider-Degustator-111374164534274"
+                target="_blank"
+              >
                 <Facebook />
               </Link>
               <Box m="0 2rem">
-                <Link href="https://www.instagram.com/livekharkov/">
+                <Link
+                  href="https://www.instagram.com/cider_degustator/"
+                  target="_blank"
+                >
                   <Instagram />
                 </Link>
               </Box>
-              <Link href="mailto:oleh.sirota@gmail.com">
+              <Link href="mailto:ciderdegustator@gmail.com">
                 <Mail />
               </Link>
             </Box>

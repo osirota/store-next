@@ -9,10 +9,13 @@ import {
   ListItem,
   Typography,
   ListItemSecondaryAction,
-  ListItemAvatar,
   IconButton,
   Button,
+  Badge,
+  Snackbar,
+  Fade,
 } from '@material-ui/core';
+import MuiAlert from '@material-ui/lab/Alert';
 import { ShoppingCart, Add, Remove, Cancel } from '@material-ui/icons';
 import styled from 'styled-components';
 import Head from 'next/head';
@@ -21,20 +24,13 @@ import { useRouter } from 'next/router';
 
 import PageHeader from 'components/PageHeader/PageHeader';
 import cartStore from 'store/cart';
+import snackbarStore from 'store/snackbar';
 
 const ContainerStyled = styled(Container)`
   max-width: 1140px;
   margin: 0 auto;
-  padding: 30px 0 10px;
+  padding: 3rem 0 10px;
 `;
-
-// const Wrapper = styled.div`
-//   position: fixed;
-//   height: 100vh;
-//   width: 100vw;
-//   overflow: hidden;
-//   z-index: -1;
-// `
 
 const FabStyled = styled(Fab)`
   position: fixed;
@@ -49,6 +45,9 @@ const SwipeableDrawerStyled = styled(SwipeableDrawer)`
     width: 400px;
     background-color: #b2b2b2;
     justify-content: space-between;
+    @media (max-width: 775px) {
+      width: 85%;
+    }
   }
 `;
 
@@ -103,6 +102,8 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
   const router = useRouter();
   const [drawerState, setDrawerState] = useState(false);
   const [cartState, setCartState] = useState(cartStore.initialState());
+  const [snackOpen, setSnackOpen] = useState(false);
+
   const totalPrice = `${cartState.reduce(
     (acc: number, value: any) => acc + value.price * value.count,
     0
@@ -111,6 +112,8 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
   useLayoutEffect(() => {
     cartStore.subscribe(setCartState);
     cartStore.init();
+    snackbarStore.subscribe(setSnackOpen);
+    snackbarStore.init();
   }, []);
 
   const price = (prices: any, count: any) => `${prices * count} грн`;
@@ -143,6 +146,17 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
     router.push('/order');
   };
 
+  const handleSnackClose = (
+    event?: React.SyntheticEvent,
+    reason?: string
+  ): void => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setSnackOpen(false);
+  };
+
   return (
     <>
       <PageHeader />
@@ -173,7 +187,7 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
                         <Cancel />
                       </IconButton>
                     </ListItemSecondaryAction>
-                    <Box>
+                    <Box flexBasis="50%">
                       <Typography color="primary">{product.name}</Typography>
                       <Box display="flex" alignItems="center">
                         <Box display="flex" alignItems="center">
@@ -196,14 +210,19 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
                         </Typography>
                       </Box>
                     </Box>
-                    <ListItemAvatar>
+                    <Box
+                      flexBasis="50%"
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
                       <Image
                         alt={product.name}
                         src={product.logo}
                         width={60}
                         height={100}
                       />
-                    </ListItemAvatar>
+                    </Box>
                   </ListItem>
                 </ListItemStyled>
               ))}
@@ -220,8 +239,25 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
         </CompleteWrapper>
       </SwipeableDrawerStyled>
       <FabStyled color="primary" onClick={toggleDrawer}>
-        <ShoppingCart />
+        <Badge color="secondary" badgeContent={cartState.length} showZero>
+          <ShoppingCart />
+        </Badge>
       </FabStyled>
+      <Snackbar
+        open={snackOpen}
+        autoHideDuration={2000}
+        onClose={handleSnackClose}
+        TransitionComponent={Fade}
+      >
+        <MuiAlert
+          elevation={6}
+          variant="filled"
+          onClose={handleSnackClose}
+          severity="success"
+        >
+          Товар добавлен Вам в корзину
+        </MuiAlert>
+      </Snackbar>
     </>
   );
 };

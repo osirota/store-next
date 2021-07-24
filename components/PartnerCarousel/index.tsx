@@ -15,10 +15,6 @@ const SliderStyled = styled(Box)`
     justify-content: center;
     background: transparent;
   }
-  & .swiper-slide:hover {
-    background: url('/bg-product.png') center no-repeat;
-    border-radius: 40px;
-  }
   & .swiper-button-next,
   & .swiper-button-prev {
     color: #fff;
@@ -96,11 +92,11 @@ const PartnerCarousel = ({
         <Swiper {...settings}>
           {items.map(({ logo, _id }) => (
             <SwiperSlide key={logo}>
-              <Link href={`/partner/${_id}`}>
-                <Box display="flex" alignItems="center" justifyContent="center">
-                  <Image src={logo} width="160px" height="160px" />
-                </Box>
-              </Link>
+              <Box position="relative" width="100%" height="240px">
+                <Link href={`/partner/${_id}`}>
+                  <Image src={logo} layout="fill" objectFit="contain" />
+                </Link>
+              </Box>
             </SwiperSlide>
           ))}
         </Swiper>
