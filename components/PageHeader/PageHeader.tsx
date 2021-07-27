@@ -110,10 +110,10 @@ const PageHeader = ({ isFooter }: PageHeaderProps) => {
         onOpen={toggleDrawer}
       >
         <Box display="flex" flexDirection="column">
-          {PageHeader.navList.map((item) => (
-            <Box mt="2rem" key={item}>
-              <LinkStyled href="" key={item} color="textSecondary">
-                {item}
+          {PageHeader.navList.map(({ name, link }) => (
+            <Box mt="2rem" key={name}>
+              <LinkStyled href={link} key={name} color="textSecondary">
+                {name}
               </LinkStyled>
             </Box>
           ))}
