@@ -7,9 +7,12 @@ import {
   Typography,
   Divider,
   SwipeableDrawer,
+  IconButton,
 } from '@material-ui/core';
 import Image from 'next/image';
 import styled from 'styled-components';
+
+import Menu from '../../public/icons/menu.svg';
 
 const AppBarStyled = styled(AppBar)`
   background-color: transparent;
@@ -86,10 +89,10 @@ const PageHeader = ({ isFooter }: PageHeaderProps) => {
             </Box>
           </Box>
 
-          {/* <Box display={{ xs: 'none', md: 'inline-flex' }}>
-            {PageHeader.navList.map((item) => (
-              <LinkStyled href="" key={item} color="textPrimary">
-                {item}
+          <Box display={{ xs: 'none', md: 'inline-flex' }}>
+            {PageHeader.navList.map(({ name, link }) => (
+              <LinkStyled href={link} key={name} color="textPrimary">
+                {name}
               </LinkStyled>
             ))}
           </Box>
@@ -97,7 +100,7 @@ const PageHeader = ({ isFooter }: PageHeaderProps) => {
             <IconButton onClick={toggleDrawer}>
               <Menu />
             </IconButton>
-          </Box> */}
+          </Box>
         </HeaderWrapper>
       </Container>
       <SwipeableDrawerStyled
@@ -124,7 +127,12 @@ PageHeader.defaultProps = {
   isFooter: false,
 };
 
-PageHeader.navList = ['про нас', 'блог', 'сидри', 'наши партнеры', 'контакты'];
+PageHeader.navList = [
+  {
+    name: 'сидри',
+    link: '/products',
+  },
+];
 
 PageHeader.langList = ['УКР', 'РУС', 'ESP', 'ENG'];
 
