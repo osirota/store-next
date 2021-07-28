@@ -13,6 +13,13 @@ const cartStore = {
   },
   subscribe: (setState: any) => subject.subscribe(setState),
   unsubscribe: () => subject.unsubscribe(),
+  store: () => {
+    console.log(
+      subject.subscribe({
+        next: (v) => console.log(`observerB: ${v}`),
+      })
+    );
+  },
   setCart: (cart: any) => {
     localStorage.setItem('cart', JSON.stringify(cart));
     subject.next(cart);
@@ -21,7 +28,7 @@ const cartStore = {
     subject.next([]);
   },
   initialState: () => {
-    const data = localStorage.getItem('cart');
+    const data = localStorage && localStorage.getItem('cart');
     if (data) {
       return JSON.parse(data);
     }
