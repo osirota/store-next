@@ -67,7 +67,7 @@ const ProductItem = ({ product, mb }: IProps) => {
       <Box
         display="flex"
         flexDirection={{ xs: 'column', lg: 'row' }}
-        alignItems="space-between"
+        alignItems={{ xs: 'center', lg: 'space-between' }}
         mb={mb}
       >
         <Box position="relative" width="50%" height="400px">
@@ -78,7 +78,7 @@ const ProductItem = ({ product, mb }: IProps) => {
             objectFit="contain"
           />
         </Box>
-        <Box width="50%">
+        <Box width={{ xs: '95%', lg: '50%' }}>
           <Typography gutterBottom variant="h3" color="textSecondary">
             {product.name}
           </Typography>
