@@ -21,7 +21,7 @@ export default async function handler(req: any, res: any) {
         const data = await response.json();
         res.status(200).json({ data });
       } catch (error) {
-        res.status(400).json({ success: false });
+        res.status(400).json({ success: false, error });
       }
       break;
     default:
