@@ -48,7 +48,7 @@ const DeviceAutocomplete = () => {
   const renderOptions = (options: any) =>
     options.map(
       (option: { DescriptionRu: any; AreaDescriptionRu: any }) =>
-        `${option.DescriptionRu} ${option.AreaDescriptionRu}`
+        `${option.DescriptionRu} - ${option.AreaDescriptionRu}`
     );
 
   const renderInput = (params: { InputProps: any }) => (

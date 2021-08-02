@@ -41,18 +41,22 @@ const WarehousesAutoComplete = () => {
     }
   };
   const fetchList = async () => {
-    const [city] = values.city.split(' ');
-    const body = JSON.stringify({
-      city,
-    });
-    const response = await fetch('/api/warehouses', {
-      method: 'POST',
-      body,
-    });
-    const {
-      data: { data },
-    } = await response.json();
-    setCities(data);
+    try {
+      const [city] = values.city.split('-');
+      const body = JSON.stringify({
+        city,
+      });
+      const response = await fetch('/api/warehouses', {
+        method: 'POST',
+        body,
+      });
+      const {
+        data: { data },
+      } = await response.json();
+      setCities(data);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   useEffect(() => {

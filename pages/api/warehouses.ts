@@ -10,6 +10,8 @@ export default async function handler(req: any, res: any) {
           calledMethod: 'getWarehouses',
           methodProperties: {
             CityName: city,
+            Page: 1,
+            Limit: 2600,
           },
           apiKey: '2d17968aff28610916fe8e1db28d5499',
         });
@@ -19,6 +21,7 @@ export default async function handler(req: any, res: any) {
           body,
         });
         const data = await response.json();
+        console.log(data);
         res.status(200).json({ data });
       } catch (error) {
         res.status(400).json({ success: false, error });
