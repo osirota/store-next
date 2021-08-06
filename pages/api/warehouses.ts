@@ -10,8 +10,6 @@ export default async function handler(req: any, res: any) {
           calledMethod: 'getWarehouses',
           methodProperties: {
             CityName: city,
-            Page: 1,
-            Limit: 2600,
           },
           apiKey: '2d17968aff28610916fe8e1db28d5499',
         });
