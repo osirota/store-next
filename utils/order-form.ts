@@ -33,17 +33,40 @@ export const handleSubmit = async (
 ) => {
   const { resetForm } = formikBag;
   const contentType = 'application/json';
-  await fetch('/api/order', {
+  const totalPrice = values.order.reduce(
+    (acc: number, value: any) => acc + value.price * value.count,
+    0
+  );
+  const names = values.order.map((item: any) => item.name);
+  const prices = values.order.map((item: any) => item.price);
+  const counts = values.order.map((item: any) => item.count);
+  const body = {
+    merchantAccount: 'freelance_user_610da3f656198',
+    merchantDomainName: 'https://dev.ciderdegustator.com/',
+    merchantTransactionSecureType: 'AUTO',
+    merchantSignature: 'test order',
+    orderReference: Math.random(),
+    orderDate: new Date(),
+    amount: totalPrice,
+    currency: 'UAH',
+    productName: names,
+    productPrice: prices,
+    productCount: counts,
+    deliveryList: 'nova',
+    merchantSecretKey: 'fa449611e00aa34e89581e45ed6ab240b8d6d30d',
+  };
+  const response = await fetch('https://secure.wayforpay.com/pay', {
     method: 'POST',
     headers: {
       Accept: contentType,
       'Content-Type': contentType,
     },
-    body: JSON.stringify(values),
+    body: JSON.stringify(body),
   });
-  resetForm();
-  cartStore.clearCart();
-  localStorage.removeItem('cart');
+  console.log(response);
+  // resetForm();
+  // cartStore.clearCart();
+  // localStorage.removeItem('cart');
 };
 
 export const validationSchema = Yup.object().shape({
