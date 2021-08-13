@@ -1,5 +1,8 @@
 import * as Yup from 'yup';
 import cartStore from 'store/cart';
+import hmacSHA512 from 'crypto-js/hmac-sha512';
+import Base64 from 'crypto-js/enc-base64';
+import formatISO from 'date-fns/formatISO';
 
 interface FormValues {
   name: string;
@@ -40,27 +43,32 @@ export const handleSubmit = async (
   const names = values.order.map((item: any) => item.name);
   const prices = values.order.map((item: any) => item.price);
   const counts = values.order.map((item: any) => item.count);
+  const hmacDigest = Base64.stringify(
+    hmacSHA512(
+      `test_merch_n1;http://ciderdegustator.com/;1; ${formatISO(
+        new Date()
+      )};${totalPrice};UAH;${names.join(';')};${counts.join(';')};${prices.join(
+        ';'
+      )};`,
+      'flk3409refn54t54t*FNJRET'
+    )
+  );
   const body = {
-    merchantAccount: 'freelance_user_610da3f656198',
-    merchantDomainName: 'https://dev.ciderdegustator.com/',
+    merchantAccount: 'test_merch_n1',
+    merchantDomainName: 'http://ciderdegustator.com/',
     merchantTransactionSecureType: 'AUTO',
-    merchantSignature: 'test order',
-    orderReference: Math.random(),
-    orderDate: new Date(),
+    merchantSignature: hmacDigest,
+    orderReference: '1',
+    orderDate: formatISO(new Date()),
     amount: totalPrice,
     currency: 'UAH',
     productName: names,
     productPrice: prices,
     productCount: counts,
     deliveryList: 'nova',
-    merchantSecretKey: 'fa449611e00aa34e89581e45ed6ab240b8d6d30d',
   };
   const response = await fetch('https://secure.wayforpay.com/pay', {
     method: 'POST',
-    headers: {
-      Accept: contentType,
-      'Content-Type': contentType,
-    },
     body: JSON.stringify(body),
   });
   console.log(response);
