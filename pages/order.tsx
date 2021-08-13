@@ -22,8 +22,8 @@ import Image from 'next/image';
 
 import Field from 'patterns/Field';
 import PageHeader from 'components/PageHeader/PageHeader';
-import CitiesAutoComplete from 'components/CitiesAutoComplete';
-import WarehousesAutoComplete from 'components/WarehousesAutoComplete';
+// import CitiesAutoComplete from 'components/CitiesAutoComplete';
+// import WarehousesAutoComplete from 'components/WarehousesAutoComplete';
 import cartStore from 'store/cart';
 
 import {
@@ -136,7 +136,7 @@ const Order = () => {
     setFieldValue('order', cartState);
   }, [cartState, setFieldValue]);
 
-  const price = (prices: any, count: any) => `${prices * count} грн`;
+  const price = (pricesi: any, count: any) => `${pricesi * count} грн`;
   return (
     <>
       <PageHeader />
