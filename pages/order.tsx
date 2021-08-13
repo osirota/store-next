@@ -167,9 +167,6 @@ const Order = () => {
               action="https://secure.wayforpay.com/pay"
               acceptCharset="utf-8"
             >
-              <Field name="clientFirstName" label="ФИО" />
-              <Field name="clientEmail" label="Email" />
-              <Field name="clientPhone" label="Телефон" />
               <Box display="none">
                 <input name="merchantAccount" value={body.merchantAccount} />
                 <input
@@ -196,6 +193,9 @@ const Order = () => {
                   value={body.merchantSignature}
                 />
               </Box>
+              <Field name="clientFirstName" label="ФИО" />
+              <Field name="clientEmail" label="Email" />
+              <Field name="clientPhone" label="Телефон" />
               {/* <CitiesAutoComplete />
               <WarehousesAutoComplete /> */}
               <Box m="2rem 0">
