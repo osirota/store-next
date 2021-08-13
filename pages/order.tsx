@@ -11,7 +11,10 @@ import {
   ListItemSecondaryAction,
 } from '@material-ui/core';
 import { Alert, AlertTitle } from '@material-ui/lab';
-import { withFormik, Form, useFormikContext } from 'formik';
+import { withFormik, useFormikContext } from 'formik';
+import hmacSHA512 from 'crypto-js/hmac-sha512';
+import Base64 from 'crypto-js/enc-base64';
+import formatISO from 'date-fns/formatISO';
 import styled from 'styled-components';
 
 import Head from 'next/head';
@@ -72,7 +75,37 @@ const Order = () => {
     (acc: number, value: any) => acc + value.price * value.count,
     0
   )} грн`;
-
+  const testPrice = cartState.reduce(
+    (acc: number, value: any) => acc + value.price * value.count,
+    0
+  );
+  const names = cartState.map((item: any) => item.name);
+  const prices = cartState.map((item: any) => item.price);
+  const counts = cartState.map((item: any) => item.count);
+  const hmacDigest = Base64.stringify(
+    hmacSHA512(
+      `test_merch_n1;https://dev.ciderdegustator.com/;1; ${formatISO(
+        new Date()
+      )};${totalPrice};UAH;${names.join(';')};${counts.join(';')};${prices.join(
+        ';'
+      )};`,
+      'fa449611e00aa34e89581e45ed6ab240b8d6d30d'
+    )
+  );
+  const body = {
+    merchantAccount: 'freelance_user_610da3f656198',
+    merchantDomainName: 'https://dev.ciderdegustator.com/',
+    merchantTransactionSecureType: 'AUTO',
+    merchantSignature: hmacDigest,
+    orderReference: '1',
+    orderDate: formatISO(new Date()),
+    amount: testPrice,
+    currency: 'UAH',
+    productName: names,
+    productPrice: prices,
+    productCount: counts,
+    deliveryList: 'nova',
+  };
   const handleRemoveProduct = (id: string) => () => {
     const newCart = cartState.filter(
       (product: LocalStorageProduct) => product._id !== id
@@ -129,12 +162,42 @@ const Order = () => {
                 Оформление заказа
               </Typography>
             </Box>
-            <Form noValidate>
-              <Field name="name" label="ФИО" />
-              <Field name="email" label="Email" />
-              <Field name="phone" label="Телефон" />
-              <CitiesAutoComplete />
-              <WarehousesAutoComplete />
+            <form
+              method="post"
+              action="https://secure.wayforpay.com/pay"
+              acceptCharset="utf-8"
+            >
+              <Field name="clientFirstName" label="ФИО" />
+              <Field name="clientEmail" label="Email" />
+              <Field name="clientPhone" label="Телефон" />
+              <Box display="none">
+                <input name="merchantAccount" value={body.merchantAccount} />
+                <input
+                  name="merchantDomainName"
+                  value={body.merchantDomainName}
+                />
+                <input name="merchantAuthType" value="SimpleSignature" />
+                <input name="defaultPaymentSystem" value="card" />
+                <input name="orderReference" value={body.orderReference} />
+                <input name="orderDate" value={body.orderDate} />
+                <input name="amount" value={body.amount} />
+                <input name="currency" value={body.currency} />
+                {body.productName.map((i) => (
+                  <input name="productName[]" value={i} />
+                ))}
+                {body.productPrice.map((i) => (
+                  <input name="productPrice[]" value={i} />
+                ))}
+                {body.productCount.map((i) => (
+                  <input name="productCount[]" value={i} />
+                ))}
+                <input
+                  name="merchantSignature"
+                  value={body.merchantSignature}
+                />
+              </Box>
+              {/* <CitiesAutoComplete />
+              <WarehousesAutoComplete /> */}
               <Box m="2rem 0">
                 <Alert severity="info">
                   <AlertTitle>Внимание!</AlertTitle>
@@ -157,7 +220,7 @@ const Order = () => {
                   Оформить
                 </Button>
               </Box>
-            </Form>
+            </form>
           </Box>
           <Box
             width={{ xs: '90%', lg: '45%' }}

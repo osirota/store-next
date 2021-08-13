@@ -45,17 +45,17 @@ export const handleSubmit = async (
   const counts = values.order.map((item: any) => item.count);
   const hmacDigest = Base64.stringify(
     hmacSHA512(
-      `test_merch_n1;http://ciderdegustator.com/;1; ${formatISO(
+      `freelance_user_610da3f656198;http://localhost:3000/;1; ${formatISO(
         new Date()
       )};${totalPrice};UAH;${names.join(';')};${counts.join(';')};${prices.join(
         ';'
       )};`,
-      'flk3409refn54t54t*FNJRET'
+      'fa449611e00aa34e89581e45ed6ab240b8d6d30d'
     )
   );
   const body = {
-    merchantAccount: 'test_merch_n1',
-    merchantDomainName: 'http://ciderdegustator.com/',
+    merchantAccount: 'freelance_user_610da3f656198',
+    merchantDomainName: 'http://localhost:3000/',
     merchantTransactionSecureType: 'AUTO',
     merchantSignature: hmacDigest,
     orderReference: '1',
@@ -69,6 +69,14 @@ export const handleSubmit = async (
   };
   const response = await fetch('https://secure.wayforpay.com/pay', {
     method: 'POST',
+    mode: 'cors', // no-cors, *cors, same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+    headers: {
+      Accept: 'text/html; charset=UTF-8',
+    },
+    redirect: 'follow', // manual, *follow, error
+    referrerPolicy: 'no-referrer',
     body: JSON.stringify(body),
   });
   console.log(response);
