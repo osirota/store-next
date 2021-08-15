@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import cartStore from 'store/cart';
 import hmacSHA512 from 'crypto-js/hmac-sha512';
-import Base64 from 'crypto-js/enc-base64';
+import utf8 from 'crypto-js/enc-utf8';
 import formatISO from 'date-fns/formatISO';
 
 interface FormValues {
@@ -43,13 +43,12 @@ export const handleSubmit = async (
   const names = values.order.map((item: any) => item.name);
   const prices = values.order.map((item: any) => item.price);
   const counts = values.order.map((item: any) => item.count);
-  const hmacDigest = Base64.stringify(
+  // eslint-disable-next-line prettier/prettier
+  console.log(`freelance_user_610da3f656198;http://localhost:3000/;1; ${formatISO(new Date())};${totalPrice};UAH;${names.join(';')};${counts.join(';')};${prices.join(';')};`);
+  const hmacDigest = utf8.stringify(
     hmacSHA512(
-      `freelance_user_610da3f656198;http://localhost:3000/;1; ${formatISO(
-        new Date()
-      )};${totalPrice};UAH;${names.join(';')};${counts.join(';')};${prices.join(
-        ';'
-      )};`,
+      // eslint-disable-next-line prettier/prettier
+      `freelance_user_610da3f656198;http://localhost:3000/;1; ${formatISO(new Date())};${totalPrice};UAH;${names.join(';')};${counts.join(';')};${prices.join(';')};`,
       'fa449611e00aa34e89581e45ed6ab240b8d6d30d'
     )
   );

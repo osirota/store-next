@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-underscore-dangle */
 import React, { useState, useLayoutEffect, useEffect } from 'react';
 import {
@@ -13,8 +14,8 @@ import {
 import { Alert, AlertTitle } from '@material-ui/lab';
 import { withFormik, useFormikContext } from 'formik';
 import hmacSHA512 from 'crypto-js/hmac-sha512';
-import Base64 from 'crypto-js/enc-base64';
-import formatISO from 'date-fns/formatISO';
+import CryptoJS from 'crypto-js';
+import format from 'date-fns/format';
 import styled from 'styled-components';
 
 import Head from 'next/head';
@@ -82,23 +83,20 @@ const Order = () => {
   const names = cartState.map((item: any) => item.name);
   const prices = cartState.map((item: any) => item.price);
   const counts = cartState.map((item: any) => item.count);
-  const hmacDigest = Base64.stringify(
-    hmacSHA512(
-      `test_merch_n1;https://dev.ciderdegustator.com/;1; ${formatISO(
-        new Date()
-      )};${totalPrice};UAH;${names.join(';')};${counts.join(';')};${prices.join(
-        ';'
-      )};`,
-      'fa449611e00aa34e89581e45ed6ab240b8d6d30d'
-    )
+  const hmacDigest = CryptoJS.HmacMD5(
+    // eslint-disable-next-line prettier/prettier
+      `freelance_user_610da3f656198;dev.ciderdegustator.com;1;${format(new Date(), 't')};${testPrice};UAH;${names.join(';')};${counts.join(';')};${prices.join(';')};`,
+    'fa449611e00aa34e89581e45ed6ab240b8d6d30d'
   );
+  // eslint-disable-next-line prettier/prettier
+  console.log('123', `freelance_user_610da3f656198;dev.ciderdegustator.com;1;${format(new Date(), 't')};${testPrice};UAH;${names.join(';')};${counts.join(';')};${prices.join(';')};`);
   const body = {
     merchantAccount: 'freelance_user_610da3f656198',
-    merchantDomainName: 'https://dev.ciderdegustator.com/',
+    merchantDomainName: 'dev.ciderdegustator.com',
     merchantTransactionSecureType: 'AUTO',
     merchantSignature: hmacDigest,
     orderReference: '1',
-    orderDate: formatISO(new Date()),
+    orderDate: format(new Date(), 't'),
     amount: testPrice,
     currency: 'UAH',
     productName: names,
