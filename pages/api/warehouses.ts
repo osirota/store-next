@@ -1,5 +1,6 @@
 export default async function handler(req: any, res: any) {
   const { method, body: handlerBody } = req;
+  const { NOVAKEY } = process.env;
 
   switch (method) {
     case 'POST':
@@ -11,7 +12,7 @@ export default async function handler(req: any, res: any) {
           methodProperties: {
             CityName: city,
           },
-          apiKey: '2d17968aff28610916fe8e1db28d5499',
+          apiKey: NOVAKEY,
         });
 
         const response = await fetch('https://api.novaposhta.ua/v2.0/json/', {

@@ -13,7 +13,7 @@ import {
 } from '@material-ui/core';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import { withFormik, useFormikContext } from 'formik';
-import hmacSHA512 from 'crypto-js/hmac-sha512';
+import { uuid } from 'uuidv4';
 import CryptoJS from 'crypto-js';
 import format from 'date-fns/format';
 import styled from 'styled-components';
@@ -76,28 +76,30 @@ const Order = () => {
     (acc: number, value: any) => acc + value.price * value.count,
     0
   )} грн`;
-  const testPrice = cartState.reduce(
+  const amount = cartState.reduce(
     (acc: number, value: any) => acc + value.price * value.count,
     0
   );
+  const { MERCHANT_SECRET_KEY, MERCHANT_LOGIN, SITE } = process.env;
   const names = cartState.map((item: any) => item.name);
   const prices = cartState.map((item: any) => item.price);
   const counts = cartState.map((item: any) => item.count);
+  const merchantAccount = MERCHANT_LOGIN;
+  const merchantDomainName = SITE;
+  const orderReference = uuid();
   const hmacDigest = CryptoJS.HmacMD5(
     // eslint-disable-next-line prettier/prettier
-      `freelance_user_610da3f656198;dev.ciderdegustator.com;1;${format(new Date(), 't')};${testPrice};UAH;${names.join(';')};${counts.join(';')};${prices.join(';')};`,
-    'fa449611e00aa34e89581e45ed6ab240b8d6d30d'
+    `${merchantAccount};${merchantDomainName};${orderReference};${format(new Date(), 't')};${amount};UAH;${names.join(';')};${counts.join(';')};${prices.join(';')}`,
+    MERCHANT_SECRET_KEY || ''
   );
-  // eslint-disable-next-line prettier/prettier
-  console.log('123', `freelance_user_610da3f656198;dev.ciderdegustator.com;1;${format(new Date(), 't')};${testPrice};UAH;${names.join(';')};${counts.join(';')};${prices.join(';')};`);
   const body = {
-    merchantAccount: 'freelance_user_610da3f656198',
-    merchantDomainName: 'dev.ciderdegustator.com',
+    merchantAccount,
+    merchantDomainName,
     merchantTransactionSecureType: 'AUTO',
     merchantSignature: hmacDigest,
-    orderReference: '1',
+    orderReference,
     orderDate: format(new Date(), 't'),
-    amount: testPrice,
+    amount,
     currency: 'UAH',
     productName: names,
     productPrice: prices,
@@ -166,27 +168,41 @@ const Order = () => {
               acceptCharset="utf-8"
             >
               <Box display="none">
-                <input name="merchantAccount" value={body.merchantAccount} />
                 <input
+                  readOnly
+                  name="merchantAccount"
+                  value={body.merchantAccount}
+                />
+                <input
+                  readOnly
                   name="merchantDomainName"
                   value={body.merchantDomainName}
                 />
-                <input name="merchantAuthType" value="SimpleSignature" />
-                <input name="defaultPaymentSystem" value="card" />
-                <input name="orderReference" value={body.orderReference} />
-                <input name="orderDate" value={body.orderDate} />
-                <input name="amount" value={body.amount} />
-                <input name="currency" value={body.currency} />
+                <input
+                  readOnly
+                  name="merchantAuthType"
+                  value="SimpleSignature"
+                />
+                <input readOnly name="defaultPaymentSystem" value="card" />
+                <input
+                  readOnly
+                  name="orderReference"
+                  value={body.orderReference}
+                />
+                <input readOnly name="orderDate" value={body.orderDate} />
+                <input readOnly name="amount" value={body.amount} />
+                <input readOnly name="currency" value={body.currency} />
                 {body.productName.map((i) => (
-                  <input name="productName[]" value={i} />
+                  <input readOnly name="productName[]" value={i} />
                 ))}
                 {body.productPrice.map((i) => (
-                  <input name="productPrice[]" value={i} />
+                  <input readOnly name="productPrice[]" value={i} />
                 ))}
                 {body.productCount.map((i) => (
-                  <input name="productCount[]" value={i} />
+                  <input readOnly name="productCount[]" value={i} />
                 ))}
                 <input
+                  readOnly
                   name="merchantSignature"
                   value={body.merchantSignature}
                 />
