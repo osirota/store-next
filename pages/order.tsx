@@ -34,6 +34,8 @@ import {
 } from 'utils/order-form';
 import { Cancel, Remove, Add } from '@material-ui/icons';
 
+const { MERCHANT_SECRET_KEY, MERCHANT_LOGIN, SITE } = process.env;
+
 const ContainerStyled = styled(Container)`
   max-width: 1140px;
   margin: 0 auto;
@@ -80,7 +82,7 @@ const Order = () => {
     (acc: number, value: any) => acc + value.price * value.count,
     0
   );
-  const { MERCHANT_SECRET_KEY, MERCHANT_LOGIN, SITE } = process.env;
+  
   const names = cartState.map((item: any) => item.name);
   const prices = cartState.map((item: any) => item.price);
   const counts = cartState.map((item: any) => item.count);
