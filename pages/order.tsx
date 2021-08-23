@@ -87,7 +87,7 @@ const Order = () => {
   const merchantAccount = MERCHANT_LOGIN;
   const merchantDomainName = SITE;
   const orderReference = uuid();
-  const hmacDigest = CryptoJS.HmacMD5(
+  const hmacDigest: any = CryptoJS.HmacMD5(
     // eslint-disable-next-line prettier/prettier
     `${merchantAccount};${merchantDomainName};${orderReference};${format(new Date(), 't')};${amount};UAH;${names.join(';')};${counts.join(';')};${prices.join(';')}`,
     MERCHANT_SECRET_KEY || ''
