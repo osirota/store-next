@@ -82,7 +82,7 @@ const Order = () => {
     (acc: number, value: any) => acc + value.price * value.count,
     0
   );
-  
+
   const names = cartState.map((item: any) => item.name);
   const prices = cartState.map((item: any) => item.price);
   const counts = cartState.map((item: any) => item.count);
