@@ -10,7 +10,7 @@ import {
   ListItem,
   ListItemSecondaryAction,
 } from '@material-ui/core';
-import { Alert, AlertTitle } from '@material-ui/lab';
+// import { Alert, AlertTitle } from '@material-ui/lab';
 import { withFormik, useFormikContext } from 'formik';
 import styled from 'styled-components';
 
@@ -178,7 +178,6 @@ const Order = () => {
         deliveryList: 'nova',
       });
     };
-    console.log('cartState', cartState);
     if (cartState.length > 0) {
       fetchData();
     }
@@ -263,13 +262,13 @@ const Order = () => {
               <Field name="clientPhone" label="Телефон" />
               {/* <CitiesAutoComplete />
               <WarehousesAutoComplete /> */}
-              <Box m="2rem 0">
+              {/* <Box m="2rem 0">
                 <Alert severity="info">
                   <AlertTitle>Внимание!</AlertTitle>
                   Оплатите товар на карточку монобанка —{' '}
                   <strong>9999999999999999999</strong>
                 </Alert>
-              </Box>
+              </Box> */}
               <Box
                 display="flex"
                 alignItems="center"

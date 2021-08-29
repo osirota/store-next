@@ -1,5 +1,4 @@
 import * as Yup from 'yup';
-import cartStore from 'store/cart';
 import hmacSHA512 from 'crypto-js/hmac-sha512';
 import utf8 from 'crypto-js/enc-utf8';
 import formatISO from 'date-fns/formatISO';
@@ -32,10 +31,7 @@ export const mapPropsToValues = () => ({
 
 export const handleSubmit = async (
   values: FormValues,
-  formikBag: FormikBag
 ) => {
-  const { resetForm } = formikBag;
-  const contentType = 'application/json';
   const totalPrice = values.order.reduce(
     (acc: number, value: any) => acc + value.price * value.count,
     0
@@ -44,7 +40,6 @@ export const handleSubmit = async (
   const prices = values.order.map((item: any) => item.price);
   const counts = values.order.map((item: any) => item.count);
   // eslint-disable-next-line prettier/prettier
-  console.log(`freelance_user_610da3f656198;http://localhost:3000/;1; ${formatISO(new Date())};${totalPrice};UAH;${names.join(';')};${counts.join(';')};${prices.join(';')};`);
   const hmacDigest = utf8.stringify(
     hmacSHA512(
       // eslint-disable-next-line prettier/prettier
@@ -78,7 +73,6 @@ export const handleSubmit = async (
     referrerPolicy: 'no-referrer',
     body: JSON.stringify(body),
   });
-  console.log(response);
   // resetForm();
   // cartStore.clearCart();
   // localStorage.removeItem('cart');
