@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 /* eslint-disable no-underscore-dangle */
 import React, { useState, useLayoutEffect, useEffect } from 'react';
 import {
@@ -13,9 +12,6 @@ import {
 } from '@material-ui/core';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import { withFormik, useFormikContext } from 'formik';
-import { uuid } from 'uuidv4';
-import CryptoJS from 'crypto-js';
-import format from 'date-fns/format';
 import styled from 'styled-components';
 
 import Head from 'next/head';
@@ -33,8 +29,6 @@ import {
   validationSchema,
 } from 'utils/order-form';
 import { Cancel, Remove, Add } from '@material-ui/icons';
-
-const { MERCHANT_SECRET_KEY, MERCHANT_LOGIN, SITE } = process.env;
 
 const ContainerStyled = styled(Container)`
   max-width: 1140px;
@@ -71,43 +65,55 @@ interface LocalStorageProduct extends Products {
   count: number;
 }
 
+interface IBodyState {
+  merchantAccount: string;
+  merchantDomainName: string;
+  merchantTransactionSecureType: string;
+  merchantSignature: string;
+  orderReference: string;
+  orderDate: string;
+  amount: number;
+  currency: string;
+  productName: any[];
+  productPrice: any[];
+  productCount: any[];
+  deliveryList: string;
+}
+
+interface IResponse {
+  merchantAccount: string;
+  merchantDomainName: string;
+  hmacDigest: string;
+  orderReference: string;
+  amount: number;
+  orderDate: string;
+  names: any[];
+  prices: any[];
+  counts: any[];
+}
+
 const Order = () => {
   const { setFieldValue } = useFormikContext();
   const [cartState, setCartState] = useState([]);
+  const [body, setBody] = useState<IBodyState>({
+    merchantAccount: '',
+    merchantDomainName: '',
+    merchantTransactionSecureType: '',
+    merchantSignature: '',
+    orderReference: '',
+    orderDate: '',
+    amount: 0,
+    currency: '',
+    productName: [],
+    productPrice: [],
+    productCount: [],
+    deliveryList: '',
+  });
   const totalPrice = `Итого: ${cartState.reduce(
     (acc: number, value: any) => acc + value.price * value.count,
     0
   )} грн`;
-  const amount = cartState.reduce(
-    (acc: number, value: any) => acc + value.price * value.count,
-    0
-  );
 
-  const names = cartState.map((item: any) => item.name);
-  const prices = cartState.map((item: any) => item.price);
-  const counts = cartState.map((item: any) => item.count);
-  const merchantAccount = MERCHANT_LOGIN;
-  const merchantDomainName = SITE;
-  const orderReference = uuid();
-  const hmacDigest: any = CryptoJS.HmacMD5(
-    // eslint-disable-next-line prettier/prettier
-    `${merchantAccount};${merchantDomainName};${orderReference};${format(new Date(), 't')};${amount};UAH;${names.join(';')};${counts.join(';')};${prices.join(';')}`,
-    MERCHANT_SECRET_KEY || ''
-  );
-  const body = {
-    merchantAccount,
-    merchantDomainName,
-    merchantTransactionSecureType: 'AUTO',
-    merchantSignature: hmacDigest,
-    orderReference,
-    orderDate: format(new Date(), 't'),
-    amount,
-    currency: 'UAH',
-    productName: names,
-    productPrice: prices,
-    productCount: counts,
-    deliveryList: 'nova',
-  };
   const handleRemoveProduct = (id: string) => () => {
     const newCart = cartState.filter(
       (product: LocalStorageProduct) => product._id !== id
@@ -137,6 +143,46 @@ const Order = () => {
   useEffect(() => {
     setFieldValue('order', cartState);
   }, [cartState, setFieldValue]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('/api/marchant', {
+        method: 'POST',
+        body: JSON.stringify(cartState),
+      });
+      const data = await response.json();
+      const {
+        hmacDigest,
+        names,
+        prices,
+        counts,
+        merchantAccount,
+        merchantDomainName,
+        orderReference,
+        amount,
+        orderDate,
+      }: IResponse = data;
+
+      setBody({
+        merchantAccount,
+        merchantDomainName,
+        merchantTransactionSecureType: 'AUTO',
+        merchantSignature: hmacDigest,
+        orderReference,
+        orderDate,
+        amount,
+        currency: 'UAH',
+        productName: names,
+        productPrice: prices,
+        productCount: counts,
+        deliveryList: 'nova',
+      });
+    };
+    console.log('cartState', cartState);
+    if (cartState.length > 0) {
+      fetchData();
+    }
+  }, [cartState, setBody]);
 
   const price = (pricesi: any, count: any) => `${pricesi * count} грн`;
   return (
@@ -194,15 +240,18 @@ const Order = () => {
                 <input readOnly name="orderDate" value={body.orderDate} />
                 <input readOnly name="amount" value={body.amount} />
                 <input readOnly name="currency" value={body.currency} />
-                {body.productName.map((i) => (
-                  <input readOnly name="productName[]" value={i} />
-                ))}
-                {body.productPrice.map((i) => (
-                  <input readOnly name="productPrice[]" value={i} />
-                ))}
-                {body.productCount.map((i) => (
-                  <input readOnly name="productCount[]" value={i} />
-                ))}
+                {body.productName.length > 0 &&
+                  body.productName.map((i) => (
+                    <input readOnly name="productName[]" value={i} />
+                  ))}
+                {body.productPrice.length > 0 &&
+                  body.productPrice.map((i) => (
+                    <input readOnly name="productPrice[]" value={i} />
+                  ))}
+                {body.productCount.length > 0 &&
+                  body.productCount.map((i) => (
+                    <input readOnly name="productCount[]" value={i} />
+                  ))}
                 <input
                   readOnly
                   name="merchantSignature"
