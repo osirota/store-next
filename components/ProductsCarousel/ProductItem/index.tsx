@@ -17,7 +17,7 @@ const CardStyled = styled(Card)`
   background: transparent;
   padding: 1rem;
   box-shadow: none;
-  height: 730px;
+  height: 830px;
   [data-image] {
     transform: rotate(0deg);
     transition: all 0.5s;
@@ -122,7 +122,7 @@ const ProductItem = ({ item }: ProductItemProps) => {
     <>
       <CardStyled>
         <CardContentStyled>
-          <Box position="relative" width="100%" height="350px" data-image>
+          <Box position="relative" width="100%" height="450px" data-image>
             <Image
               src={item.logo}
               alt="bottle"
