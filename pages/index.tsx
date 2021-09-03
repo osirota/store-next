@@ -24,7 +24,6 @@ import Phone from '../public/icons/phone.svg';
 const SliderWrapper = styled(Box)`
   .swiper-container {
     @media (max-width: 775px) {
-      width: 200px;
     }
   }
   .swiper-container-3d .swiper-slide-shadow-right,
@@ -174,6 +173,7 @@ const LandingPage = () => {
           <Box width={{ xs: '100%', lg: '45%' }}>
             <SliderWrapper>
               <Swiper
+                setWrapperSize
                 grabCursor
                 autoplay={{
                   delay: 2500,
@@ -200,8 +200,8 @@ const LandingPage = () => {
                           src={logo}
                           alt="bottle"
                           layout="fixed"
-                          width="600px"
-                          height="800px"
+                          width="400px"
+                          height="600px"
                         />
                       </Box>
                       <Box mt="1.5rem">
