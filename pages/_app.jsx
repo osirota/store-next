@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/core/styles';
-import SwiperCore, { EffectFade , Autoplay, Navigation } from 'swiper/core';
+import SwiperCore, { EffectFade, Autoplay, Navigation } from 'swiper/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { createGlobalStyle } from 'styled-components';
 import theme from 'styles/theme';
