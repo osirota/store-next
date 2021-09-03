@@ -23,22 +23,9 @@ import Phone from '../public/icons/phone.svg';
 
 const SliderWrapper = styled(Box)`
   .swiper-container {
-    width: 300px;
-    height: 100%;
-
     @media (max-width: 775px) {
       width: 200px;
     }
-  }
-
-  .swiper-slide {
-    background-position: center;
-    background-size: cover;
-  }
-
-  .swiper-slide img {
-    display: block;
-    width: 100%;
   }
   .swiper-container-3d .swiper-slide-shadow-right,
   .swiper-container-3d .swiper-slide-shadow-left {
@@ -178,22 +165,16 @@ const LandingPage = () => {
           Про нас
         </Typography>
         <Box
-          mt="8rem"
+          mt="1rem"
           display="flex"
           justifyContent="space-between"
+          alignItems="center"
           flexDirection={{ xs: 'column', lg: 'row' }}
         >
-          <Box width={{ xs: '90%', lg: '45%' }}>
+          <Box width={{ xs: '100%', lg: '45%' }}>
             <SliderWrapper>
               <Swiper
-                effect="cube"
                 grabCursor
-                cubeEffect={{
-                  shadow: true,
-                  slideShadows: true,
-                  shadowOffset: 20,
-                  shadowScale: 0.94,
-                }}
                 autoplay={{
                   delay: 2500,
                   disableOnInteraction: false,
@@ -205,14 +186,22 @@ const LandingPage = () => {
                     <Box
                       display="flex"
                       alignItems="center"
+                      justifyContent="center"
                       flexDirection="column"
                     >
-                      <Box position="relative" width="100%" height="400px">
+                      <Box
+                        position="relative"
+                        width="100%"
+                        display="flex"
+                        alignItems="center"
+                        justifyContent="center"
+                      >
                         <Image
                           src={logo}
                           alt="bottle"
-                          layout="fill"
-                          objectFit="contain"
+                          layout="fixed"
+                          width="600px"
+                          height="800px"
                         />
                       </Box>
                       <Box mt="1.5rem">
@@ -225,11 +214,11 @@ const LandingPage = () => {
             </SliderWrapper>
           </Box>
           <Box
-            width={{ xs: '90%', lg: '45%' }}
+            width={{ xs: '100%', lg: '45%' }}
             p={{ xs: '0 0.5rem', lg: '0' }}
             m={{ xs: '1rem 0 0', lg: '0' }}
           >
-            <Typography>
+            <Typography align="center">
               В основу філософії компанії «Cider Degustator» ми вкладаємо сенс
               про те, що абсолютно кожна людина є фахівцем, що визначає на смак
               якість продукту. Іншими словами, людина - оцінює напій,

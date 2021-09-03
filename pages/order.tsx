@@ -109,7 +109,7 @@ const Order = () => {
     productCount: [],
     deliveryList: '',
   });
-  const totalPrice = `Итого: ${cartState.reduce(
+  const totalPrice = `Загалом: ${cartState.reduce(
     (acc: number, value: any) => acc + value.price * value.count,
     0
   )} грн`;
@@ -189,7 +189,7 @@ const Order = () => {
       <PageHeader />
       <ContainerStyled disableGutters maxWidth={false}>
         <Head>
-          <title>Оформление Заказ</title>
+          <title>Оформлення Замовлення</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
@@ -206,7 +206,7 @@ const Order = () => {
           >
             <Box m="1rem 0">
               <Typography color="textSecondary" variant="h4">
-                Оформление заказа
+                Оформлення Замовлення
               </Typography>
             </Box>
             <form
@@ -281,7 +281,7 @@ const Order = () => {
                   size="large"
                   type="submit"
                 >
-                  Оформить
+                  Оформити
                 </Button>
               </Box>
             </form>

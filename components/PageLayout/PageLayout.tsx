@@ -230,11 +230,11 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
         </ContentWrapper>
         <CompleteWrapper>
           <Box>
-            <Typography color="primary">Итого:</Typography>
+            <Typography color="primary">Загалом:</Typography>
             <Typography color="primary">{totalPrice}</Typography>
           </Box>
           <Button disabled={cartState.length === 0} onClick={handleOrder}>
-            Оформить заказ
+            Оформити замовлення
           </Button>
         </CompleteWrapper>
       </SwipeableDrawerStyled>

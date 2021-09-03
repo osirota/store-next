@@ -126,8 +126,9 @@ const ProductItem = ({ item }: ProductItemProps) => {
             <Image
               src={item.logo}
               alt="bottle"
-              layout="fill"
-              objectFit="contain"
+              width="400px"
+              height="650px"
+              layout="responsive"
             />
           </Box>
           <TitleWrapper

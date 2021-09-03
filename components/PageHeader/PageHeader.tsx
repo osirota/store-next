@@ -22,6 +22,7 @@ const AppBarStyled = styled(AppBar)`
 const LinkStyled = styled(Link)`
   margin: 0 10px;
   text-transform: uppercase;
+  font-size: 18px;
 `;
 const DividerStyled = styled(Divider)`
   margin: 5rem 0;
@@ -37,7 +38,7 @@ const HeaderWrapper = styled(Box)`
 const SwipeableDrawerStyled = styled(SwipeableDrawer)`
   color: red;
   & .MuiDrawer-paper {
-    width: 400px;
+    width: 250px;
     background-color: #b2b2b2;
   }
 `;
@@ -91,7 +92,7 @@ const PageHeader = ({ isFooter }: PageHeaderProps) => {
 
           <Box display={{ xs: 'none', md: 'inline-flex' }}>
             {PageHeader.navList.map(({ name, link }) => (
-              <LinkStyled href={link} key={name} color="textPrimary">
+              <LinkStyled href={link} key={name} color="primary">
                 {name}
               </LinkStyled>
             ))}
@@ -112,7 +113,7 @@ const PageHeader = ({ isFooter }: PageHeaderProps) => {
         <Box display="flex" flexDirection="column">
           {PageHeader.navList.map(({ name, link }) => (
             <Box mt="2rem" key={name}>
-              <LinkStyled href={link} key={name} color="textSecondary">
+              <LinkStyled href={link} key={name} color="primary">
                 {name}
               </LinkStyled>
             </Box>
