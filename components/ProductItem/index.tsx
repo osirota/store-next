@@ -26,7 +26,7 @@ interface LocalStorageProduct extends Product {
 
 interface IProps {
   product: LocalStorageProduct;
-  mb: string;
+  mb: string | { xs: string; lg: string };
 }
 
 const ProductItem = ({ product, mb }: IProps) => {

@@ -44,7 +44,9 @@ const Products = () => {
           <ProductItem
             key={product.name}
             product={product}
-            mb={index === products.length - 1 ? '0' : '10rem'}
+            mb={
+              index === products.length - 1 ? '0' : { xs: '3rem', lg: '10rem' }
+            }
           />
         ))}
       </Box>
