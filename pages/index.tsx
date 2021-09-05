@@ -3,6 +3,8 @@ import { Link, Box, Typography, Grid, Button } from '@material-ui/core';
 import { withFormik, Form } from 'formik';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import useSwr from 'swr';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
 import styled from 'styled-components';
 
@@ -80,13 +82,15 @@ interface IFetch {
 }
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const LandingPage = () => {
+  const { t } = useTranslation('landing');
   const { data } = useSwr('/api/landing', fetcher);
   if (!data) {
     return null;
   }
+
   const { partners, products }: IFetch = data.data;
   return (
-    <PageLayout title="Landing">
+    <PageLayout title="Сидр дегустатор | Купить сидр">
       <Box
         pt="5rem"
         p={{
@@ -113,13 +117,10 @@ const LandingPage = () => {
             >
               <Box>
                 <Typography color="textSecondary" variant="h4">
-                  Підбірка найкращих сидрів спеціально для Вас
+                  {t('title')}
                 </Typography>
                 <Box width="60%" mt="2rem">
-                  <Typography variant="body1">
-                    Cider Degustator ретельно відібрали найкращі позиції, які не
-                    залишать байдужим нікого.
-                  </Typography>
+                  <Typography variant="body1">{t('description')}</Typography>
                 </Box>
               </Box>
               <Box
@@ -161,7 +162,7 @@ const LandingPage = () => {
 
       <Box mt="20rem">
         <Typography variant="h4" color="textSecondary" align="center">
-          Про нас
+          {t('aboutUs')}
         </Typography>
         <Box
           mt="1rem"
@@ -218,25 +219,13 @@ const LandingPage = () => {
             p={{ xs: '0 0.5rem', lg: '0' }}
             m={{ xs: '1rem 0 0', lg: '0' }}
           >
-            <Typography align="center">
-              В основу філософії компанії «Cider Degustator» ми вкладаємо сенс
-              про те, що абсолютно кожна людина є фахівцем, що визначає на смак
-              якість продукту. Іншими словами, людина - оцінює напій,
-              користуючись власними органами почуттів. Численні спроби в
-              дегустації, покращують рецептори до оцінки орналептіческіхсвойств
-              продукту і расшіреніялінейкі смаків і запахів. Мета нашої компанії
-              - різноманітність і відкриття нових відчуттів. Розкриття особистих
-              можливостей в області сприйняття. Показати «дегустують» незвідані
-              кордони і визначити його переваги і бажання. Адже що б здивувати,
-              доводиться багато пробоватьчтоби домогтися разлічнихсочетаній
-              смаку
-            </Typography>
+            <Typography align="center">{t('philosophy')}</Typography>
           </Box>
         </Box>
       </Box>
 
-      <ProductsCarousel title="Сидри" items={products} />
-      <PartnerCarousel title="Наші партнери" items={partners} />
+      <ProductsCarousel title={t('titleSiders')} items={products} />
+      <PartnerCarousel title={t('titlePartners')} items={partners} />
 
       <Box
         mt="10rem"
@@ -247,7 +236,7 @@ const LandingPage = () => {
         width="100%"
       >
         <Typography variant="h4" color="textSecondary" align="center">
-          Контакти
+          {t('contacts')}
         </Typography>
         <Box
           mt="2rem"
@@ -259,10 +248,10 @@ const LandingPage = () => {
         >
           <Box width={{ xs: '90%', lg: '45%' }}>
             <Form noValidate>
-              <Field name="name" label="Ім'я" />
+              <Field name="name" label={t('name')} />
               <Field name="email" label="Email" />
-              <Field name="phone" label="Номер телефону" />
-              <Field name="text" label="Повідомлення" />
+              <Field name="phone" label={t('phone')} />
+              <Field name="text" label={t('message')} />
               <Box
                 display="flex"
                 alignItems="center"
@@ -275,7 +264,7 @@ const LandingPage = () => {
                   size="large"
                   type="submit"
                 >
-                  Звязатись з нами
+                  {t('callBack')}
                 </Button>
               </Box>
             </Form>
@@ -320,6 +309,14 @@ const LandingPage = () => {
     </PageLayout>
   );
 };
+
+export async function getServerSideProps({ locale }: any) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['landing', 'common'])),
+    },
+  };
+}
 
 export default withFormik({
   enableReinitialize: true,

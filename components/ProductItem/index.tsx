@@ -1,6 +1,7 @@
 import React, { useState, useLayoutEffect } from 'react';
 import { Box, Typography, Button } from '@material-ui/core';
 import Image from 'next/image';
+import { useTranslation } from 'next-i18next';
 
 import cartStore from 'store/cart';
 import snackbarStore from 'store/snackbar';
@@ -30,6 +31,7 @@ interface IProps {
 }
 
 const ProductItem = ({ product, mb }: IProps) => {
+  const { t } = useTranslation();
   const [cartState, setCartState] = useState(cartStore.initialState());
 
   useLayoutEffect(() => {
@@ -87,7 +89,9 @@ const ProductItem = ({ product, mb }: IProps) => {
             {product.name}
           </Typography>
           <Box fontWeight="bold" mb="3rem">
-            <Typography variant="h5">{`${product.price} грн`}</Typography>
+            <Typography variant="h5">{`${product.price} ${t(
+              'uah'
+            )}`}</Typography>
           </Box>
           <Typography gutterBottom variant="body1">
             {product.description}
@@ -117,7 +121,7 @@ const ProductItem = ({ product, mb }: IProps) => {
             </Typography>
           </Box>
           <Button variant="outlined" color="primary" onClick={handleProduct}>
-            Купити
+            {t('buy')}
           </Button>
         </Box>
       </Box>

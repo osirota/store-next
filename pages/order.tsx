@@ -10,17 +10,16 @@ import {
   ListItem,
   ListItemSecondaryAction,
 } from '@material-ui/core';
-// import { Alert, AlertTitle } from '@material-ui/lab';
 import { withFormik, useFormikContext } from 'formik';
 import styled from 'styled-components';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import Head from 'next/head';
 import Image from 'next/image';
 
 import Field from 'patterns/Field';
 import PageHeader from 'components/PageHeader/PageHeader';
-// import CitiesAutoComplete from 'components/CitiesAutoComplete';
-// import WarehousesAutoComplete from 'components/WarehousesAutoComplete';
 import cartStore from 'store/cart';
 
 import {
@@ -94,6 +93,7 @@ interface IResponse {
 
 const Order = () => {
   const { setFieldValue } = useFormikContext();
+  const { t } = useTranslation(['order', 'common']);
   const [cartState, setCartState] = useState([]);
   const [body, setBody] = useState<IBodyState>({
     merchantAccount: '',
@@ -109,7 +109,7 @@ const Order = () => {
     productCount: [],
     deliveryList: '',
   });
-  const totalPrice = `Загалом: ${cartState.reduce(
+  const totalPrice = `${t('total')}: ${cartState.reduce(
     (acc: number, value: any) => acc + value.price * value.count,
     0
   )} грн`;
@@ -189,7 +189,7 @@ const Order = () => {
       <PageHeader />
       <ContainerStyled disableGutters maxWidth={false}>
         <Head>
-          <title>Оформлення Замовлення</title>
+          <title>{t('orderTitle')}</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
@@ -206,7 +206,7 @@ const Order = () => {
           >
             <Box m="1rem 0">
               <Typography color="textSecondary" variant="h4">
-                Оформлення Замовлення
+                {t('orderTitle')}
               </Typography>
             </Box>
             <form
@@ -260,15 +260,6 @@ const Order = () => {
               <Field name="clientFirstName" label="ФИО" />
               <Field name="clientEmail" label="Email" />
               <Field name="clientPhone" label="Телефон" />
-              {/* <CitiesAutoComplete />
-              <WarehousesAutoComplete /> */}
-              {/* <Box m="2rem 0">
-                <Alert severity="info">
-                  <AlertTitle>Внимание!</AlertTitle>
-                  Оплатите товар на карточку монобанка —{' '}
-                  <strong>9999999999999999999</strong>
-                </Alert>
-              </Box> */}
               <Box
                 display="flex"
                 alignItems="center"
@@ -281,7 +272,7 @@ const Order = () => {
                   size="large"
                   type="submit"
                 >
-                  Оформити
+                  {t('order')}
                 </Button>
               </Box>
             </form>
@@ -356,6 +347,14 @@ const Order = () => {
     </>
   );
 };
+
+export async function getServerSideProps({ locale }: any) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['order', 'common'])),
+    },
+  };
+}
 
 export default withFormik({
   enableReinitialize: true,

@@ -9,6 +9,7 @@ import {
   Box,
 } from '@material-ui/core';
 import styled from 'styled-components';
+import { useTranslation } from 'next-i18next';
 
 import cartStore from 'store/cart';
 import snackbarStore from 'store/snackbar';
@@ -81,6 +82,7 @@ type ProductItemProps = {
 };
 
 const ProductItem = ({ item }: ProductItemProps) => {
+  const { t } = useTranslation();
   const [cartState, setCartState] = useState(cartStore.initialState());
 
   useLayoutEffect(() => {
@@ -117,7 +119,7 @@ const ProductItem = ({ item }: ProductItemProps) => {
     return null;
   };
   const title = `${item.name} ${item.alchol}`;
-  const price = `${item.price} грн`;
+  const price = `${item.price} ${t('uah')}`;
   return (
     <>
       <CardStyled>
@@ -158,7 +160,7 @@ const ProductItem = ({ item }: ProductItemProps) => {
             fullWidth
             onClick={handleProduct}
           >
-            Купити
+            {t('buy')}
           </Button>
         </CardActions>
       </CardStyled>

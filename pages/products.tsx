@@ -2,6 +2,8 @@ import React from 'react';
 import { Box } from '@material-ui/core';
 import useSwr from 'swr';
 
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
 import PageLayout from 'components/PageLayout/PageLayout';
 import ProductItem from 'components/ProductItem';
 
@@ -33,7 +35,7 @@ const Products = () => {
   const { products }: IFetch = data;
 
   return (
-    <PageLayout title="Landing">
+    <PageLayout title="Сидр дегустатор | Купить сидр">
       <Box
         p={{
           xs: '2rem 1rem 0',
@@ -53,5 +55,13 @@ const Products = () => {
     </PageLayout>
   );
 };
+
+export async function getServerSideProps({ locale }: any) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  };
+}
 
 export default Products;

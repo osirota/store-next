@@ -9,7 +9,10 @@ import {
   SwipeableDrawer,
   IconButton,
 } from '@material-ui/core';
+import { ToggleButtonGroup, ToggleButton } from '@material-ui/lab';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 
 import Menu from '../../public/icons/menu.svg';
@@ -48,10 +51,13 @@ type PageHeaderProps = {
 };
 
 const PageHeader = ({ isFooter }: PageHeaderProps) => {
-  // const [toggle, setToggle] = useState('УКР')
-  // const handleToggle = (_: any, newAlignment: string) => {
-  //   setToggle(newAlignment)
-  // }
+  const router = useRouter();
+  const [toggle, setToggle] = useState(router.locale);
+  const { t } = useTranslation('common');
+  const handleToggle = (_: any, newAlignment: string) => {
+    router.push(router.pathname, router.pathname, { locale: newAlignment });
+    setToggle(newAlignment);
+  };
 
   const [drawerState, setDrawerState] = useState(false);
 
@@ -73,13 +79,18 @@ const PageHeader = ({ isFooter }: PageHeaderProps) => {
               <Image src="/logo.png" alt="logo" width="130px" height="134px" />
             </Link>
             <Box display="flex" flexDirection="column" ml="20px">
-              {/* <ToggleButtonGroup size="small" exclusive value={toggle} onChange={handleToggle}>
+              <ToggleButtonGroup
+                size="small"
+                exclusive
+                value={toggle}
+                onChange={handleToggle}
+              >
                 {PageHeader.langList.map((item) => (
                   <ToggleButton value={item} key={item}>
-                    {item}
+                    {t(item)}
                   </ToggleButton>
                 ))}
-              </ToggleButtonGroup> */}
+              </ToggleButtonGroup>
               <Box mt="20px">
                 <Typography color="textSecondary">
                   We share spirit of cider,
@@ -93,7 +104,7 @@ const PageHeader = ({ isFooter }: PageHeaderProps) => {
           <Box display={{ xs: 'none', md: 'inline-flex' }}>
             {PageHeader.navList.map(({ name, link }) => (
               <LinkStyled href={link} key={name} color="primary">
-                {name}
+                {t(name)}
               </LinkStyled>
             ))}
           </Box>
@@ -130,11 +141,11 @@ PageHeader.defaultProps = {
 
 PageHeader.navList = [
   {
-    name: 'сидри',
+    name: 'siders',
     link: '/products',
   },
 ];
 
-PageHeader.langList = ['УКР', 'РУС', 'ESP', 'ENG'];
+PageHeader.langList = ['ua', 'ru'];
 
 export default PageHeader;

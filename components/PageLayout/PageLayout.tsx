@@ -21,6 +21,7 @@ import styled from 'styled-components';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 
 import PageHeader from 'components/PageHeader/PageHeader';
 import cartStore from 'store/cart';
@@ -99,6 +100,7 @@ interface LocalStorageProduct extends Products {
 }
 
 const PageLayout = ({ children, title }: PageLayoutProps) => {
+  const { t } = useTranslation();
   const router = useRouter();
   const [drawerState, setDrawerState] = useState(false);
   const [cartState, setCartState] = useState(cartStore.initialState());
@@ -107,7 +109,7 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
   const totalPrice = `${cartState.reduce(
     (acc: number, value: any) => acc + value.price * value.count,
     0
-  )} грн`;
+  )} ${t('uah')}`;
 
   useLayoutEffect(() => {
     cartStore.subscribe(setCartState);
@@ -176,7 +178,7 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
         onOpen={toggleDrawer}
       >
         <ContentWrapper display="flex" flexDirection="column" p="1.25rem">
-          <Typography color="primary">Ваше замовлення</Typography>
+          <Typography color="primary">{t('basketList')}</Typography>
           <List>
             {cartState.length > 0 &&
               cartState.map((product: any) => (
@@ -230,11 +232,11 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
         </ContentWrapper>
         <CompleteWrapper>
           <Box>
-            <Typography color="primary">Загалом:</Typography>
+            <Typography color="primary">{`${t('total')}:`}</Typography>
             <Typography color="primary">{totalPrice}</Typography>
           </Box>
           <Button disabled={cartState.length === 0} onClick={handleOrder}>
-            Оформити замовлення
+            {t('basketOrder')}
           </Button>
         </CompleteWrapper>
       </SwipeableDrawerStyled>
@@ -255,7 +257,7 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
           onClose={handleSnackClose}
           severity="success"
         >
-          Товар добавлен Вам в корзину
+          {t('basketSuccess')}
         </MuiAlert>
       </Snackbar>
     </>

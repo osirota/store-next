@@ -4,12 +4,15 @@ import { Box, Typography } from '@material-ui/core';
 import useSwr from 'swr';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import PageLayout from 'components/PageLayout/PageLayout';
 import ProductsCarousel from 'components/ProductsCarousel';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const Partner = () => {
+  const { t } = useTranslation();
   const { query } = useRouter();
   const { data } = useSwr(
     (): string => (query.id && `/api/partner/${query.id}`) || '',
@@ -54,9 +57,20 @@ const Partner = () => {
         </Box>
       </Box>
 
-      <ProductsCarousel title={`Товары ${partner.name}`} items={products} />
+      <ProductsCarousel
+        title={`${t('products')} ${partner.name}`}
+        items={products}
+      />
     </PageLayout>
   );
 };
+
+export async function getServerSideProps({ locale }: any) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  };
+}
 
 export default Partner;

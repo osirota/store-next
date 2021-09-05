@@ -2,6 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
+import { appWithTranslation } from 'next-i18next';
 import { ThemeProvider } from '@material-ui/core/styles';
 import SwiperCore, { EffectFade, Autoplay, Navigation } from 'swiper/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,6 +12,8 @@ import theme from 'styles/theme';
 import 'swiper/swiper.min.css';
 import 'swiper/components/pagination/pagination.min.css';
 import 'swiper/components/navigation/navigation.min.css';
+
+import nextI18NextConfig from '../next-i18next.config';
 
 SwiperCore.use([EffectFade, Autoplay, Navigation]);
 
@@ -32,7 +35,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-export default function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }) {
   React.useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {
@@ -62,3 +65,5 @@ MyApp.propTypes = {
   Component: PropTypes.node.isRequired,
   pageProps: PropTypes.any.isRequired,
 };
+
+export default appWithTranslation(MyApp, nextI18NextConfig);
