@@ -124,16 +124,25 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
   };
 
   const handleProduct = (type: string, id: string) => () => {
-    const newCart = cartState.map((product: LocalStorageProduct) => {
-      // eslint-disable-next-line no-underscore-dangle
-      if (product._id === id) {
-        return {
-          ...product,
-          count: (product.count > 0 && calculate(type, product.count)) || 0,
-        };
-      }
-      return product;
-    });
+    const newCart = cartState.reduce(
+      (acc: any, product: LocalStorageProduct) => {
+        // eslint-disable-next-line no-underscore-dangle
+        if (product._id === id && product.count === 1 && type === 'reduce') {
+          return acc;
+        }
+        if (product._id === id) {
+          return [
+            ...acc,
+            {
+              ...product,
+              count: calculate(type, product.count),
+            },
+          ];
+        }
+        return [...acc, product];
+      },
+      []
+    );
     cartStore.setCart(newCart);
   };
 
@@ -231,8 +240,10 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
           </List>
         </ContentWrapper>
         <CompleteWrapper>
-          <Box>
-            <Typography color="primary">{`${t('total')}:`}</Typography>
+          <Box display="flex" alignItems="center" justifyContent="center">
+            <Box mr="0.5rem">
+              <Typography color="primary">{`${t('total')}:`}</Typography>
+            </Box>
             <Typography color="primary">{totalPrice}</Typography>
           </Box>
           <Button disabled={cartState.length === 0} onClick={handleOrder}>

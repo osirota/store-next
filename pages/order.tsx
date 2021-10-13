@@ -10,6 +10,7 @@ import {
   ListItem,
   ListItemSecondaryAction,
 } from '@material-ui/core';
+import { Alert, AlertTitle } from '@material-ui/lab';
 import { withFormik, useFormikContext } from 'formik';
 import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
@@ -112,7 +113,7 @@ const Order = () => {
   const totalPrice = `${t('total')}: ${cartState.reduce(
     (acc: number, value: any) => acc + value.price * value.count,
     0
-  )} грн`;
+  )} ${t('uah')}`;
 
   const handleRemoveProduct = (id: string) => () => {
     const newCart = cartState.filter(
@@ -122,16 +123,25 @@ const Order = () => {
   };
 
   const handleProduct = (type: string, id: string) => () => {
-    const newCart = cartState.map((product: LocalStorageProduct) => {
-      // eslint-disable-next-line no-underscore-dangle
-      if (product._id === id) {
-        return {
-          ...product,
-          count: (product.count > 0 && calculate(type, product.count)) || 0,
-        };
-      }
-      return product;
-    });
+    const newCart = cartState.reduce(
+      (acc: any, product: LocalStorageProduct) => {
+        // eslint-disable-next-line no-underscore-dangle
+        if (product._id === id && product.count === 1 && type === 'reduce') {
+          return acc;
+        }
+        if (product._id === id) {
+          return [
+            ...acc,
+            {
+              ...product,
+              count: calculate(type, product.count),
+            },
+          ];
+        }
+        return [...acc, product];
+      },
+      []
+    );
     cartStore.setCart(newCart);
   };
 
@@ -183,7 +193,8 @@ const Order = () => {
     }
   }, [cartState, setBody]);
 
-  const price = (pricesi: any, count: any) => `${pricesi * count} грн`;
+  const price = (pricesi: any, count: any) => `${pricesi * count} ${t('uah')}`;
+  const isEnoughAmout = body.amount > 250;
   return (
     <>
       <PageHeader />
@@ -198,6 +209,7 @@ const Order = () => {
           display="flex"
           justifyContent="space-between"
           flexDirection={{ xs: 'column', lg: 'row' }}
+          mt="5rem"
         >
           <Box
             width={{ xs: '90%', lg: '45%' }}
@@ -260,6 +272,13 @@ const Order = () => {
               <Field name="clientFirstName" label="ФИО" />
               <Field name="clientEmail" label="Email" />
               <Field name="clientPhone" label="Телефон" />
+              <Box m="2rem 0">
+                <Alert severity="info">
+                  <AlertTitle>{`${t('attention')}`}</AlertTitle>
+                  {`${t('minOrdertext')}`} —{' '}
+                  <strong>{`250 ${t('uah')}`}</strong>
+                </Alert>
+              </Box>
               <Box
                 display="flex"
                 alignItems="center"
@@ -271,6 +290,7 @@ const Order = () => {
                   color="primary"
                   size="large"
                   type="submit"
+                  disabled={!isEnoughAmout}
                 >
                   {t('order')}
                 </Button>
@@ -343,7 +363,6 @@ const Order = () => {
           </Box>
         </Box>
       </ContainerStyled>
-      <PageHeader isFooter />
     </>
   );
 };

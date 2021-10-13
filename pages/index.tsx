@@ -128,9 +128,14 @@ const LandingPage = () => {
                 alignItems="center"
                 justifyContent="space-between"
               >
-                <Link href="tel:+380505008863" color="textPrimary">
-                  <Phone /> +38 (050) 500-88-63
-                </Link>
+                <Box display="flex" alignItems="center" justifyContent="center">
+                  <Box m="0.5rem 0.5rem 0 0">
+                    <Link href="tel:+380505008863" color="textPrimary">
+                      <Phone />
+                    </Link>
+                  </Box>
+                  <Typography variant="body1">+38 (050) 500-88-63</Typography>
+                </Box>
                 <Box
                   display="flex"
                   justifyContent="space-between"

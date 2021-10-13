@@ -21,7 +21,6 @@ type ProductsCarouselProps = {
 
 const SliderStyled = styled(Box)`
   margin: 4rem 0 0;
-  cursor: pointer;
   & .swiper-slide {
     display: flex;
     align-items: center;

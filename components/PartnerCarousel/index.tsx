@@ -72,7 +72,7 @@ const PartnerCarousel = ({
         spaceBetween: 0,
       },
     },
-    navigation: true,
+    navigation: false,
   };
   return (
     <Box mt="5rem" position="relative">

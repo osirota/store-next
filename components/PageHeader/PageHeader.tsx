@@ -51,11 +51,11 @@ type PageHeaderProps = {
 };
 
 const PageHeader = ({ isFooter }: PageHeaderProps) => {
-  const router = useRouter();
-  const [toggle, setToggle] = useState(router.locale);
+  const { locale, pathname, push } = useRouter();
+  const [toggle, setToggle] = useState(locale);
   const { t } = useTranslation('common');
   const handleToggle = (_: any, newAlignment: string) => {
-    router.push(router.pathname, router.pathname, { locale: newAlignment });
+    push(pathname, pathname, { locale: newAlignment });
     setToggle(newAlignment);
   };
 
@@ -125,7 +125,7 @@ const PageHeader = ({ isFooter }: PageHeaderProps) => {
           {PageHeader.navList.map(({ name, link }) => (
             <Box mt="2rem" key={name}>
               <LinkStyled href={link} key={name} color="primary">
-                {name}
+                {t(name)}
               </LinkStyled>
             </Box>
           ))}

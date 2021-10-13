@@ -38,6 +38,12 @@ const theme = createMuiTheme({
       },
     },
     MuiButton: {
+      root: {
+        '&.Mui-disabled': {
+          color: '#fff',
+          border: '1px solid #fff',
+        },
+      },
       outlinedPrimary: {
         color: '#fff',
         border: '1px solid #fff',
@@ -45,9 +51,13 @@ const theme = createMuiTheme({
         transition: 'all .5s',
         background: 'transparent',
         '&:hover': {
-          border: '1px solid transparent',
+          border: '1px solid #fff',
           transition: 'all .5s',
-          background: 'transparent',
+          background: '#fff',
+        },
+        '&.Mui-disabled': {
+          color: '#4a4949',
+          border: '1px solid #4a4949',
         },
       },
     },
