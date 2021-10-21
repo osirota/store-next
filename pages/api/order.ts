@@ -28,7 +28,7 @@ export default async function handler(req: any, res: any) {
           fee,
           paymentSystem,
         } = req.body;
-        await Order.create({
+        const data = await Order.create({
           email,
           merchantSignature,
           orderReference,
@@ -48,7 +48,7 @@ export default async function handler(req: any, res: any) {
           fee,
           paymentSystem,
         });
-        res.writeHead(302, { Location: '/success' });
+        res.status(200).json(data);
       } catch (error) {
         res.status(400).json(error);
       }
