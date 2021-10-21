@@ -31,6 +31,7 @@ const CardStyled = styled(Card)`
   :hover {
     border-radius: 40px;
     [data-image] {
+      transform: rotate(-16deg);
       transition: all 0.5s;
     }
     .MuiCardActions-root {
