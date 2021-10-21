@@ -1,5 +1,5 @@
 import dbConnect from 'utils/mongo';
-import Order from 'models/Order';
+// import Order from 'models/Order';
 // import { sendOrder } from 'utils/nodemailer';
 
 export default async function handler(req: any, res: any) {
