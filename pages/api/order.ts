@@ -1,6 +1,5 @@
 import dbConnect from 'utils/mongo';
-// import Order from 'models/Order';
-// import { sendOrder } from 'utils/nodemailer';
+import Order from 'models/Order';
 
 export default async function handler(req: any, res: any) {
   const { method } = req;
@@ -9,14 +8,9 @@ export default async function handler(req: any, res: any) {
   switch (method) {
     case 'POST':
       try {
-        // const data = req.body;
-        // const totalPrice = data.order.reduce(
-        //   (acc: number, value: any) => acc + value.price * value.count,
-        //   0
-        // );
-        // const order = await Order.create({ ...req });
-        // sendOrder(order);
-        res.status(201).json(req);
+        const data = req.body;
+        await Order.create({ ...data });
+        res.writeHead(302, { Location: '/success' });
       } catch (error) {
         res.status(400).json(error);
       }
