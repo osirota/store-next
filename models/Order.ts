@@ -5,7 +5,6 @@ const OrderSchema = new mongoose.Schema({
     type: String,
     trim: true,
     lowercase: true,
-    required: 'Email address is required',
   },
   merchantSignature: {
     type: String,
