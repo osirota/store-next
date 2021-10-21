@@ -341,8 +341,9 @@ const Order = () => {
                         <Image
                           alt="bg"
                           src={product.logo}
-                          width={60}
-                          height={100}
+                          width={100}
+                          height={150}
+                          layout="fixed"
                         />
                       </Box>
                       <ListItemSecondaryAction>

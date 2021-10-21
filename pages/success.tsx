@@ -65,7 +65,7 @@ const Success = () => {
 export async function getServerSideProps({ locale }: any) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['success'])),
+      ...(await serverSideTranslations(locale, ['success', 'common'])),
     },
   };
 }
