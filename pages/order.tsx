@@ -341,7 +341,7 @@ const Order = () => {
                         <Image
                           alt="bg"
                           src={product.logo}
-                          width={100}
+                          width={80}
                           height={150}
                           layout="fixed"
                         />

@@ -230,7 +230,7 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
                       <Image
                         alt={product.name}
                         src={product.logo}
-                        width={90}
+                        width={70}
                         height={120}
                       />
                     </Box>
