@@ -31,7 +31,6 @@ const CardStyled = styled(Card)`
   :hover {
     border-radius: 40px;
     [data-image] {
-      transform: rotate(-16deg);
       transition: all 0.5s;
     }
     .MuiCardActions-root {
@@ -124,13 +123,21 @@ const ProductItem = ({ item }: ProductItemProps) => {
     <>
       <CardStyled>
         <CardContentStyled>
-          <Box position="relative" width="100%" height="450px" data-image>
+          <Box
+            position="relative"
+            width="100%"
+            height="450px"
+            data-image
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
             <Image
               src={item.logo}
               alt="bottle"
-              width="400px"
-              height="650px"
-              layout="responsive"
+              width="200px"
+              height="350px"
+              layout="fixed"
             />
           </Box>
           <TitleWrapper

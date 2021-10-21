@@ -74,14 +74,18 @@ const ProductItem = ({ product, mb }: IProps) => {
       >
         <Box
           position="relative"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
           width={{ xs: '100%', lg: '50%' }}
           height="600px"
         >
           <Image
             src={product.logo}
             alt={`Бутылка ${product.name}`}
-            layout="fill"
-            objectFit="contain"
+            layout="fixed"
+            width="200px"
+            height="350px"
           />
         </Box>
         <Box width={{ xs: '95%', lg: '50%' }}>

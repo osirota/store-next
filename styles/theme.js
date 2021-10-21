@@ -1,4 +1,5 @@
 import { createMuiTheme } from '@material-ui/core/styles';
+import { grey } from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
   palette: {
@@ -18,7 +19,7 @@ const theme = createMuiTheme({
         color: '#ADADAD',
       },
       colorTextSecondary: {
-        color: '#fff',
+        color: grey[50],
       },
     },
     MuiContainer: {
@@ -33,27 +34,27 @@ const theme = createMuiTheme({
         color: '#ADADAD',
         border: 'none',
         '&$selected': {
-          color: '#fff',
+          color: grey[50],
         },
       },
     },
     MuiButton: {
       root: {
         '&.Mui-disabled': {
-          color: '#fff',
-          border: '1px solid #fff',
+          color: grey[50],
+          border: `1px solid ${grey[50]}`,
         },
       },
       outlinedPrimary: {
-        color: '#fff',
-        border: '1px solid #fff',
+        color: grey[50],
+        border: `1px solid ${grey[50]}`,
         borderRadius: '40px',
         transition: 'all .5s',
         background: 'transparent',
         '&:hover': {
-          border: '1px solid #fff',
+          border: `1px solid ${grey[50]}`,
           transition: 'all .5s',
-          background: '#fff',
+          background: grey[50],
         },
         '&.Mui-disabled': {
           color: '#4a4949',
@@ -64,13 +65,13 @@ const theme = createMuiTheme({
     MuiTextField: {
       root: {
         '& .MuiFormLabel-root': {
-          color: '#fff',
+          color: grey[50],
         },
         '& .MuiInputBase-root': {
-          color: '#fff',
+          color: grey[50],
         },
         '& .MuiInput-underline:before': {
-          borderBottom: '1px solid #fff',
+          borderBottom: `1px solid ${grey[50]}`,
         },
       },
     },

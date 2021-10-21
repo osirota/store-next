@@ -206,8 +206,8 @@ const LandingPage = () => {
                           src={logo}
                           alt="bottle"
                           layout="fixed"
-                          width="400px"
-                          height="600px"
+                          width="250px"
+                          height="450px"
                         />
                       </Box>
                       <Box mt="1.5rem">
