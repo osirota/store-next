@@ -6,7 +6,6 @@ import {
   Box,
   Typography,
   SwipeableDrawer,
-  IconButton,
   Switch,
 } from '@material-ui/core';
 import { useRecoilState } from 'recoil';
@@ -16,8 +15,6 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 import { themeState } from 'recoils/themeType';
-
-import Menu from '../../public/icons/menu.svg';
 
 const AppBarStyled = styled(AppBar)`
   background-color: transparent;

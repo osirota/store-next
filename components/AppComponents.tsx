@@ -1,6 +1,5 @@
 /* eslint-disable react/forbid-prop-types */
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { useRecoilState } from 'recoil';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -26,7 +25,12 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-function AppComponents({ Component, pageProps }) {
+interface IAppComponentsProps {
+  Component: any;
+  pageProps: any;
+}
+
+const AppComponents = ({ Component, pageProps }: IAppComponentsProps) => {
   const [mode, setMode] = useRecoilState(themeState);
   useEffect(() => {
     setMode(localStorage.getItem('theme') || 'dark');
@@ -40,11 +44,6 @@ function AppComponents({ Component, pageProps }) {
       </ThemeProvider>
     </>
   );
-}
-
-AppComponents.propTypes = {
-  Component: PropTypes.node.isRequired,
-  pageProps: PropTypes.any.isRequired,
 };
 
 export default AppComponents;
