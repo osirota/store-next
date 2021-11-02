@@ -24,6 +24,7 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 
 import PageHeader from 'components/PageHeader/PageHeader';
+import Header from 'components/Header';
 import cartStore from 'store/cart';
 import snackbarStore from 'store/snackbar';
 
@@ -170,7 +171,7 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
 
   return (
     <>
-      <PageHeader />
+      <Header />
       <ContainerStyled disableGutters maxWidth={false}>
         <Head>
           <title>{title}</title>
@@ -187,7 +188,7 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
         onOpen={toggleDrawer}
       >
         <ContentWrapper display="flex" flexDirection="column" p="1.25rem">
-          <Typography color="primary">{t('basketList')}</Typography>
+          <Typography>{t('basketList')}</Typography>
           <List>
             {cartState.length > 0 &&
               cartState.map((product: any) => (
@@ -199,7 +200,7 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
                       </IconButton>
                     </ListItemSecondaryAction>
                     <Box flexBasis="50%">
-                      <Typography color="primary">{product.name}</Typography>
+                      <Typography>{product.name}</Typography>
                       <Box display="flex" alignItems="center">
                         <Box display="flex" alignItems="center">
                           <IconButton
@@ -207,16 +208,14 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
                           >
                             <Remove />
                           </IconButton>
-                          <Typography color="primary">
-                            {product.count}
-                          </Typography>
+                          <Typography>{product.count}</Typography>
                           <IconButton
                             onClick={handleProduct('increase', product._id)}
                           >
                             <Add />
                           </IconButton>
                         </Box>
-                        <Typography color="primary">
+                        <Typography>
                           {price(product.price, product.count)}
                         </Typography>
                       </Box>
@@ -242,17 +241,17 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
         <CompleteWrapper>
           <Box display="flex" alignItems="center" justifyContent="center">
             <Box mr="0.5rem">
-              <Typography color="primary">{`${t('total')}:`}</Typography>
+              <Typography>{`${t('total')}:`}</Typography>
             </Box>
-            <Typography color="primary">{totalPrice}</Typography>
+            <Typography>{totalPrice}</Typography>
           </Box>
           <Button disabled={cartState.length === 0} onClick={handleOrder}>
             {t('basketOrder')}
           </Button>
         </CompleteWrapper>
       </SwipeableDrawerStyled>
-      <FabStyled color="primary" onClick={toggleDrawer}>
-        <Badge color="secondary" badgeContent={cartState.length} showZero>
+      <FabStyled onClick={toggleDrawer}>
+        <Badge badgeContent={cartState.length} showZero>
           <ShoppingCart />
         </Badge>
       </FabStyled>

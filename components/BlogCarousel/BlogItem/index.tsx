@@ -51,13 +51,7 @@ const BlogItem = ({ item }: BlogItemProps) => {
         >
           <Image src="/blog.png" height="225px" width="270px" />
         </ImgaeWrapper>
-        <Typography
-          variant="h6"
-          component="h6"
-          color="textSecondary"
-          align="center"
-          gutterBottom
-        >
+        <Typography variant="h6" component="h6" align="center" gutterBottom>
           Як виготовлять сидр, який ми куплямо
         </Typography>
         <Typography variant="body2" component="p" gutterBottom>

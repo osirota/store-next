@@ -47,9 +47,7 @@ const Partner = () => {
           m={{ xs: '2rem 0', lg: '0' }}
         >
           <Box mb="4rem">
-            <Typography variant="h2" color="textSecondary">
-              {partner.name}
-            </Typography>
+            <Typography variant="h2">{partner.name}</Typography>
           </Box>
           <Box>
             <Typography>{partner.description}</Typography>

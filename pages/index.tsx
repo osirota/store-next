@@ -33,32 +33,6 @@ const SliderWrapper = styled(Box)`
     background-image: none;
   }
 `;
-
-const ImageWrapper = styled(Box)`
-  z-index: -1;
-  & div {
-    top: 8rem !important;
-    height: 84%;
-    width: 43%;
-    left: 27rem !important;
-  }
-  @media (max-width: 1300px) {
-    & div {
-      top: 25rem !important;
-      height: 84%;
-      width: 66%;
-      left: 11rem !important;
-    }
-  }
-  @media (max-width: 775px) {
-    & div {
-      top: 25rem !important;
-      height: 84%;
-      width: 100%;
-      left: 0rem !important;
-    }
-  }
-`;
 interface Product {
   alchol: string;
   count: number;
@@ -99,14 +73,6 @@ const LandingPage = () => {
         }}
       >
         <Grid container spacing={2}>
-          <ImageWrapper>
-            <Image
-              layout="fill"
-              objectFit="cover"
-              src="/apple-bg.gif"
-              quality={100}
-            />
-          </ImageWrapper>
           <Grid lg={12} xs={12} item>
             <Box
               display="flex"
@@ -116,9 +82,7 @@ const LandingPage = () => {
               height="100%"
             >
               <Box>
-                <Typography color="textSecondary" variant="h4">
-                  {t('title')}
-                </Typography>
+                <Typography variant="h4">{t('title')}</Typography>
                 <Box width="60%" mt="2rem">
                   <Typography variant="body1">{t('description')}</Typography>
                 </Box>
@@ -130,7 +94,7 @@ const LandingPage = () => {
               >
                 <Box display="flex" alignItems="center" justifyContent="center">
                   <Box m="0.5rem 0.5rem 0 0">
-                    <Link href="tel:+380505008863" color="textPrimary">
+                    <Link href="tel:+380505008863">
                       <Phone />
                     </Link>
                   </Box>
@@ -166,7 +130,7 @@ const LandingPage = () => {
       </Box>
 
       <Box mt="20rem">
-        <Typography variant="h4" color="textSecondary" align="center">
+        <Typography variant="h4" align="center">
           {t('aboutUs')}
         </Typography>
         <Box
@@ -240,7 +204,7 @@ const LandingPage = () => {
         }}
         width="100%"
       >
-        <Typography variant="h4" color="textSecondary" align="center">
+        <Typography variant="h4" align="center">
           {t('contacts')}
         </Typography>
         <Box
@@ -263,12 +227,7 @@ const LandingPage = () => {
                 justifyContent="center"
                 mt="2rem"
               >
-                <Button
-                  variant="outlined"
-                  color="primary"
-                  size="large"
-                  type="submit"
-                >
+                <Button variant="outlined" size="large" type="submit">
                   {t('callBack')}
                 </Button>
               </Box>
@@ -281,7 +240,7 @@ const LandingPage = () => {
             width={{ xs: '90%', lg: '45%' }}
             pt="2rem"
           >
-            <Link href="tel:+380505008863" color="textPrimary">
+            <Link href="tel:+380505008863">
               <Phone /> +38 (050) 500-88-63
             </Link>
             <Box

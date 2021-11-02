@@ -217,9 +217,7 @@ const Order = () => {
             m={{ xs: '2rem 0', lg: '0' }}
           >
             <Box m="1rem 0">
-              <Typography color="textSecondary" variant="h4">
-                {t('orderTitle')}
-              </Typography>
+              <Typography variant="h4">{t('orderTitle')}</Typography>
             </Box>
             <form
               method="post"
@@ -287,7 +285,6 @@ const Order = () => {
               >
                 <Button
                   variant="outlined"
-                  color="primary"
                   size="large"
                   type="submit"
                   disabled={!isEnoughAmout}
@@ -308,26 +305,22 @@ const Order = () => {
                   <ListItemStyled key={product._id}>
                     <ListItem>
                       <Box flexBasis="50%">
-                        <Typography color="primary">{product.name}</Typography>
+                        <Typography>{product.name}</Typography>
                         <Box display="flex" alignItems="center">
                           <Box display="flex" alignItems="center">
                             <IconButton
-                              color="primary"
                               onClick={handleProduct('reduce', product._id)}
                             >
                               <Remove />
                             </IconButton>
-                            <Typography color="primary">
-                              {product.count}
-                            </Typography>
+                            <Typography>{product.count}</Typography>
                             <IconButton
                               onClick={handleProduct('increase', product._id)}
-                              color="primary"
                             >
                               <Add />
                             </IconButton>
                           </Box>
-                          <Typography color="primary">
+                          <Typography>
                             {price(product.price, product.count)}
                           </Typography>
                         </Box>
@@ -347,10 +340,7 @@ const Order = () => {
                         />
                       </Box>
                       <ListItemSecondaryAction>
-                        <IconButton
-                          onClick={handleRemoveProduct(product._id)}
-                          color="primary"
-                        >
+                        <IconButton onClick={handleRemoveProduct(product._id)}>
                           <Cancel />
                         </IconButton>
                       </ListItemSecondaryAction>
@@ -358,9 +348,7 @@ const Order = () => {
                   </ListItemStyled>
                 ))}
             </List>
-            <Typography align="right" color="textSecondary">
-              {totalPrice}
-            </Typography>
+            <Typography align="right">{totalPrice}</Typography>
           </Box>
         </Box>
       </ContainerStyled>

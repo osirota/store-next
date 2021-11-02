@@ -5,9 +5,9 @@ import {
   Container,
   Box,
   Typography,
-  Divider,
   SwipeableDrawer,
   IconButton,
+  Switch,
 } from '@material-ui/core';
 import { useRecoilState } from 'recoil';
 import { ToggleButtonGroup, ToggleButton } from '@material-ui/lab';
@@ -29,10 +29,7 @@ const LinkStyled = styled(Link)`
   text-transform: uppercase;
   font-size: 18px;
 `;
-const DividerStyled = styled(Divider)`
-  margin: 5rem 0;
-  background-color: #fff;
-`;
+
 const HeaderWrapper = styled(Box)`
   @media (max-width: 992px) {
     padding: 0 3rem 2rem;
@@ -48,15 +45,22 @@ const SwipeableDrawerStyled = styled(SwipeableDrawer)`
   }
 `;
 
-type PageHeaderProps = {
-  isFooter?: boolean;
-};
+const Tagline = styled(Typography)`
+  color: #243144;
+  font-size: 24px;
+  font-weight: 700;
+  background: #eaef10;
+  padding: 21px 15px;
+  text-align: center;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+`;
 
-const PageHeader = ({ isFooter }: PageHeaderProps) => {
+const Header = () => {
   const { locale, pathname, push } = useRouter();
   const [toggle, setToggle] = useState(locale);
   const [theme, setTheme] = useRecoilState(themeState);
   const { t } = useTranslation('common');
+  const isChecked = theme === 'dark';
   const handleTheme = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark';
     localStorage.setItem('theme', newTheme);
@@ -76,52 +80,39 @@ const PageHeader = ({ isFooter }: PageHeaderProps) => {
   return (
     <AppBarStyled color="transparent" position="static">
       <Container disableGutters maxWidth={false}>
-        {isFooter && <DividerStyled />}
         <HeaderWrapper
           display="flex"
           alignItems="center"
           justifyContent="space-between"
         >
-          <Box display="flex" alignItems="flex-start">
+          <Box display="flex" alignItems="center" justifyContent="center">
             <Link href="/">
               <Image src="/logo.png" alt="logo" width="130px" height="134px" />
             </Link>
-            <Box display="flex" flexDirection="column" ml="20px">
-              <ToggleButtonGroup
-                size="small"
-                exclusive
-                value={toggle}
-                onChange={handleToggle}
-              >
-                {PageHeader.langList.map((item) => (
-                  <ToggleButton value={item} key={item}>
-                    {t(item)}
-                  </ToggleButton>
-                ))}
-              </ToggleButtonGroup>
-              <Box mt="20px">
-                <Typography onClick={handleTheme}>{theme}</Typography>
-
-                <Typography>
-                  We share spirit of cider,
-                  <br />
-                  join us!
-                </Typography>
-              </Box>
+            <Box ml="26px">
+              <Switch checked={isChecked} onChange={handleTheme} />
             </Box>
           </Box>
-
-          <Box display={{ xs: 'none', md: 'inline-flex' }}>
-            {PageHeader.navList.map(({ name, link }) => (
-              <LinkStyled href={link} key={name}>
-                {t(name)}
-              </LinkStyled>
-            ))}
+          <Box mt="20px">
+            <Tagline>
+              We share spirit of cider,
+              <br />
+              join us!
+            </Tagline>
           </Box>
-          <Box display={{ xs: 'flex', md: 'none' }}>
-            <IconButton onClick={toggleDrawer}>
-              <Menu />
-            </IconButton>
+          <Box display="flex" flexDirection="column" ml="20px">
+            <ToggleButtonGroup
+              size="small"
+              exclusive
+              value={toggle}
+              onChange={handleToggle}
+            >
+              {Header.langList.map((item) => (
+                <ToggleButton value={item} key={item}>
+                  {t(item)}
+                </ToggleButton>
+              ))}
+            </ToggleButtonGroup>
           </Box>
         </HeaderWrapper>
       </Container>
@@ -132,7 +123,7 @@ const PageHeader = ({ isFooter }: PageHeaderProps) => {
         onOpen={toggleDrawer}
       >
         <Box display="flex" flexDirection="column">
-          {PageHeader.navList.map(({ name, link }) => (
+          {Header.navList.map(({ name, link }) => (
             <Box mt="2rem" key={name}>
               <LinkStyled href={link} key={name}>
                 {t(name)}
@@ -145,17 +136,17 @@ const PageHeader = ({ isFooter }: PageHeaderProps) => {
   );
 };
 
-PageHeader.defaultProps = {
+Header.defaultProps = {
   isFooter: false,
 };
 
-PageHeader.navList = [
+Header.navList = [
   {
     name: 'siders',
     link: '/products',
   },
 ];
 
-PageHeader.langList = ['ua', 'ru'];
+Header.langList = ['ua', 'ru'];
 
-export default PageHeader;
+export default Header;

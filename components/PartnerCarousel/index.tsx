@@ -79,13 +79,7 @@ const PartnerCarousel = ({
       <GlassWrapper>
         <Image src="/glass.png" width={150} height={250} />
       </GlassWrapper>
-      <Typography
-        variant="h4"
-        component="h4"
-        color="textSecondary"
-        align="center"
-        gutterBottom
-      >
+      <Typography variant="h4" component="h4" align="center" gutterBottom>
         {title}
       </Typography>
       <SliderStyled>

@@ -64,13 +64,7 @@ const ProductsCarousel = ({
   };
   return (
     <Box mt="10rem">
-      <Typography
-        variant="h4"
-        component="h4"
-        color="textSecondary"
-        align="center"
-        gutterBottom
-      >
+      <Typography variant="h4" component="h4" align="center" gutterBottom>
         {title}
       </Typography>
       <SliderStyled mt="4rem">

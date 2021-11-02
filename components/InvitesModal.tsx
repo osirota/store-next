@@ -66,10 +66,8 @@ const InvitesModal = ({
           <Field name="email" label="your-email@gmail.com" />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Закрыть
-          </Button>
-          <Button type="submit" color="primary" disabled={!isValid}>
+          <Button onClick={handleClose}>Закрыть</Button>
+          <Button type="submit" disabled={!isValid}>
             Отправить
           </Button>
         </DialogActions>

@@ -141,33 +141,18 @@ const ProductItem = ({ item }: ProductItemProps) => {
               layout="fixed"
             />
           </Box>
-          <TitleWrapper
-            variant="h6"
-            color="textSecondary"
-            align="center"
-            gutterBottom
-          >
+          <TitleWrapper variant="h6" align="center" gutterBottom>
             {title}
           </TitleWrapper>
           <TasteWrapper variant="body2" gutterBottom>
             {item.taste}
           </TasteWrapper>
-          <Typography
-            variant="body2"
-            component="p"
-            color="textSecondary"
-            gutterBottom
-          >
+          <Typography variant="body2" component="p" gutterBottom>
             {price}
           </Typography>
         </CardContentStyled>
         <CardActions>
-          <Button
-            variant="outlined"
-            color="primary"
-            fullWidth
-            onClick={handleProduct}
-          >
+          <Button variant="outlined" fullWidth onClick={handleProduct}>
             {t('buy')}
           </Button>
         </CardActions>

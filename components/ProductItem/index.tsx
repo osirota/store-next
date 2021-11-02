@@ -89,7 +89,7 @@ const ProductItem = ({ product, mb }: IProps) => {
           />
         </Box>
         <Box width={{ xs: '95%', lg: '50%' }}>
-          <Typography gutterBottom variant="h3" color="textSecondary">
+          <Typography gutterBottom variant="h3">
             {product.name}
           </Typography>
           <Box fontWeight="bold" mb="3rem">
@@ -124,7 +124,7 @@ const ProductItem = ({ product, mb }: IProps) => {
               {product.alchol}
             </Typography>
           </Box>
-          <Button variant="outlined" color="primary" onClick={handleProduct}>
+          <Button variant="outlined" onClick={handleProduct}>
             {t('buy')}
           </Button>
         </Box>

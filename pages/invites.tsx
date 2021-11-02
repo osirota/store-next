@@ -58,9 +58,7 @@ const LandingPage = () => {
         <Box display="flex" alignItems="center">
           <Image src="/logo.png" alt="logo" width="130px" height="134px" />
           <BoxIndex m="0 2rem">
-            <Typography variant="h4" color="textSecondary">
-              Soon
-            </Typography>
+            <Typography variant="h4">Soon</Typography>
           </BoxIndex>
         </Box>
         <BoxIndex m="0 2rem">
@@ -77,21 +75,14 @@ const LandingPage = () => {
         pt="15rem"
       >
         <BoxIndex>
-          <Typography variant="h3" color="textSecondary">
-            Приключения начинаются
-          </Typography>
+          <Typography variant="h3">Приключения начинаются</Typography>
         </BoxIndex>
         <BoxIndex m="1.5rem 0">
-          <Typography variant="body1" color="textSecondary">
+          <Typography variant="body1">
             Оставайтесь с нами, чтобы узнать про новинки и акции
           </Typography>
         </BoxIndex>
-        <Button
-          color="primary"
-          variant="outlined"
-          size="large"
-          onClick={handleClickOpen}
-        >
+        <Button variant="outlined" size="large" onClick={handleClickOpen}>
           Сообщить мне
         </Button>
       </Box>
