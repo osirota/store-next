@@ -71,6 +71,21 @@ const NextLinkStyled = styled('p')`
   margin: 20px 0 0;
 `;
 
+const ImagesWrapper = styled(Box)`
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))
+    drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))
+    drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))
+    drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))
+    drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  margin: 0 40px 0 0;
+`;
+
+const MainImagewrapper = styled(Box)`
+  position: absolute;
+  right: -260px;
+  bottom: 0;
+`;
+
 interface Product {
   alchol: string;
   count: number;
@@ -112,7 +127,7 @@ const LandingPage = () => {
       >
         <Grid container spacing={2}>
           <Grid lg={12} xs={12} item>
-            <Box display="flex" padding="10rem 0 0 3rem" height="100%">
+            <Box display="flex" padding="10rem 0 0 3rem">
               <IconWrapper
                 display="flex"
                 flexDirection="column"
@@ -162,6 +177,37 @@ const LandingPage = () => {
                   </NextLinkStyled>
                 </NextLink>
               </Box>
+            </Box>
+            <Box
+              marginTop="128px"
+              display="flex"
+              alignItems="center"
+              position="relative"
+            >
+              <ImagesWrapper>
+                <Image
+                  src="https://res.cloudinary.com/df6zjl5hp/image/upload/v1636487360/Apple_kibh1n.png"
+                  alt="logo"
+                  width="200px"
+                  height="200px"
+                />
+              </ImagesWrapper>
+              <ImagesWrapper>
+                <Image
+                  src="https://res.cloudinary.com/df6zjl5hp/image/upload/v1636487359/Apples_d6adxn.png"
+                  alt="logo"
+                  width="200px"
+                  height="200px"
+                />
+              </ImagesWrapper>
+              <MainImagewrapper>
+                <Image
+                  src="https://res.cloudinary.com/df6zjl5hp/image/upload/v1636486626/BG_apple_b9qu9i.png"
+                  alt="logo"
+                  width="800px"
+                  height="700px"
+                />
+              </MainImagewrapper>
             </Box>
           </Grid>
         </Grid>
