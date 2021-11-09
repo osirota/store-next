@@ -16,6 +16,9 @@ const theme = (mode) =>
       background: {
         default: mode === 'dark' ? '#171B26' : grey[50],
       },
+      text: {
+        primary: mode === 'dark' ? '#fff' : '#243144',
+      },
       type: mode,
     },
     overrides: {

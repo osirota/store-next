@@ -6,6 +6,7 @@ import useSwr from 'swr';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
+import NextLink from 'next/link';
 import styled from 'styled-components';
 
 import PageLayout from 'components/PageLayout/PageLayout';
@@ -18,9 +19,9 @@ import {
   validationSchema,
 } from 'utils/landing/landing-form';
 
-import Mail from '../public/icons/mail.svg';
-import Facebook from '../public/icons/facebook.svg';
-import Instagram from '../public/icons/instagram.svg';
+import Mail from '../public/icons/Mail.svg';
+import Facebook from '../public/icons/Facebook.svg';
+import Instagram from '../public/icons/Instagram.svg';
 import Phone from '../public/icons/phone.svg';
 
 const SliderWrapper = styled(Box)`
@@ -33,6 +34,43 @@ const SliderWrapper = styled(Box)`
     background-image: none;
   }
 `;
+
+const IconWrapper = styled(Box)`
+  position: relative;
+  :before {
+    content: '';
+    position: absolute;
+    top: -160px;
+    left: 50%;
+    transform: translatex(-50%);
+    width: 2px;
+    height: 150px;
+    background: #eaef10;
+  }
+  :after {
+    content: '';
+    position: absolute;
+    bottom: -62px;
+    left: 50%;
+    transform: translatex(-50%);
+    width: 2px;
+    height: 150px;
+    background: #eaef10;
+  }
+`;
+
+const NextLinkStyled = styled('p')`
+  display: inline-block;
+  background: #eaef10;
+  font-weight: bold;
+  font-size: 18px;
+  color: #171b26;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  padding: 7px 27px;
+  margin: 20px 0 0;
+`;
+
 interface Product {
   alchol: string;
   count: number;
@@ -56,7 +94,7 @@ interface IFetch {
 }
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const LandingPage = () => {
-  const { t } = useTranslation('landing');
+  const { t } = useTranslation(['landing', 'common']);
   const { data } = useSwr('/api/landing', fetcher);
   if (!data) {
     return null;
@@ -74,55 +112,55 @@ const LandingPage = () => {
       >
         <Grid container spacing={2}>
           <Grid lg={12} xs={12} item>
-            <Box
-              display="flex"
-              flexDirection="column"
-              justifyContent="space-between"
-              paddingTop="10rem"
-              height="100%"
-            >
-              <Box>
-                <Typography variant="h4">{t('title')}</Typography>
-                <Box width="60%" mt="2rem">
-                  <Typography variant="body1">{t('description')}</Typography>
-                </Box>
-              </Box>
-              <Box
+            <Box display="flex" padding="10rem 0 0 3rem" height="100%">
+              <IconWrapper
                 display="flex"
+                flexDirection="column"
                 alignItems="center"
-                justifyContent="space-between"
+                mr="64px"
               >
-                <Box display="flex" alignItems="center" justifyContent="center">
-                  <Box m="0.5rem 0.5rem 0 0">
-                    <Link href="tel:+380505008863">
-                      <Phone />
-                    </Link>
-                  </Box>
-                  <Typography variant="body1">+38 (050) 500-88-63</Typography>
-                </Box>
-                <Box
-                  display="flex"
-                  justifyContent="space-between"
-                  alignItems="center"
+                <Link
+                  href="https://www.facebook.com/Cider-Degustator-111374164534274"
+                  target="_blank"
                 >
+                  <Facebook />
+                </Link>
+                <Box margin="15px 0">
                   <Link
-                    href="https://www.facebook.com/Cider-Degustator-111374164534274"
+                    href="https://www.instagram.com/cider_degustator/"
                     target="_blank"
                   >
-                    <Facebook />
-                  </Link>
-                  <Box m="0 2rem">
-                    <Link
-                      href="https://www.instagram.com/cider_degustator/"
-                      target="_blank"
-                    >
-                      <Instagram />
-                    </Link>
-                  </Box>
-                  <Link href="mailto:ciderdegustator@gmail.com">
-                    <Mail />
+                    <img src="/icons/Instagram.svg" alt="insta" />
                   </Link>
                 </Box>
+                <Link href="mailto:ciderdegustator@gmail.com">
+                  <Mail />
+                </Link>
+              </IconWrapper>
+              <Box width="45%">
+                <Typography
+                  style={{
+                    fontWeight: 700,
+                  }}
+                  variant="h4"
+                >
+                  {t('title')}
+                </Typography>
+                <Box mt="2rem">
+                  <Typography
+                    style={{
+                      fontWeight: 700,
+                    }}
+                    variant="body1"
+                  >
+                    {t('description')}
+                  </Typography>
+                </Box>
+                <NextLink href="/products">
+                  <NextLinkStyled>
+                    {t('siders', { ns: 'common' })}
+                  </NextLinkStyled>
+                </NextLink>
               </Box>
             </Box>
           </Grid>

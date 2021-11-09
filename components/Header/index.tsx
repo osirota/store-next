@@ -52,6 +52,11 @@ const Tagline = styled(Typography)`
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
+const LinkPhone = styled(Link)`
+  font-size: 14px;
+  font-weight: 700;
+`;
+
 const Header = () => {
   const { locale, pathname, push } = useRouter();
   const [toggle, setToggle] = useState(locale);
@@ -97,7 +102,17 @@ const Header = () => {
               join us!
             </Tagline>
           </Box>
-          <Box display="flex" flexDirection="column" ml="20px">
+          <Box
+            display="flex"
+            alignItems="flex"
+            justifyContent="center"
+            ml="20px"
+          >
+            <Box m="0.5rem 30px 0 0">
+              <LinkPhone href="tel:+380505008863" color="inherit">
+                +38 (050) 500-88-63
+              </LinkPhone>
+            </Box>
             <ToggleButtonGroup
               size="small"
               exclusive
