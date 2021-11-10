@@ -19,9 +19,9 @@ import {
   validationSchema,
 } from 'utils/landing/landing-form';
 
-import Mail from '../public/icons/Mail.svg';
-import Facebook from '../public/icons/Facebook.svg';
-import Instagram from '../public/icons/Instagram.svg';
+import Mail from '../public/icons/mail.svg';
+import Facebook from '../public/icons/facebook.svg';
+import Instagram from '../public/icons/instagram.svg';
 import Phone from '../public/icons/phone.svg';
 
 const SliderWrapper = styled(Box)`
