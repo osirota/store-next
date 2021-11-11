@@ -4,7 +4,7 @@ import { withFormik, Form } from 'formik';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import useSwr from 'swr';
 import { useTranslation } from 'next-i18next';
-import { useRecoilValue } from 'recoil';
+// import { useRecoilValue } from 'recoil';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
 import NextLink from 'next/link';
@@ -19,7 +19,7 @@ import {
   handleSubmit,
   validationSchema,
 } from 'utils/landing/landing-form';
-import { themeState } from 'recoils/themeType';
+// import { themeState } from 'recoils/themeType';
 
 import Mail from '../public/icons/mail.svg';
 import Facebook from '../public/icons/facebook.svg';
@@ -115,7 +115,7 @@ interface IFetch {
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const LandingPage = () => {
   const { t } = useTranslation(['landing', 'common']);
-  const mode = useRecoilValue(themeState);
+  // const mode = useRecoilValue(themeState);
   const { data } = useSwr('/api/landing', fetcher);
   if (!data) {
     return null;
