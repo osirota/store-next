@@ -140,7 +140,6 @@ const LandingPage = () => {
                 alignItems="center"
                 minHeight="280px"
                 mr="64px"
-                mode={mode}
               >
                 <Link
                   href="https://www.facebook.com/Cider-Degustator-111374164534274"
