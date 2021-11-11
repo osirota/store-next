@@ -11,6 +11,7 @@ import {
 import { useRecoilState } from 'recoil';
 import { ToggleButtonGroup, ToggleButton } from '@material-ui/lab';
 import Image from 'next/image';
+import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
@@ -88,9 +89,16 @@ const Header = () => {
           justifyContent="space-between"
         >
           <Box display="flex" alignItems="center" justifyContent="center">
-            <Link href="/">
-              <Image src="/logo.png" alt="logo" width="130px" height="134px" />
-            </Link>
+            <Box style={{ cursor: 'pointer' }}>
+              <NextLink href="/">
+                <Image
+                  src="/logo.png"
+                  alt="logo"
+                  width="130px"
+                  height="134px"
+                />
+              </NextLink>
+            </Box>
             <Box ml="26px">
               <Switch checked={isChecked} onChange={handleTheme} />
             </Box>

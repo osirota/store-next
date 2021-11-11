@@ -4,6 +4,7 @@ import { withFormik, Form } from 'formik';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import useSwr from 'swr';
 import { useTranslation } from 'next-i18next';
+import { useRecoilValue } from 'recoil';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
 import NextLink from 'next/link';
@@ -18,6 +19,7 @@ import {
   handleSubmit,
   validationSchema,
 } from 'utils/landing/landing-form';
+import { themeState } from 'recoils/themeType';
 
 import Mail from '../public/icons/mail.svg';
 import Facebook from '../public/icons/facebook.svg';
@@ -50,12 +52,15 @@ const IconWrapper = styled(Box)`
   :after {
     content: '';
     position: absolute;
-    bottom: -62px;
+    bottom: 2px;
     left: 50%;
     transform: translatex(-50%);
     width: 2px;
     height: 150px;
     background: #eaef10;
+  }
+  svg {
+    fill: ${(props): any => (props.mode === 'dark' ? '#eaef10' : '#000')};
   }
 `;
 
@@ -110,6 +115,7 @@ interface IFetch {
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const LandingPage = () => {
   const { t } = useTranslation(['landing', 'common']);
+  const mode = useRecoilValue(themeState);
   const { data } = useSwr('/api/landing', fetcher);
   if (!data) {
     return null;
@@ -132,7 +138,9 @@ const LandingPage = () => {
                 display="flex"
                 flexDirection="column"
                 alignItems="center"
+                minHeight="280px"
                 mr="64px"
+                mode={mode}
               >
                 <Link
                   href="https://www.facebook.com/Cider-Degustator-111374164534274"
@@ -145,7 +153,7 @@ const LandingPage = () => {
                     href="https://www.instagram.com/cider_degustator/"
                     target="_blank"
                   >
-                    <img src="/icons/Instagram.svg" alt="insta" />
+                    <Instagram />
                   </Link>
                 </Box>
                 <Link href="mailto:ciderdegustator@gmail.com">
@@ -179,7 +187,7 @@ const LandingPage = () => {
               </Box>
             </Box>
             <Box
-              marginTop="128px"
+              marginTop="70px"
               display="flex"
               alignItems="center"
               position="relative"
