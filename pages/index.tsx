@@ -60,7 +60,7 @@ const IconWrapper = styled(Box)`
     background: #eaef10;
   }
   svg {
-    fill: ${(props): any => (props.mode === 'dark' ? '#eaef10' : '#000')};
+    fill: ${(props: any): any => (props.mode === 'dark' ? '#eaef10' : '#000')};
   }
 `;
 
