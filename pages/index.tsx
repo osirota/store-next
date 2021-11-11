@@ -4,7 +4,7 @@ import { withFormik, Form } from 'formik';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import useSwr from 'swr';
 import { useTranslation } from 'next-i18next';
-// import { useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
 import NextLink from 'next/link';
@@ -19,12 +19,15 @@ import {
   handleSubmit,
   validationSchema,
 } from 'utils/landing/landing-form';
-// import { themeState } from 'recoils/themeType';
+import { themeState } from 'recoils/themeType';
 
 import Mail from '../public/icons/mail.svg';
 import Facebook from '../public/icons/facebook.svg';
 import Instagram from '../public/icons/instagram.svg';
-import Phone from '../public/icons/phone.svg';
+
+interface IconWrapperProps {
+  mode: string;
+}
 
 const SliderWrapper = styled(Box)`
   .swiper-container {
@@ -37,8 +40,13 @@ const SliderWrapper = styled(Box)`
   }
 `;
 
-const IconWrapper = styled(Box)`
+const IconWrapper = styled('div')`
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 280px;
+  margin-right: 64px;
   :before {
     content: '';
     position: absolute;
@@ -47,7 +55,8 @@ const IconWrapper = styled(Box)`
     transform: translatex(-50%);
     width: 2px;
     height: 150px;
-    background: #eaef10;
+    background: ${(props: IconWrapperProps): any =>
+      props.mode === 'dark' ? '#eaef10' : '#243144'};
   }
   :after {
     content: '';
@@ -57,10 +66,22 @@ const IconWrapper = styled(Box)`
     transform: translatex(-50%);
     width: 2px;
     height: 150px;
-    background: #eaef10;
+    background: ${(props: IconWrapperProps): any =>
+      props.mode === 'dark' ? '#eaef10' : '#243144'};
   }
   svg {
-    fill: ${(props: any): any => (props.mode === 'dark' ? '#eaef10' : '#000')};
+    fill: ${(props: IconWrapperProps): any =>
+      props.mode === 'dark' ? '#eaef10' : '#243144'};
+  }
+`;
+const LinksWrapper = styled('div')`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  svg {
+    fill: ${(props: IconWrapperProps): any =>
+      props.mode === 'dark' ? '#eaef10' : '#243144'};
   }
 `;
 
@@ -91,6 +112,11 @@ const MainImagewrapper = styled(Box)`
   bottom: 0;
 `;
 
+const LinkPhone = styled(Link)`
+  font-size: 14px;
+  font-weight: 700;
+`;
+
 interface Product {
   alchol: string;
   count: number;
@@ -115,7 +141,7 @@ interface IFetch {
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const LandingPage = () => {
   const { t } = useTranslation(['landing', 'common']);
-  // const mode = useRecoilValue(themeState);
+  const mode = useRecoilValue(themeState);
   const { data } = useSwr('/api/landing', fetcher);
   if (!data) {
     return null;
@@ -134,13 +160,7 @@ const LandingPage = () => {
         <Grid container spacing={2}>
           <Grid lg={12} xs={12} item>
             <Box display="flex" padding="10rem 0 0 3rem">
-              <IconWrapper
-                display="flex"
-                flexDirection="column"
-                alignItems="center"
-                minHeight="280px"
-                mr="64px"
-              >
+              <IconWrapper mode={mode}>
                 <Link
                   href="https://www.facebook.com/Cider-Degustator-111374164534274"
                   target="_blank"
@@ -221,7 +241,13 @@ const LandingPage = () => {
       </Box>
 
       <Box mt="20rem">
-        <Typography variant="h4" align="center">
+        <Typography
+          variant="h4"
+          align="center"
+          style={{
+            fontWeight: 700,
+          }}
+        >
           {t('aboutUs')}
         </Typography>
         <Box
@@ -295,7 +321,13 @@ const LandingPage = () => {
         }}
         width="100%"
       >
-        <Typography variant="h4" align="center">
+        <Typography
+          variant="h4"
+          align="center"
+          style={{
+            fontWeight: 700,
+          }}
+        >
           {t('contacts')}
         </Typography>
         <Box
@@ -331,15 +363,10 @@ const LandingPage = () => {
             width={{ xs: '90%', lg: '45%' }}
             pt="2rem"
           >
-            <Link href="tel:+380505008863">
-              <Phone /> +38 (050) 500-88-63
-            </Link>
-            <Box
-              display="flex"
-              justifyContent="space-between"
-              alignItems="center"
-              mt="2rem"
-            >
+            <LinkPhone href="tel:+380505008863" color="inherit">
+              +38 (050) 500-88-63
+            </LinkPhone>
+            <LinksWrapper mode={mode}>
               <Link
                 href="https://www.facebook.com/Cider-Degustator-111374164534274"
                 target="_blank"
@@ -357,7 +384,7 @@ const LandingPage = () => {
               <Link href="mailto:ciderdegustator@gmail.com">
                 <Mail />
               </Link>
-            </Box>
+            </LinksWrapper>
           </Box>
         </Box>
       </Box>

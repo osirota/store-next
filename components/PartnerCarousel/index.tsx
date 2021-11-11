@@ -29,18 +29,6 @@ const SliderStyled = styled(Box)`
   }
 `;
 
-const GlassWrapper = styled(Box)`
-  position: absolute;
-  right: -189px;
-  bottom: -220px;
-  @media (max-width: 1300px) {
-    right: -70px;
-  }
-  @media (max-width: 1200px) {
-    display: none;
-  }
-`;
-
 interface Partner {
   _id: string;
   name: string;
@@ -76,10 +64,15 @@ const PartnerCarousel = ({
   };
   return (
     <Box mt="5rem" position="relative">
-      <GlassWrapper>
-        <Image src="/glass.png" width={150} height={250} />
-      </GlassWrapper>
-      <Typography variant="h4" component="h4" align="center" gutterBottom>
+      <Typography
+        variant="h4"
+        component="h4"
+        align="center"
+        gutterBottom
+        style={{
+          fontWeight: 700,
+        }}
+      >
         {title}
       </Typography>
       <SliderStyled>

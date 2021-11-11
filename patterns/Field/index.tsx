@@ -13,6 +13,8 @@ const Field = (props: any) => {
       {...field}
       value={field.value || ''}
       {...props}
+      variant="outlined"
+      style={{ margin: '0 0 .5rem 0' }}
     />
   );
 };
