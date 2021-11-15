@@ -194,7 +194,7 @@ const Order = () => {
   }, [cartState, setBody]);
 
   const price = (pricesi: any, count: any) => `${pricesi * count} ${t('uah')}`;
-  const isEnoughAmout = body.amount > 1;
+  const isEnoughAmout = body.amount > 250;
   return (
     <>
       <Header />
