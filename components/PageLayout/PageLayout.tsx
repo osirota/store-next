@@ -63,7 +63,7 @@ const CompleteWrapper = styled(Box)`
   align-items: center;
   justify-content: space-around;
   border-top: 1px solid;
-  padding: 1rem 0 0;
+  padding: 0.5rem 0;
 `;
 
 const ContentWrapper = styled(Box)`
@@ -199,7 +199,7 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
                         <Cancel />
                       </IconButton>
                     </ListItemSecondaryAction>
-                    <Box flexBasis="50%">
+                    <Box flexBasis="55%">
                       <Typography>{product.name}</Typography>
                       <Box display="flex" alignItems="center">
                         <Box display="flex" alignItems="center">
@@ -221,7 +221,7 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
                       </Box>
                     </Box>
                     <Box
-                      flexBasis="50%"
+                      flexBasis="45%"
                       display="flex"
                       alignItems="center"
                       justifyContent="center"
@@ -251,7 +251,7 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
         </CompleteWrapper>
       </SwipeableDrawerStyled>
       <FabStyled onClick={toggleDrawer}>
-        <Badge badgeContent={cartState.length} showZero>
+        <Badge badgeContent={cartState.length} showZero color="primary">
           <ShoppingCart />
         </Badge>
       </FabStyled>

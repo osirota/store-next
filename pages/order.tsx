@@ -20,7 +20,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 
 import Field from 'patterns/Field';
-import PageHeader from 'components/PageHeader/PageHeader';
+import Header from 'components/Header';
 import cartStore from 'store/cart';
 
 import {
@@ -197,7 +197,7 @@ const Order = () => {
   const isEnoughAmout = body.amount > 1;
   return (
     <>
-      <PageHeader />
+      <Header />
       <ContainerStyled disableGutters maxWidth={false}>
         <Head>
           <title>{t('orderTitle')}</title>

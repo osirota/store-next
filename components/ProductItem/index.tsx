@@ -84,8 +84,8 @@ const ProductItem = ({ product, mb }: IProps) => {
             src={product.logo}
             alt={`Бутылка ${product.name}`}
             layout="fixed"
-            width="200px"
-            height="350px"
+            width="350px"
+            height="600px"
           />
         </Box>
         <Box width={{ xs: '95%', lg: '50%' }}>

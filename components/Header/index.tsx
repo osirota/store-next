@@ -10,12 +10,13 @@ import {
 } from '@material-ui/core';
 import { useRecoilState } from 'recoil';
 import { ToggleButtonGroup, ToggleButton } from '@material-ui/lab';
-import Image from 'next/image';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 import { themeState } from 'recoils/themeType';
+
+import Logo from '../../public/logo1.svg';
 
 const AppBarStyled = styled(AppBar)`
   background-color: transparent;
@@ -89,14 +90,14 @@ const Header = () => {
           justifyContent="space-between"
         >
           <Box display="flex" alignItems="center" justifyContent="center">
-            <Box style={{ cursor: 'pointer' }}>
+            <Box
+              style={{
+                cursor: 'pointer',
+                fill: theme === 'dark' ? '#fff' : '#243144',
+              }}
+            >
               <NextLink href="/">
-                <Image
-                  src="/logo.png"
-                  alt="logo"
-                  width="130px"
-                  height="134px"
-                />
+                <Logo width="130px" height="134px" />
               </NextLink>
             </Box>
             <Box ml="26px">

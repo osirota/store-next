@@ -13,6 +13,7 @@ import styled from 'styled-components';
 import PageLayout from 'components/PageLayout/PageLayout';
 import ProductsCarousel from 'components/ProductsCarousel';
 import PartnerCarousel from 'components/PartnerCarousel';
+import Loader from 'components/Loader';
 import Field from 'patterns/Field';
 import {
   mapPropsToValues,
@@ -144,7 +145,7 @@ const LandingPage = () => {
   const mode = useRecoilValue(themeState);
   const { data } = useSwr('/api/landing', fetcher);
   if (!data) {
-    return null;
+    return <Loader />;
   }
 
   const { partners, products }: IFetch = data.data;
