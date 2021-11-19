@@ -23,7 +23,7 @@ import {
 import { themeState } from 'recoils/themeType';
 
 import Mail from '../public/icons/mail.svg';
-import Facebook from '../public/icons/facebook.svg';
+import Facebook from '../public/icons/facebookNew.svg';
 import Instagram from '../public/icons/instagram.svg';
 
 interface IconWrapperProps {
