@@ -22,9 +22,9 @@ import {
 } from 'utils/landing/landing-form';
 import { themeState } from 'recoils/themeType';
 
-import Mail from '../public/icons/mailNew.svg';
-import Facebook from '../public/icons/facebookNew.svg';
-import Instagram from '../public/icons/instagramNew.svg';
+import Mail from '../public/icons/mail.svg';
+import Facebook from '../public/icons/facebook.svg';
+import Instagram from '../public/icons/instagram.svg';
 
 interface IconWrapperProps {
   mode: string;
