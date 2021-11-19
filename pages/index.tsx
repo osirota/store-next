@@ -71,6 +71,8 @@ const IconWrapper = styled('div')`
       props.mode === 'dark' ? '#eaef10' : '#243144'};
   }
   svg {
+    width: 25px;
+    height: 25px;
     fill: ${(props: IconWrapperProps): any =>
       props.mode === 'dark' ? '#eaef10' : '#243144'};
   }
