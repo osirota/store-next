@@ -9,7 +9,7 @@ export default async function handler(req: any, res: any) {
     case 'POST':
       try {
         // const data = await Order.create(response);
-        res.status(200).json({ response });
+        res.status(200).json(req);
       } catch (error) {
         res.status(400).json(response);
       }
