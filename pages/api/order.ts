@@ -11,11 +11,11 @@ export default async function handler(req: any, res: any) {
         const data = await Order.create(rest);
         res.status(200).json({ rest, data });
       } catch (error) {
-        res.status(401).json(req);
+        res.status(401).json(rest);
       }
       break;
     default:
-      res.status(402).json(req);
+      res.status(402).json(rest);
       break;
   }
 }
