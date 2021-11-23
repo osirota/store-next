@@ -2,14 +2,14 @@ import dbConnect from 'utils/mongo';
 import Order from 'models/Order';
 
 export default async function handler(req: any, res: any) {
-  const { method, payload } = req;
+  const { method, ...rest } = req;
   await dbConnect();
 
   switch (method) {
     case 'POST':
       try {
-        const data = await Order.create(payload);
-        res.status(200).json({ payload, data });
+        const data = await Order.create(rest);
+        res.status(200).json({ rest, data });
       } catch (error) {
         res.status(400).json(req);
       }
