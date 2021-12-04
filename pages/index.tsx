@@ -79,6 +79,9 @@ const IconWrapper = styled('div')`
   @media (max-width: 600px) {
     flex-direction: row;
     justify-content: center;
+    min-height: auto;
+    margin-right: 0;
+    margin-top: 20px;
     :after {
       display: none;
     }
@@ -291,7 +294,7 @@ const LandingPage = () => {
         </Grid>
       </Box>
 
-      <Box mt="20rem">
+      <Box mt={{ sx: '10rem', sm: '15rem' }}>
         <Typography
           variant="h4"
           align="center"

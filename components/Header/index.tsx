@@ -99,7 +99,13 @@ const Header = () => {
           alignItems="center"
           justifyContent={{ xs: 'center', sm: 'space-between' }}
         >
-          <Box display="flex" alignItems="center" justifyContent="center">
+          <Box
+            display="flex"
+            alignItems="center"
+            justifyContent={{ xs: 'space-between', sm: 'center' }}
+            width={{ xs: '100%', sm: 'auto' }}
+            mt={{ xs: '20px', sm: 'auto' }}
+          >
             <Box
               style={{
                 cursor: 'pointer',
