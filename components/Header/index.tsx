@@ -32,7 +32,10 @@ const LinkStyled = styled(Link)`
 const HeaderWrapper = styled(Box)`
   @media (max-width: 992px) {
     padding: 0 3rem 2rem;
-    border-bottom: 1px solid #fff;
+    flex-wrap: wrap-reverse;
+  }
+  @media (max-width: 500px) {
+    padding: 0 1rem 1rem;
   }
 `;
 
@@ -52,6 +55,13 @@ const Tagline = styled(Typography)`
   padding: 21px 15px;
   text-align: center;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  @media (max-width: 660px) {
+    font-size: 14px;
+  }
+  @media (max-width: 510px) {
+    font-size: 12px;
+  }
 `;
 
 const LinkPhone = styled(Link)`
@@ -87,7 +97,7 @@ const Header = () => {
         <HeaderWrapper
           display="flex"
           alignItems="center"
-          justifyContent="space-between"
+          justifyContent={{ xs: 'center', sm: 'space-between' }}
         >
           <Box display="flex" alignItems="center" justifyContent="center">
             <Box
@@ -114,8 +124,9 @@ const Header = () => {
           <Box
             display="flex"
             alignItems="flex"
-            justifyContent="center"
+            justifyContent={{ xs: 'space-between', md: 'justifyContent' }}
             ml="20px"
+            flexBasis={{ xs: '100%', md: 'auto' }}
           >
             <Box m="0.5rem 30px 0 0">
               <LinkPhone href="tel:+380505008863" color="inherit">

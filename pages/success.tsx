@@ -57,7 +57,6 @@ const Success = () => {
           <Typography>{t('thankTitle')}</Typography>
         </Box>
       </ContainerStyled>
-      <PageHeader isFooter />
     </>
   );
 };

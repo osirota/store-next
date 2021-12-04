@@ -23,8 +23,8 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 
-import PageHeader from 'components/PageHeader/PageHeader';
 import Header from 'components/Header';
+import Footer from 'components/Footer';
 import cartStore from 'store/cart';
 import snackbarStore from 'store/snackbar';
 
@@ -180,7 +180,7 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
 
         <Box component="main">{children}</Box>
       </ContainerStyled>
-      <PageHeader isFooter />
+      <Footer />
       <SwipeableDrawerStyled
         anchor="right"
         open={drawerState}

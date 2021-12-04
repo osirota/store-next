@@ -76,13 +76,30 @@ const IconWrapper = styled('div')`
     fill: ${(props: IconWrapperProps): any =>
       props.mode === 'dark' ? '#eaef10' : '#243144'};
   }
+  @media (max-width: 600px) {
+    flex-direction: row;
+    justify-content: center;
+    :after {
+      display: none;
+    }
+    :before {
+      display: none;
+    }
+    svg {
+      margin: 0 10px;
+    }
+  }
 `;
-const LinksWrapper = styled('div')`
+const LinksWrapper = styled(Box)`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin-top: 2rem;
+  width: 100%;
   svg {
+    margin: 0 10px;
+    width: 25px;
+    height: 25px;
     fill: ${(props: IconWrapperProps): any =>
       props.mode === 'dark' ? '#eaef10' : '#243144'};
   }
@@ -107,12 +124,31 @@ const ImagesWrapper = styled(Box)`
     drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))
     drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   margin: 0 40px 0 0;
+  @media (max-width: 1050px) {
+    display: none;
+  }
 `;
 
 const MainImagewrapper = styled(Box)`
   position: absolute;
   right: -260px;
   bottom: 0;
+  @media (max-width: 1050px) {
+    display: none;
+  }
+`;
+
+const MobileApple = styled(Box)`
+  display: none;
+  position: absolute;
+  right: -16px;
+  bottom: 20px;
+  @media (max-width: 1050px) {
+    display: block;
+  }
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;
 
 const LinkPhone = styled(Link)`
@@ -162,7 +198,11 @@ const LandingPage = () => {
       >
         <Grid container spacing={2}>
           <Grid lg={12} xs={12} item>
-            <Box display="flex" padding="10rem 0 0 3rem">
+            <Box
+              display="flex"
+              flexDirection={{ xs: 'column-reverse', sm: 'row' }}
+              padding={{ xs: '0', sm: '10rem 0 0 3rem' }}
+            >
               <IconWrapper mode={mode}>
                 <Link
                   href="https://www.facebook.com/Cider-Degustator-111374164534274"
@@ -182,7 +222,7 @@ const LandingPage = () => {
                   <Mail />
                 </Link>
               </IconWrapper>
-              <Box width="45%">
+              <Box width={{ xs: '100%', sm: '45%' }}>
                 <Typography
                   style={{
                     fontWeight: 700,
@@ -238,6 +278,14 @@ const LandingPage = () => {
                   height="700px"
                 />
               </MainImagewrapper>
+              <MobileApple>
+                <Image
+                  src="https://res.cloudinary.com/df6zjl5hp/image/upload/v1638622206/BG_apple_zyatz2.png"
+                  alt="logo"
+                  width="210px"
+                  height="500px"
+                />
+              </MobileApple>
             </Box>
           </Grid>
         </Grid>
@@ -339,9 +387,9 @@ const LandingPage = () => {
           justifyContent="space-between"
           alignItems="center"
           flexDirection={{ xs: 'column', lg: 'row' }}
-          width={{ xs: '90%', lg: '100%' }}
+          width={{ xs: '100%', lg: '100%' }}
         >
-          <Box width={{ xs: '90%', lg: '45%' }}>
+          <Box width={{ xs: '100%', lg: '45%' }}>
             <Form noValidate>
               <Field name="name" label={t('name')} />
               <Field name="email" label="Email" />
@@ -363,7 +411,7 @@ const LandingPage = () => {
             display="flex"
             alignItems="center"
             flexDirection="column"
-            width={{ xs: '90%', lg: '45%' }}
+            width={{ xs: '100%', lg: '45%' }}
             pt="2rem"
           >
             <LinkPhone href="tel:+380505008863" color="inherit">
@@ -376,7 +424,7 @@ const LandingPage = () => {
               >
                 <Facebook />
               </Link>
-              <Box m="0 2rem">
+              <Box margin="15px 0">
                 <Link
                   href="https://www.instagram.com/cider_degustator/"
                   target="_blank"
