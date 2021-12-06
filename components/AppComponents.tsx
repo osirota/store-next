@@ -46,7 +46,7 @@ const AppComponents = ({ Component, pageProps }: IAppComponentsProps) => {
         <CssBaseline />
         <Component {...pageProps} />
       </ThemeProvider>
-      <Snowfall />
+      <Snowfall snowflakeCount={100} />
     </>
   );
 };
