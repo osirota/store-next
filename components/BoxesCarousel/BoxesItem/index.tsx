@@ -13,6 +13,7 @@ import { useTranslation } from 'next-i18next';
 
 import cartStore from 'store/cart';
 import snackbarStore from 'store/snackbar';
+import { Boxes } from 'interfaces';
 
 const CardStyled = styled(Card)`
   background: transparent;
@@ -44,23 +45,12 @@ const TitleWrapper = styled(Typography)`
   height: 95px;
 `;
 
-interface Products {
-  name: String;
-  partnerId: String;
-  taste: String;
-  _id: String;
-  price: number;
-  logo: string;
-  mixes: string;
-  description: string;
-}
-
-interface LocalStorageProduct extends Products {
+interface LocalStorageProduct extends Boxes {
   count: number;
 }
 
 type BoxesItemProps = {
-  item?: Products;
+  item?: Boxes;
 };
 
 const BoxesItem = ({ item }: BoxesItemProps) => {

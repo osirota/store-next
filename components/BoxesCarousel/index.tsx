@@ -3,18 +3,10 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Box, Typography } from '@material-ui/core';
 import styled from 'styled-components';
 import BoxesItem from 'components/BoxesCarousel/BoxesItem';
-
-interface Boxes {
-  alchol: string;
-  name: string;
-  partnerId: string;
-  taste: string;
-  logo: string;
-  _id: string;
-  price: number;
-}
+import { Boxes } from 'interfaces';
 
 type BoxesCarouselProps = {
+  // eslint-disable-next-line react/require-default-props
   title?: string;
   items: Boxes[];
 };

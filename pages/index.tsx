@@ -10,6 +10,7 @@ import Image from 'next/image';
 import NextLink from 'next/link';
 import styled from 'styled-components';
 
+import { Boxes } from 'interfaces';
 import PageLayout from 'components/PageLayout/PageLayout';
 import ProductsCarousel from 'components/ProductsCarousel';
 import PartnerCarousel from 'components/PartnerCarousel';
@@ -172,12 +173,6 @@ interface Product {
 }
 
 interface Partner {
-  _id: string;
-  name: string;
-  logo: string;
-  description: string;
-}
-interface Boxes {
   _id: string;
   name: string;
   logo: string;
