@@ -14,7 +14,9 @@ export default async function handler(req: any, res: any) {
         const products = await Products.find({});
         const partners = await Partners.find({});
         const boxes = await Boxes.find({});
-        res.status(200).json({ success: true, data: { products, partners, boxes } });
+        res
+          .status(200)
+          .json({ success: true, data: { products, partners, boxes } });
       } catch (error) {
         res.status(400).json({ success: false });
       }
