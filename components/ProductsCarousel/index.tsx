@@ -47,7 +47,7 @@ const NextLinkStyled = styled('p')`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 120px;
+  width: 210px;
   background: #eaef10;
   border: 1px solid transparent;
   font-weight: bold;
