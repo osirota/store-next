@@ -5,7 +5,7 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import Head from 'next/head';
-import PageHeader from 'components/PageHeader/PageHeader';
+import Header from 'components/Header';
 
 const ContainerStyled = styled(Container)`
   max-width: 1140px;
@@ -28,7 +28,7 @@ const Success = () => {
   const src = gifsList[randomIndex];
   return (
     <>
-      <PageHeader />
+      <Header />
       <ContainerStyled disableGutters maxWidth={false}>
         <Head>
           <title>Оформлення Замовлення</title>
