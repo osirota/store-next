@@ -13,6 +13,7 @@ import styled from 'styled-components';
 import PageLayout from 'components/PageLayout/PageLayout';
 import ProductsCarousel from 'components/ProductsCarousel';
 import PartnerCarousel from 'components/PartnerCarousel';
+import BoxesCarousel from 'components/BoxesCarousel';
 import Loader from 'components/Loader';
 import Field from 'patterns/Field';
 import {
@@ -176,9 +177,16 @@ interface Partner {
   logo: string;
   description: string;
 }
+interface Boxes {
+  _id: string;
+  name: string;
+  logo: string;
+  description: string;
+}
 interface IFetch {
   products: Product[];
   partners: Partner[];
+  boxes: Boxes[];
 }
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const LandingPage = () => {
@@ -189,7 +197,7 @@ const LandingPage = () => {
     return <Loader />;
   }
 
-  const { partners, products }: IFetch = data.data;
+  const { partners, products, boxes }: IFetch = data.data;
   return (
     <PageLayout title="Сидр дегустатор | Купить сидр">
       <Box
@@ -364,6 +372,7 @@ const LandingPage = () => {
         </Box>
       </Box>
 
+      <BoxesCarousel title={t('titleSiders')} items={boxes} />
       <ProductsCarousel title={t('titleSiders')} items={products} />
       <PartnerCarousel title={t('titlePartners')} items={partners} />
 

@@ -1,12 +1,10 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import NextLink from 'next/link';
 import { Box, Typography } from '@material-ui/core';
 import styled from 'styled-components';
-import { useTranslation } from 'next-i18next';
-import ProductItem from 'components/ProductsCarousel/ProductItem';
+import BoxesItem from 'components/BoxesCarousel/BoxesItem';
 
-interface Products {
+interface Boxes {
   alchol: string;
   name: string;
   partnerId: string;
@@ -16,9 +14,9 @@ interface Products {
   price: number;
 }
 
-type ProductsCarouselProps = {
+type BoxesCarouselProps = {
   title?: string;
-  items: Products[];
+  items: Boxes[];
 };
 
 const SliderStyled = styled(Box)`
@@ -43,33 +41,10 @@ const SliderStyled = styled(Box)`
   }
 `;
 
-const NextLinkStyled = styled('p')`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 120px;
-  background: #eaef10;
-  border: 1px solid transparent;
-  font-weight: bold;
-  font-size: 18px;
-  color: #171b26;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-  padding: 7px 27px;
-  margin: 20px auto;
-  transition: all 0.5s;
-  :hover {
-    background: transparent;
-    border: 1px solid #eaef10;
-    color: #fff;
-  }
-`;
-
-const ProductsCarousel = ({
-  title = 'ProductsCarousel',
+const BoxesCarousel = ({
+  title = 'BoxesCarousel',
   items = [],
-}: ProductsCarouselProps) => {
-  const { t } = useTranslation(['landing', 'common']);
+}: BoxesCarouselProps) => {
   const settings = {
     navigation: true,
     breakpoints: {
@@ -104,20 +79,13 @@ const ProductsCarousel = ({
         <Swiper {...settings}>
           {items.map((item) => (
             <SwiperSlide key={item.name}>
-              <ProductItem item={item} />
+              <BoxesItem item={item} />
             </SwiperSlide>
           ))}
         </Swiper>
       </SliderStyled>
-      <NextLink href="/products">
-        <NextLinkStyled>{t('siders', { ns: 'common' })}</NextLinkStyled>
-      </NextLink>
     </Box>
   );
 };
 
-ProductsCarousel.defaultProps = {
-  title: null,
-};
-
-export default ProductsCarousel;
+export default BoxesCarousel;
