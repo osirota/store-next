@@ -2,6 +2,7 @@
 import React from 'react';
 import { Box, Typography } from '@material-ui/core';
 import useSwr from 'swr';
+import { useRecoilValue } from 'recoil';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
@@ -9,11 +10,13 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import PageLayout from 'components/PageLayout/PageLayout';
 import ProductsCarousel from 'components/ProductsCarousel';
+import { themeState } from 'recoils/themeType';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const Partner = () => {
   const { t } = useTranslation();
   const { query } = useRouter();
+  const mode = useRecoilValue(themeState);
   const { data } = useSwr(
     (): string => (query.id && `/api/partner/${query.id}`) || '',
     fetcher
@@ -22,6 +25,9 @@ const Partner = () => {
     return null;
   }
   const { partner, products } = data.data;
+  const choosenLogo = (logoLight: string, logoDark: string) => {
+    return mode === 'dark' && logoDark ? logoDark : logoLight;
+  };
   return (
     <PageLayout title={partner.name}>
       <Box
@@ -38,7 +44,11 @@ const Partner = () => {
           justifyContent="center"
         >
           <Box position="relative" width="100%" height="240px">
-            <Image src={partner.logo} layout="fill" objectFit="contain" />
+            <Image
+              src={choosenLogo(partner.logoLight, partner.logoDark)}
+              layout="fill"
+              objectFit="contain"
+            />
           </Box>
         </Box>
         <Box

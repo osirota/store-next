@@ -17,6 +17,7 @@ import PartnerCarousel from 'components/PartnerCarousel';
 import BoxesCarousel from 'components/BoxesCarousel';
 import Loader from 'components/Loader';
 import Field from 'patterns/Field';
+import NextLinkStyle from 'patterns/NextLinkStyle';
 import {
   mapPropsToValues,
   handleSubmit,
@@ -110,18 +111,6 @@ const LinksWrapper = styled(Box)`
   }
 `;
 
-const NextLinkStyled = styled('p')`
-  display: inline-block;
-  background: #eaef10;
-  font-weight: bold;
-  font-size: 18px;
-  color: #171b26;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-  padding: 7px 27px;
-  margin: 20px 0 0;
-`;
-
 const ImagesWrapper = styled(Box)`
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))
     drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))
@@ -175,7 +164,8 @@ interface Product {
 interface Partner {
   _id: string;
   name: string;
-  logo: string;
+  logoLight: string;
+  logoDark: string;
   description: string;
 }
 interface IFetch {
@@ -247,11 +237,10 @@ const LandingPage = () => {
                     {t('description')}
                   </Typography>
                 </Box>
-                <NextLink href="/products">
-                  <NextLinkStyled>
-                    {t('siders', { ns: 'common' })}
-                  </NextLinkStyled>
-                </NextLink>
+                <Box display="flex" alignItems="center">
+                  <NextLinkStyle link="/products" text="siders" />
+                  <NextLinkStyle link="/boxes" text="boxes" />
+                </Box>
               </Box>
             </Box>
             <Box
@@ -327,31 +316,33 @@ const LandingPage = () => {
               >
                 {products.map(({ logo, name }) => (
                   <SwiperSlide key={name}>
-                    <Box
-                      display="flex"
-                      alignItems="center"
-                      justifyContent="center"
-                      flexDirection="column"
-                    >
+                    <NextLink href="/products">
                       <Box
-                        position="relative"
-                        width="100%"
                         display="flex"
                         alignItems="center"
                         justifyContent="center"
+                        flexDirection="column"
                       >
-                        <Image
-                          src={logo}
-                          alt="bottle"
-                          layout="fixed"
-                          width="250px"
-                          height="450px"
-                        />
+                        <Box
+                          position="relative"
+                          width="100%"
+                          display="flex"
+                          alignItems="center"
+                          justifyContent="center"
+                        >
+                          <Image
+                            src={logo}
+                            alt="bottle"
+                            layout="fixed"
+                            width="250px"
+                            height="450px"
+                          />
+                        </Box>
+                        <Box mt="1.5rem">
+                          <Typography>{name}</Typography>
+                        </Box>
                       </Box>
-                      <Box mt="1.5rem">
-                        <Typography>{name}</Typography>
-                      </Box>
-                    </Box>
+                    </NextLink>
                   </SwiperSlide>
                 ))}
               </Swiper>
@@ -367,7 +358,7 @@ const LandingPage = () => {
         </Box>
       </Box>
 
-      <BoxesCarousel title={t('titleSiders')} items={boxes} />
+      <BoxesCarousel title={t('titleBoxes')} items={boxes} />
       <ProductsCarousel title={t('titleSiders')} items={products} />
       <PartnerCarousel title={t('titlePartners')} items={partners} />
 

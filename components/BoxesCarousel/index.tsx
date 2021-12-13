@@ -4,6 +4,7 @@ import { Box, Typography } from '@material-ui/core';
 import styled from 'styled-components';
 import BoxesItem from 'components/BoxesCarousel/BoxesItem';
 import { Boxes } from 'interfaces';
+import NextLinkStyle from 'patterns/NextLinkStyle';
 
 type BoxesCarouselProps = {
   // eslint-disable-next-line react/require-default-props
@@ -67,14 +68,15 @@ const BoxesCarousel = ({
       >
         {title}
       </Typography>
-      <SliderStyled mt="4rem">
+      <SliderStyled mt="2rem">
         <Swiper {...settings}>
           {items.map((item) => (
-            <SwiperSlide key={item.name}>
+            <SwiperSlide key={item.name + item.mixes}>
               <BoxesItem item={item} />
             </SwiperSlide>
           ))}
         </Swiper>
+        <NextLinkStyle link="/boxes" text="boxes" />
       </SliderStyled>
     </Box>
   );

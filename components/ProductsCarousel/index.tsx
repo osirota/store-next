@@ -1,10 +1,10 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import NextLink from 'next/link';
 import { Box, Typography } from '@material-ui/core';
 import styled from 'styled-components';
-import { useTranslation } from 'next-i18next';
+
 import ProductItem from 'components/ProductsCarousel/ProductItem';
+import NextLinkStyle from 'patterns/NextLinkStyle';
 
 interface Products {
   alchol: string;
@@ -43,33 +43,10 @@ const SliderStyled = styled(Box)`
   }
 `;
 
-const NextLinkStyled = styled('p')`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 210px;
-  background: #eaef10;
-  border: 1px solid transparent;
-  font-weight: bold;
-  font-size: 18px;
-  color: #171b26;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-  padding: 7px 27px;
-  margin: 20px auto;
-  transition: all 0.5s;
-  :hover {
-    background: transparent;
-    border: 1px solid #eaef10;
-    color: #fff;
-  }
-`;
-
 const ProductsCarousel = ({
   title = 'ProductsCarousel',
   items = [],
 }: ProductsCarouselProps) => {
-  const { t } = useTranslation(['landing', 'common']);
   const settings = {
     navigation: true,
     breakpoints: {
@@ -109,9 +86,7 @@ const ProductsCarousel = ({
           ))}
         </Swiper>
       </SliderStyled>
-      <NextLink href="/products">
-        <NextLinkStyled>{t('siders', { ns: 'common' })}</NextLinkStyled>
-      </NextLink>
+      <NextLinkStyle link="/products" text="siders" />
     </Box>
   );
 };

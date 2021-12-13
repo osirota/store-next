@@ -2,9 +2,12 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Box, Typography } from '@material-ui/core';
+import { useRecoilValue } from 'recoil';
 import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
+
+import { themeState } from 'recoils/themeType';
 
 const SliderStyled = styled(Box)`
   margin: 4rem 0 0;
@@ -32,7 +35,8 @@ const SliderStyled = styled(Box)`
 interface Partner {
   _id: string;
   name: string;
-  logo: string;
+  logoLight: string;
+  logoDark: string;
   description: string;
 }
 
@@ -45,6 +49,7 @@ const PartnerCarousel = ({
   title = 'PartnerCarousel',
   items = [],
 }: PartnerCarouselProps) => {
+  const mode = useRecoilValue(themeState);
   const settings = {
     breakpoints: {
       '640': {
@@ -62,6 +67,11 @@ const PartnerCarousel = ({
     },
     navigation: false,
   };
+
+  const choosenLogo = (logoLight: string, logoDark: string) => {
+    return mode === 'dark' && logoDark ? logoDark : logoLight;
+  };
+
   return (
     <Box mt="5rem" position="relative">
       <Typography
@@ -77,11 +87,15 @@ const PartnerCarousel = ({
       </Typography>
       <SliderStyled>
         <Swiper {...settings}>
-          {items.map(({ logo, _id }) => (
-            <SwiperSlide key={logo}>
+          {items.map(({ logoLight, logoDark, _id }) => (
+            <SwiperSlide key={logoLight}>
               <Box position="relative" width="100%" height="240px">
                 <Link href={`/partner/${_id}`}>
-                  <Image src={logo} layout="fill" objectFit="contain" />
+                  <Image
+                    src={choosenLogo(logoLight, logoDark)}
+                    layout="fill"
+                    objectFit="contain"
+                  />
                 </Link>
               </Box>
             </SwiperSlide>
