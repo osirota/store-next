@@ -57,6 +57,7 @@ const Tagline = styled(Typography)`
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
   @media (max-width: 660px) {
+    text-transform: uppercase;
     font-size: 14px;
   }
   @media (max-width: 510px) {
@@ -130,7 +131,7 @@ const Header = () => {
           <Box
             display="flex"
             alignItems="flex"
-            justifyContent={{ xs: 'space-between', md: 'justifyContent' }}
+            justifyContent="center"
             ml="20px"
             flexBasis={{ xs: '100%', md: 'auto' }}
           >

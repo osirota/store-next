@@ -150,6 +150,17 @@ const LinkPhone = styled(Link)`
   font-weight: 700;
 `;
 
+const TitleWrapper = styled(Box)`
+  p {
+    font-size: 2rem;
+  }
+  @media (max-width: 660px) {
+    p {
+      text-align: center;
+    }
+  }
+`;
+
 interface Product {
   alchol: string;
   count: number;
@@ -219,14 +230,15 @@ const LandingPage = () => {
                 </Link>
               </IconWrapper>
               <Box width={{ xs: '100%', sm: '45%' }}>
-                <Typography
-                  style={{
-                    fontWeight: 700,
-                  }}
-                  variant="h4"
-                >
-                  {t('title')}
-                </Typography>
+                <TitleWrapper>
+                  <Typography
+                    style={{
+                      fontWeight: 700,
+                    }}
+                  >
+                    {t('title')}
+                  </Typography>
+                </TitleWrapper>
                 <Box mt="2rem">
                   <Typography
                     style={{
@@ -237,7 +249,11 @@ const LandingPage = () => {
                     {t('description')}
                   </Typography>
                 </Box>
-                <Box display="flex" alignItems="center">
+                <Box
+                  display="flex"
+                  alignItems="center"
+                  flexDirection={{ xs: 'column', md: 'row' }}
+                >
                   <NextLinkStyle link="/products" text="siders" />
                   <NextLinkStyle link="/boxes" text="boxes" />
                 </Box>

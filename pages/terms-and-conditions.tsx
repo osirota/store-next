@@ -13,7 +13,7 @@ const TermsAndConditions = () => {
   };
   return (
     <PageLayout title="Сидр дегустатор | Купить сидр">
-      <Box mt="4rem">
+      <Box mt="4rem" p="1rem">
         <Typography variant="h5" style={style.title}>
           {t('title')}
         </Typography>
