@@ -114,6 +114,7 @@ const Order = () => {
     (acc: number, value: any) => acc + value.price * value.count,
     0
   )} ${t('uah')}`;
+  const minOrder = 400;
 
   const handleRemoveProduct = (id: string) => () => {
     const newCart = cartState.filter(
@@ -194,7 +195,7 @@ const Order = () => {
   }, [cartState, setBody]);
 
   const price = (pricesi: any, count: any) => `${pricesi * count} ${t('uah')}`;
-  const isEnoughAmout = body.amount >= 250;
+  const isEnoughAmout = body.amount >= minOrder;
   return (
     <>
       <Header />
@@ -274,7 +275,7 @@ const Order = () => {
                 <Alert severity="info">
                   <AlertTitle>{`${t('attention')}`}</AlertTitle>
                   {`${t('minOrdertext')}`} —{' '}
-                  <strong>{`250 ${t('uah')}`}</strong>
+                  <strong>{`${minOrder} ${t('uah')}`}</strong>
                 </Alert>
               </Box>
               <Box

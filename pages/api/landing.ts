@@ -11,7 +11,7 @@ export default async function handler(req: any, res: any) {
   switch (method) {
     case 'GET':
       try {
-        const products = await Products.find({});
+        const products = await Products.find({ isAvailable: true });
         const partners = await Partners.find({});
         const boxes = await Boxes.find({});
         res

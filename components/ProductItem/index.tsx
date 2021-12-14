@@ -90,7 +90,7 @@ const ProductItem = ({ product, mb }: IProps) => {
           />
         </Box>
         <Box width={{ xs: '95%', lg: '50%' }}>
-          <Typography gutterBottom variant="h3">
+          <Typography gutterBottom variant="h4" style={{ fontWeight: 600 }}>
             {product.name}
           </Typography>
           <Box fontWeight="bold" mb="3rem">
