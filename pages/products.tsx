@@ -20,6 +20,7 @@ interface Product {
   color: string;
   matches: string;
   flavor: string;
+  recommendation: string;
 }
 
 interface IFetch {

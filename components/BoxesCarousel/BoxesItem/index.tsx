@@ -19,7 +19,7 @@ const CardStyled = styled(Card)`
   background: transparent;
   padding: 1rem;
   box-shadow: none;
-  height: 950px;
+  height: 750px;
   [data-image] {
     transform: rotate(0deg);
     transition: all 0.5s;
@@ -99,7 +99,7 @@ const BoxesItem = ({ item }: BoxesItemProps) => {
           <Box
             position="relative"
             width="100%"
-            height="450px"
+            height="300px"
             data-image
             display="flex"
             alignItems="center"
@@ -109,7 +109,7 @@ const BoxesItem = ({ item }: BoxesItemProps) => {
               src={item.logo}
               alt="bottle"
               width="300px"
-              height="350px"
+              height="300px"
               layout="fixed"
             />
           </Box>

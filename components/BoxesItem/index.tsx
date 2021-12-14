@@ -80,7 +80,7 @@ const BoxesItem = ({ box, mb }: IProps) => {
             alt={`Бутылка ${box.name}`}
             layout="fixed"
             width="350px"
-            height="500px"
+            height="390px"
           />
         </Box>
         <Box width={{ xs: '95%', lg: '50%' }}>

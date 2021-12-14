@@ -19,6 +19,7 @@ interface Product {
   color: string;
   matches: string;
   flavor: string;
+  recommendation: string;
 }
 
 interface LocalStorageProduct extends Product {
@@ -101,23 +102,28 @@ const ProductItem = ({ product, mb }: IProps) => {
             {product.description}
           </Typography>
           <Typography gutterBottom variant="body1">
-            <strong>Цвет: </strong>
+            <strong>{t('color')}: </strong>
             {product.color}
           </Typography>
           <Typography gutterBottom variant="body1">
-            <strong>Запах: </strong>
+            <strong>{t('favour')}: </strong>
             {product.flavor}
           </Typography>
           <Typography gutterBottom variant="body1">
-            <strong>Вкус: </strong>
+            <strong>{t('taste')}: </strong>
             {product.taste}
           </Typography>
           {product.matches && (
             <Typography gutterBottom variant="body1">
-              <strong>Сочетается: </strong>
+              <strong>{t('tasteMatches')}: </strong>
               {product.matches}
             </Typography>
           )}
+
+          <Typography gutterBottom variant="body1">
+            <strong>{t('recommendation')}: </strong>
+            {product.recommendation}
+          </Typography>
           <Box mb="2rem">
             <Typography gutterBottom variant="body1">
               <strong>ABV: </strong>

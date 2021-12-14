@@ -41,7 +41,7 @@ const Boxes = () => {
           <BoxesItem
             key={box.name}
             box={box}
-            mb={index === boxes.length - 1 ? '0' : { xs: '3rem', lg: '10rem' }}
+            mb={index === boxes.length - 1 ? '0' : { xs: '3rem', lg: '5rem' }}
           />
         ))}
       </Box>

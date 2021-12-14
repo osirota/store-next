@@ -9,9 +9,9 @@ import {
   Switch,
 } from '@material-ui/core';
 import { useRecoilState } from 'recoil';
-import { ToggleButtonGroup, ToggleButton } from '@material-ui/lab';
+// import { ToggleButtonGroup, ToggleButton } from '@material-ui/lab';
 import NextLink from 'next/link';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 import { themeState } from 'recoils/themeType';
@@ -70,8 +70,8 @@ const LinkPhone = styled(Link)`
 `;
 
 const Header = () => {
-  const { locale, pathname, push } = useRouter();
-  const [toggle, setToggle] = useState(locale);
+  // const { locale, pathname, push } = useRouter();
+  // const [toggle, setToggle] = useState(locale);
   const [theme, setTheme] = useRecoilState(themeState);
   const { t } = useTranslation('common');
   const isChecked = theme === 'dark';
@@ -80,10 +80,10 @@ const Header = () => {
     localStorage.setItem('theme', newTheme);
     setTheme(newTheme);
   };
-  const handleToggle = (_: any, newAlignment: string) => {
-    push(pathname, pathname, { locale: newAlignment });
-    setToggle(newAlignment);
-  };
+  // const handleToggle = (_: any, newAlignment: string) => {
+  //   push(pathname, pathname, { locale: newAlignment });
+  //   setToggle(newAlignment);
+  // };
 
   const [drawerState, setDrawerState] = useState(false);
 
@@ -139,7 +139,7 @@ const Header = () => {
                 +38 (050) 500-88-63
               </LinkPhone>
             </Box>
-            <ToggleButtonGroup
+            {/* <ToggleButtonGroup
               size="small"
               exclusive
               value={toggle}
@@ -150,7 +150,7 @@ const Header = () => {
                   {t(item)}
                 </ToggleButton>
               ))}
-            </ToggleButtonGroup>
+            </ToggleButtonGroup> */}
           </Box>
         </HeaderWrapper>
       </Container>
