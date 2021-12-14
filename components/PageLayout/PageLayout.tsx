@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+/* eslint-disable no-underscore-dangle */
+import React, { useState, useLayoutEffect } from 'react';
 import {
   Container,
   Box,
@@ -8,30 +9,30 @@ import {
   ListItem,
   Typography,
   ListItemSecondaryAction,
-  ListItemAvatar,
   IconButton,
   Button,
+  Badge,
+  Snackbar,
+  Fade,
 } from '@material-ui/core';
+import MuiAlert from '@material-ui/lab/Alert';
 import { ShoppingCart, Add, Remove, Cancel } from '@material-ui/icons';
 import styled from 'styled-components';
 import Head from 'next/head';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 
-import PageHeader from 'components/PageHeader/PageHeader';
+import Header from 'components/Header';
+import Footer from 'components/Footer';
+import cartStore from 'store/cart';
+import snackbarStore from 'store/snackbar';
 
 const ContainerStyled = styled(Container)`
   max-width: 1140px;
   margin: 0 auto;
-  padding: 30px 0 10px;
+  padding: 3rem 0 10px;
 `;
-
-// const Wrapper = styled.div`
-//   position: fixed;
-//   height: 100vh;
-//   width: 100vw;
-//   overflow: hidden;
-//   z-index: -1;
-// `
 
 const FabStyled = styled(Fab)`
   position: fixed;
@@ -45,6 +46,10 @@ const SwipeableDrawerStyled = styled(SwipeableDrawer)`
   & .MuiDrawer-paper {
     width: 400px;
     background-color: #b2b2b2;
+    justify-content: space-between;
+    @media (max-width: 775px) {
+      width: 85%;
+    }
   }
 `;
 
@@ -58,7 +63,7 @@ const CompleteWrapper = styled(Box)`
   align-items: center;
   justify-content: space-around;
   border-top: 1px solid;
-  padding: 1rem 0 0;
+  padding: 0.5rem 0;
 `;
 
 const ContentWrapper = styled(Box)`
@@ -71,16 +76,102 @@ type PageLayoutProps = {
   children: React.ReactNode;
 };
 
-const PageLayout = ({ children, title }: PageLayoutProps) => {
-  const [drawerState, setDrawerState] = useState(false);
+interface Products {
+  alchol: string;
+  name: string;
+  partnerId: string;
+  taste: string;
+  _id: string;
+  price: number;
+}
 
+const calculate = (type: string, count: number) => {
+  if (type === 'increase') {
+    return count + 1;
+  }
+  if (type === 'reduce') {
+    return count - 1;
+  }
+
+  return count;
+};
+
+interface LocalStorageProduct extends Products {
+  count: number;
+}
+
+const PageLayout = ({ children, title }: PageLayoutProps) => {
+  const { t } = useTranslation();
+  const router = useRouter();
+  const [drawerState, setDrawerState] = useState(false);
+  const [cartState, setCartState] = useState(cartStore.initialState());
+  const [snackOpen, setSnackOpen] = useState(false);
+
+  const totalPrice = `${cartState.reduce(
+    (acc: number, value: any) => acc + value.price * value.count,
+    0
+  )} ${t('uah')}`;
+
+  useLayoutEffect(() => {
+    cartStore.subscribe(setCartState);
+    cartStore.init();
+    snackbarStore.subscribe(setSnackOpen);
+    snackbarStore.init();
+  }, []);
+
+  const price = (prices: any, count: any) => `${prices * count} грн`;
   const toggleDrawer = () => {
     setDrawerState(!drawerState);
   };
 
+  const handleProduct = (type: string, id: string) => () => {
+    const newCart = cartState.reduce(
+      (acc: any, product: LocalStorageProduct) => {
+        // eslint-disable-next-line no-underscore-dangle
+        if (product._id === id && product.count === 1 && type === 'reduce') {
+          return acc;
+        }
+        if (product._id === id) {
+          return [
+            ...acc,
+            {
+              ...product,
+              count: calculate(type, product.count),
+            },
+          ];
+        }
+        return [...acc, product];
+      },
+      []
+    );
+    cartStore.setCart(newCart);
+  };
+
+  const handleRemoveProduct = (id: string) => () => {
+    const newCart = cartState.filter(
+      (product: LocalStorageProduct) => product._id !== id
+    );
+    cartStore.setCart(newCart);
+  };
+
+  const handleOrder = () => {
+    router.push('/order');
+  };
+
+  const handleSnackClose = (
+    event?: React.SyntheticEvent,
+    reason?: string
+  ): void => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setSnackOpen(false);
+  };
+
   return (
     <>
-      <PageHeader />
+      <Header />
       <ContainerStyled disableGutters maxWidth={false}>
         <Head>
           <title>{title}</title>
@@ -89,7 +180,7 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
 
         <Box component="main">{children}</Box>
       </ContainerStyled>
-      <PageHeader isFooter />
+      <Footer />
       <SwipeableDrawerStyled
         anchor="right"
         open={drawerState}
@@ -97,64 +188,88 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
         onOpen={toggleDrawer}
       >
         <ContentWrapper display="flex" flexDirection="column" p="1.25rem">
-          <Typography color="primary">Ваше замовлення</Typography>
+          <Typography>{t('basketList')}</Typography>
           <List>
-            {[
-              'Inbox',
-              'Starred',
-              'Send email',
-              'Drafts',
-              '1',
-              '2',
-              '3',
-              '5',
-            ].map((text) => (
-              <ListItemStyled key={text}>
-                <ListItem>
-                  <ListItemSecondaryAction>
-                    <IconButton>
-                      <Cancel />
-                    </IconButton>
-                  </ListItemSecondaryAction>
-                  <Box>
-                    <Typography color="primary">Сидр Poma Aurea</Typography>
-                    <Box display="flex" alignItems="center">
+            {cartState.length > 0 &&
+              cartState.map((product: any) => (
+                <ListItemStyled key={product._id}>
+                  <ListItem>
+                    <ListItemSecondaryAction>
+                      <IconButton onClick={handleRemoveProduct(product._id)}>
+                        <Cancel />
+                      </IconButton>
+                    </ListItemSecondaryAction>
+                    <Box flexBasis="55%">
+                      <Typography>{product.name}</Typography>
                       <Box display="flex" alignItems="center">
-                        <IconButton>
-                          <Remove />
-                        </IconButton>
-                        <Typography color="primary">2</Typography>
-                        <IconButton>
-                          <Add />
-                        </IconButton>
+                        <Box display="flex" alignItems="center">
+                          <IconButton
+                            onClick={handleProduct('reduce', product._id)}
+                          >
+                            <Remove />
+                          </IconButton>
+                          <Typography>{product.count}</Typography>
+                          <IconButton
+                            onClick={handleProduct('increase', product._id)}
+                          >
+                            <Add />
+                          </IconButton>
+                        </Box>
+                        <Typography>
+                          {price(product.price, product.count)}
+                        </Typography>
                       </Box>
-                      <Typography color="primary">220 грн</Typography>
                     </Box>
-                  </Box>
-                  <ListItemAvatar>
-                    <Image
-                      alt="bg"
-                      src="/bottle.png"
-                      width={100}
-                      height={100}
-                    />
-                  </ListItemAvatar>
-                </ListItem>
-              </ListItemStyled>
-            ))}
+                    <Box
+                      flexBasis="45%"
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
+                      <Image
+                        alt={product.name}
+                        src={product.logo}
+                        width={70}
+                        height={110}
+                      />
+                    </Box>
+                  </ListItem>
+                </ListItemStyled>
+              ))}
           </List>
         </ContentWrapper>
         <CompleteWrapper>
-          <Box>
-            <Typography color="primary">Итого:</Typography>
-            <Typography color="primary">1905 грн</Typography>
+          <Box display="flex" alignItems="center" justifyContent="center">
+            <Box mr="0.5rem">
+              <Typography>{`${t('total')}:`}</Typography>
+            </Box>
+            <Typography>{totalPrice}</Typography>
           </Box>
-          <Button>Оформить заказ</Button>
+          <Button disabled={cartState.length === 0} onClick={handleOrder}>
+            {t('basketOrder')}
+          </Button>
         </CompleteWrapper>
       </SwipeableDrawerStyled>
-      <FabStyled color="primary" onClick={toggleDrawer}>
-        <ShoppingCart />
+      <FabStyled onClick={toggleDrawer}>
+        <Badge badgeContent={cartState.length} showZero color="primary">
+          <ShoppingCart />
+        </Badge>
       </FabStyled>
+      <Snackbar
+        open={snackOpen}
+        autoHideDuration={2000}
+        onClose={handleSnackClose}
+        TransitionComponent={Fade}
+      >
+        <MuiAlert
+          elevation={6}
+          variant="filled"
+          onClose={handleSnackClose}
+          severity="success"
+        >
+          {t('basketSuccess')}
+        </MuiAlert>
+      </Snackbar>
     </>
   );
 };

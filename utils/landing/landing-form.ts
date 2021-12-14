@@ -7,6 +7,10 @@ interface FormValues {
   text?: string;
 }
 
+interface FormikBag {
+  resetForm: () => void;
+}
+
 export const mapPropsToValues = () => ({
   name: '',
   email: '',
@@ -14,8 +18,21 @@ export const mapPropsToValues = () => ({
   text: '',
 });
 
-export const handleSubmit = (values: FormValues) => {
-  console.log(values);
+export const handleSubmit = async (
+  values: FormValues,
+  formikBag: FormikBag
+) => {
+  const { resetForm } = formikBag;
+  const contentType = 'application/json';
+  await fetch('/api/landing', {
+    method: 'POST',
+    headers: {
+      Accept: contentType,
+      'Content-Type': contentType,
+    },
+    body: JSON.stringify(values),
+  });
+  resetForm();
 };
 
 export const validationSchema = Yup.object().shape({

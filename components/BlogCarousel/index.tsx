@@ -64,13 +64,7 @@ const BlogCarousel = ({ title = 'BlogCarousel' }: BlogCarouselProps) => {
       <BottleWrapper>
         <Image src="/bottles.png" width={200} height={400} />
       </BottleWrapper>
-      <Typography
-        variant="h4"
-        component="h4"
-        color="textSecondary"
-        align="center"
-        gutterBottom
-      >
+      <Typography variant="h4" component="h4" align="center" gutterBottom>
         {title}
       </Typography>
       <Box mt="4rem">
@@ -87,7 +81,7 @@ const BlogCarousel = ({ title = 'BlogCarousel' }: BlogCarouselProps) => {
         </Swiper>
       </Box>
       <Box display="flex" alignItems="center" justifyContent="center" mt="3rem">
-        <Button variant="outlined" color="primary" size="large">
+        <Button variant="outlined" size="large">
           Перейти в блог
         </Button>
       </Box>

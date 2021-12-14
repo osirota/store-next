@@ -1,8 +1,13 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Box, Typography } from '@material-ui/core';
+import { useRecoilValue } from 'recoil';
 import Image from 'next/image';
+import Link from 'next/link';
 import styled from 'styled-components';
+
+import { themeState } from 'recoils/themeType';
 
 const SliderStyled = styled(Box)`
   margin: 4rem 0 0;
@@ -12,10 +17,6 @@ const SliderStyled = styled(Box)`
     align-items: center;
     justify-content: center;
     background: transparent;
-  }
-  & .swiper-slide:hover {
-    background: url('/bg-product.png') center no-repeat;
-    border-radius: 40px;
   }
   & .swiper-button-next,
   & .swiper-button-prev {
@@ -31,33 +32,24 @@ const SliderStyled = styled(Box)`
   }
 `;
 
-const GlassWrapper = styled(Box)`
-  position: absolute;
-  right: -189px;
-  bottom: -220px;
-  @media (max-width: 1300px) {
-    right: -70px;
-  }
-  @media (max-width: 1200px) {
-    display: none;
-  }
-`;
+interface Partner {
+  _id: string;
+  name: string;
+  logoLight: string;
+  logoDark: string;
+  description: string;
+}
 
 type PartnerCarouselProps = {
   title?: string;
-  items?: {
-    id: string;
-    url: string;
-    description: string;
-    composition: string;
-    volume: string;
-    price: string;
-  };
+  items?: Partner[];
 };
 
 const PartnerCarousel = ({
   title = 'PartnerCarousel',
+  items = [],
 }: PartnerCarouselProps) => {
+  const mode = useRecoilValue(themeState);
   const settings = {
     breakpoints: {
       '640': {
@@ -69,32 +61,42 @@ const PartnerCarousel = ({
         spaceBetween: 40,
       },
       '1024': {
-        slidesPerView: 3,
-        spaceBetween: 10,
+        slidesPerView: items.length,
+        spaceBetween: 0,
       },
     },
-    navigation: true,
+    navigation: false,
   };
+
+  const choosenLogo = (logoLight: string, logoDark: string) => {
+    return mode === 'dark' && logoDark ? logoDark : logoLight;
+  };
+
   return (
     <Box mt="5rem" position="relative">
-      <GlassWrapper>
-        <Image src="/glass.png" width={150} height={250} />
-      </GlassWrapper>
       <Typography
         variant="h4"
         component="h4"
-        color="textSecondary"
         align="center"
         gutterBottom
+        style={{
+          fontWeight: 700,
+        }}
       >
         {title}
       </Typography>
       <SliderStyled>
         <Swiper {...settings}>
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => (
-            <SwiperSlide key={i}>
-              <Box display="flex" alignItems="center" justifyContent="center">
-                <Image src="/partner.png" width="160px" height="80px" />
+          {items.map(({ logoLight, logoDark, _id }) => (
+            <SwiperSlide key={logoLight}>
+              <Box position="relative" width="80%" height="240px">
+                <Link href={`/partner/${_id}`}>
+                  <Image
+                    src={choosenLogo(logoLight, logoDark)}
+                    layout="fill"
+                    objectFit="contain"
+                  />
+                </Link>
               </Box>
             </SwiperSlide>
           ))}

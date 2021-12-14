@@ -1,0 +1,8 @@
+{
+  "functions": {
+    "pages/api/warehouses": {
+      "memory": 1024,
+      "maxDuration": 5
+    }
+  }
+}
