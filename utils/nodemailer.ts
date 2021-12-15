@@ -46,7 +46,7 @@ export const sendOrder = async ({
   );
   const mailOptions = {
     from: 'olegsirota95@gmail.com',
-    to: 'oleh.sirota@gmail.com',
+    to: 'ciderdegustatorweb@gmail.com',
     subject: 'Новый заказ',
     text: `
             Почта клиента: ${email},
@@ -94,8 +94,8 @@ export const sendOrder = async ({
 export const sendMail = async ({ email, phone, name, text }: IMailProps) => {
   const mailOptions = {
     from: 'olegsirota95@gmail.com',
-    to: 'oleh.sirota@gmail.com',
-    subject: 'Новое Уведомление',
+    to: 'ciderdegustatorweb@gmail.com',
+    subject: 'Новое Уведомление от https://www.ciderdegustator.com/',
     text: `
             Почта клиента: ${email},
             Номер клиента: ${phone},

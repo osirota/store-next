@@ -225,7 +225,7 @@ const LandingPage = () => {
                     <Instagram />
                   </Link>
                 </Box>
-                <Link href="mailto:ciderdegustator@gmail.com">
+                <Link href="mailto:ciderdegustatorweb@gmail.com">
                   <Mail />
                 </Link>
               </IconWrapper>
@@ -446,7 +446,7 @@ const LandingPage = () => {
                   <Instagram />
                 </Link>
               </Box>
-              <Link href="mailto:ciderdegustator@gmail.com">
+              <Link href="mailto:ciderdegustatorweb@gmail.com">
                 <Mail />
               </Link>
             </LinksWrapper>

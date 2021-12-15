@@ -7,6 +7,9 @@ import { useRouter } from 'next/router';
 import { appWithTranslation } from 'next-i18next';
 import { RecoilRoot } from 'recoil';
 import SwiperCore, { EffectFade, Autoplay, Navigation } from 'swiper/core';
+import Bugsnag from '@bugsnag/js';
+import BugsnagPluginReact from '@bugsnag/plugin-react';
+
 import AppComponents from 'components/AppComponents';
 import * as gtag from 'utils/gtag';
 
@@ -17,6 +20,12 @@ import 'swiper/components/navigation/navigation.min.css';
 import nextI18NextConfig from '../next-i18next.config';
 
 SwiperCore.use([EffectFade, Autoplay, Navigation]);
+Bugsnag.start({
+  apiKey: '0d823cce0b7167795142aae2567943a1',
+  plugins: [new BugsnagPluginReact()],
+});
+
+const ErrorBoundary = Bugsnag.getPlugin('react').createErrorBoundary(React);
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -38,7 +47,7 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
   return (
-    <>
+    <ErrorBoundary>
       <Head>
         <title>Подборка лучших сидров специально для Ваc</title>
         <meta
@@ -67,7 +76,7 @@ function MyApp({ Component, pageProps }) {
       <RecoilRoot>
         <AppComponents Component={Component} pageProps={pageProps} />
       </RecoilRoot>
-    </>
+    </ErrorBoundary>
   );
 }
 
