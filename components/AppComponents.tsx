@@ -15,6 +15,8 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     font-family: Montserrat;
     overflow-x: hidden;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
     height: 100%;
     widht: 100%;
   }
