@@ -37,7 +37,7 @@ const ContainerStyled = styled(Container)`
 const FabStyled = styled(Fab)`
   position: fixed;
   right: 2rem;
-  bottom: 2rem;
+  bottom: 3.5rem;
   z-index: 2;
 `;
 
@@ -260,6 +260,7 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
         autoHideDuration={2000}
         onClose={handleSnackClose}
         TransitionComponent={Fade}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
       >
         <MuiAlert
           elevation={6}
