@@ -130,7 +130,7 @@ const ProductItem = ({ product, mb }: IProps) => {
               {product.alchol}
             </Typography>
           </Box>
-          <Button variant="outlined" onClick={handleProduct}>
+          <Button variant="outlined" size="large" onClick={handleProduct}>
             {t('buy')}
           </Button>
         </Box>
