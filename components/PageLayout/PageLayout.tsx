@@ -36,8 +36,8 @@ const ContainerStyled = styled(Container)`
 
 const FabStyled = styled(Fab)`
   position: fixed;
-  right: 2rem;
-  bottom: 3.5rem;
+  right: 3rem;
+  bottom: 5rem;
   z-index: 2;
 `;
 

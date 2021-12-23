@@ -24,18 +24,11 @@ const CardStyled = styled(Card)`
     transition: all 0.5s;
   }
 
-  .MuiCardActions-root {
-    display: none;
-  }
-
   :hover {
     border-radius: 40px;
     [data-image] {
       transform: rotate(-16deg);
       transition: all 0.5s;
-    }
-    .MuiCardActions-root {
-      display: flex;
     }
   }
   @media (max-width: 1024px) {

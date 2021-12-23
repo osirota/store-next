@@ -100,7 +100,7 @@ const BoxesItem = ({ box, mb }: IProps) => {
           >
             {box.description}
           </Typography>
-          <Button variant="outlined" onClick={handleProduct}>
+          <Button variant="outlined" size="large" onClick={handleProduct}>
             {t('buy')}
           </Button>
         </Box>
