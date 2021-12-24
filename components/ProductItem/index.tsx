@@ -5,6 +5,7 @@ import { useTranslation } from 'next-i18next';
 
 import cartStore from 'store/cart';
 import snackbarStore from 'store/snackbar';
+import * as gtag from 'utils/gtag';
 
 interface Product {
   alchol: string;
@@ -41,6 +42,7 @@ const ProductItem = ({ product, mb }: IProps) => {
   }, []);
 
   const handleProduct = () => {
+    gtag.event('add_product', product.name);
     snackbarStore.showSnackbar();
     if (!cartState) {
       cartStore.setCart([{ ...product, count: 1 }]);

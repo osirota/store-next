@@ -14,6 +14,8 @@ import { useTranslation } from 'next-i18next';
 import cartStore from 'store/cart';
 import snackbarStore from 'store/snackbar';
 
+import * as gtag from 'utils/gtag';
+
 const CardStyled = styled(Card)`
   background: transparent;
   padding: 1rem;
@@ -87,6 +89,7 @@ const ProductItem = ({ item }: ProductItemProps) => {
   }
 
   const handleProduct = () => {
+    gtag.event('add_product', item.name);
     snackbarStore.showSnackbar();
     if (!cartState) {
       cartStore.setCart([{ ...item, count: 1 }]);

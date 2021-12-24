@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box } from '@material-ui/core';
 import useSwr from 'swr';
 
@@ -6,6 +6,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import PageLayout from 'components/PageLayout/PageLayout';
 import ProductItem from 'components/ProductItem';
+import * as gtag from 'utils/gtag';
 
 interface Product {
   alchol: string;
@@ -29,6 +30,12 @@ interface IFetch {
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const Products = () => {
   const { data } = useSwr('/api/products', fetcher);
+
+  useEffect(() => {
+    gtag.event('screen_view', {
+      screen_name: 'Bottles page',
+    });
+  }, []);
 
   if (!data) {
     return null;

@@ -11,7 +11,6 @@ import {
   ListItemSecondaryAction,
 } from '@material-ui/core';
 import { Alert, AlertTitle } from '@material-ui/lab';
-import { withFormik, useFormikContext } from 'formik';
 import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -23,12 +22,8 @@ import Field from 'patterns/Field';
 import Header from 'components/Header';
 import cartStore from 'store/cart';
 
-import {
-  mapPropsToValues,
-  handleSubmit,
-  validationSchema,
-} from 'utils/order-form';
 import { Cancel, Remove, Add } from '@material-ui/icons';
+import * as gtag from 'utils/gtag';
 
 const ContainerStyled = styled(Container)`
   max-width: 1140px;
@@ -93,7 +88,6 @@ interface IResponse {
 }
 
 const Order = () => {
-  const { setFieldValue } = useFormikContext();
   const { t } = useTranslation(['order', 'common']);
   const [cartState, setCartState] = useState([]);
   const [body, setBody] = useState<IBodyState>({
@@ -152,8 +146,10 @@ const Order = () => {
   }, []);
 
   useEffect(() => {
-    setFieldValue('order', cartState);
-  }, [cartState, setFieldValue]);
+    gtag.event('screen_view', {
+      screen_name: 'Order page',
+    });
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -224,6 +220,7 @@ const Order = () => {
               method="post"
               action="https://secure.wayforpay.com/pay"
               acceptCharset="utf-8"
+              id="order-form"
             >
               <Box display="none">
                 <input
@@ -365,9 +362,4 @@ export async function getServerSideProps({ locale }: any) {
   };
 }
 
-export default withFormik({
-  enableReinitialize: true,
-  mapPropsToValues,
-  handleSubmit,
-  validationSchema,
-})(Order);
+export default Order;

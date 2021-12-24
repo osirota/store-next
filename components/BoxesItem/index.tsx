@@ -5,6 +5,7 @@ import { useTranslation } from 'next-i18next';
 
 import cartStore from 'store/cart';
 import snackbarStore from 'store/snackbar';
+import * as gtag from 'utils/gtag';
 
 interface IBox {
   count: number;
@@ -35,6 +36,7 @@ const BoxesItem = ({ box, mb }: IProps) => {
   }, []);
 
   const handleProduct = () => {
+    gtag.event('add_boxes', box.name);
     snackbarStore.showSnackbar();
     if (!cartState) {
       cartStore.setCart([{ ...box, count: 1 }]);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, Box, Typography, Grid, Button } from '@material-ui/core';
 import { withFormik, Form } from 'formik';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -24,6 +24,7 @@ import {
   validationSchema,
 } from 'utils/landing/landing-form';
 import { themeState } from 'recoils/themeType';
+import * as gtag from 'utils/gtag';
 
 import Mail from '../public/icons/mail.svg';
 import Facebook from '../public/icons/facebookNew.svg';
@@ -189,6 +190,11 @@ const LandingPage = () => {
   const { t } = useTranslation(['landing', 'common']);
   const mode = useRecoilValue(themeState);
   const { data } = useSwr('/api/landing', fetcher);
+  useEffect(() => {
+    gtag.event('screen_view', {
+      screen_name: 'Landing page',
+    });
+  }, []);
   if (!data) {
     return <Loader />;
   }
