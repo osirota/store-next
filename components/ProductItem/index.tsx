@@ -1,10 +1,11 @@
-import React, { useState, useLayoutEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Typography, Button } from '@material-ui/core';
 import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
 
 import cartStore from 'store/cart';
 import snackbarStore from 'store/snackbar';
+import * as gtag from 'utils/gtag';
 
 interface Product {
   alchol: string;
@@ -35,12 +36,13 @@ const ProductItem = ({ product, mb }: IProps) => {
   const { t } = useTranslation();
   const [cartState, setCartState] = useState(cartStore.initialState());
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     cartStore.subscribe(setCartState);
     cartStore.init();
   }, []);
 
   const handleProduct = () => {
+    gtag.event('add_product', product.name);
     snackbarStore.showSnackbar();
     if (!cartState) {
       cartStore.setCart([{ ...product, count: 1 }]);

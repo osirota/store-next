@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import {
   Card,
@@ -13,6 +13,8 @@ import { useTranslation } from 'next-i18next';
 
 import cartStore from 'store/cart';
 import snackbarStore from 'store/snackbar';
+
+import * as gtag from 'utils/gtag';
 
 const CardStyled = styled(Card)`
   background: transparent;
@@ -78,7 +80,7 @@ const ProductItem = ({ item }: ProductItemProps) => {
   const { t } = useTranslation();
   const [cartState, setCartState] = useState(cartStore.initialState());
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     cartStore.subscribe(setCartState);
     cartStore.init();
   }, []);
@@ -87,6 +89,7 @@ const ProductItem = ({ item }: ProductItemProps) => {
   }
 
   const handleProduct = () => {
+    gtag.event('add_product', item.name);
     snackbarStore.showSnackbar();
     if (!cartState) {
       cartStore.setCart([{ ...item, count: 1 }]);

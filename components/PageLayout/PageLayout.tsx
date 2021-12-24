@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useState, useLayoutEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Container,
   Box,
@@ -112,7 +112,7 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
     0
   )} ${t('uah')}`;
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     cartStore.subscribe(setCartState);
     cartStore.init();
     snackbarStore.subscribe(setSnackOpen);

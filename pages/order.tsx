@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useState, useLayoutEffect, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Container,
   Box,
@@ -23,12 +23,8 @@ import Field from 'patterns/Field';
 import Header from 'components/Header';
 import cartStore from 'store/cart';
 
-import {
-  mapPropsToValues,
-  handleSubmit,
-  validationSchema,
-} from 'utils/order-form';
 import { Cancel, Remove, Add } from '@material-ui/icons';
+import * as gtag from 'utils/gtag';
 
 const ContainerStyled = styled(Container)`
   max-width: 1140px;
@@ -146,7 +142,7 @@ const Order = () => {
     cartStore.setCart(newCart);
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     cartStore.subscribe(setCartState);
     cartStore.init();
   }, []);
@@ -154,6 +150,12 @@ const Order = () => {
   useEffect(() => {
     setFieldValue('order', cartState);
   }, [cartState, setFieldValue]);
+
+  useEffect(() => {
+    gtag.event('screen_view', {
+      screen_name: 'Order page',
+    });
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -367,7 +369,5 @@ export async function getServerSideProps({ locale }: any) {
 
 export default withFormik({
   enableReinitialize: true,
-  mapPropsToValues,
-  handleSubmit,
-  validationSchema,
+  handleSubmit: () => {},
 })(Order);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box } from '@material-ui/core';
 import useSwr from 'swr';
 
@@ -6,6 +6,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import PageLayout from 'components/PageLayout/PageLayout';
 import BoxesItem from 'components/BoxesItem';
+import * as gtag from 'utils/gtag';
 
 interface IBoxes {
   count: number;
@@ -23,6 +24,11 @@ interface IFetch {
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const Boxes = () => {
   const { data } = useSwr('/api/boxes', fetcher);
+  useEffect(() => {
+    gtag.event('screen_view', {
+      screen_name: 'Boxes page',
+    });
+  }, []);
 
   if (!data) {
     return null;
