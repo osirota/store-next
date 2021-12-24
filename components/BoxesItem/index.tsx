@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Typography, Button } from '@material-ui/core';
 import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
@@ -30,7 +30,7 @@ const BoxesItem = ({ box, mb }: IProps) => {
   const { t } = useTranslation();
   const [cartState, setCartState] = useState(cartStore.initialState());
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     cartStore.subscribe(setCartState);
     cartStore.init();
   }, []);

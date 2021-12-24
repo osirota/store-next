@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import {
   Card,
@@ -58,7 +58,7 @@ const BoxesItem = ({ item }: BoxesItemProps) => {
   const { t } = useTranslation();
   const [cartState, setCartState] = useState(cartStore.initialState());
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     cartStore.subscribe(setCartState);
     cartStore.init();
   }, []);

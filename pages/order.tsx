@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useState, useLayoutEffect, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Container,
   Box,
@@ -11,6 +11,7 @@ import {
   ListItemSecondaryAction,
 } from '@material-ui/core';
 import { Alert, AlertTitle } from '@material-ui/lab';
+import { withFormik, useFormikContext } from 'formik';
 import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -88,6 +89,7 @@ interface IResponse {
 }
 
 const Order = () => {
+  const { setFieldValue } = useFormikContext();
   const { t } = useTranslation(['order', 'common']);
   const [cartState, setCartState] = useState([]);
   const [body, setBody] = useState<IBodyState>({
@@ -140,10 +142,14 @@ const Order = () => {
     cartStore.setCart(newCart);
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     cartStore.subscribe(setCartState);
     cartStore.init();
   }, []);
+
+  useEffect(() => {
+    setFieldValue('order', cartState);
+  }, [cartState, setFieldValue]);
 
   useEffect(() => {
     gtag.event('screen_view', {
@@ -220,7 +226,6 @@ const Order = () => {
               method="post"
               action="https://secure.wayforpay.com/pay"
               acceptCharset="utf-8"
-              id="order-form"
             >
               <Box display="none">
                 <input
@@ -362,4 +367,7 @@ export async function getServerSideProps({ locale }: any) {
   };
 }
 
-export default Order;
+export default withFormik({
+  enableReinitialize: true,
+  handleSubmit: () => {},
+})(Order);
