@@ -59,6 +59,7 @@ export async function getServerSideProps({ locale }: any) {
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),
+      notFound: true,
     },
   };
 }
