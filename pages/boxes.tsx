@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Box } from '@material-ui/core';
 import useSwr from 'swr';
 
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+// import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import PageLayout from 'components/PageLayout/PageLayout';
 import BoxesItem from 'components/BoxesItem';
