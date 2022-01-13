@@ -54,13 +54,16 @@ const Boxes = () => {
     </PageLayout>
   );
 };
-
-export async function getServerSideProps({ locale }: any) {
+// props { locale }: any
+export async function getServerSideProps() {
+  // return {
+  //   props: {
+  //     ...(await serverSideTranslations(locale, ['common'])),
+  //     notFound: true,
+  //   },
+  // };
   return {
-    props: {
-      ...(await serverSideTranslations(locale, ['common'])),
-      notFound: true,
-    },
+    notFound: true,
   };
 }
 
