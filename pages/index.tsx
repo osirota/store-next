@@ -10,11 +10,9 @@ import Image from 'next/image';
 import NextLink from 'next/link';
 import styled from 'styled-components';
 
-import { Boxes } from 'interfaces';
 import PageLayout from 'components/PageLayout/PageLayout';
 import ProductsCarousel from 'components/ProductsCarousel';
 import PartnerCarousel from 'components/PartnerCarousel';
-import BoxesCarousel from 'components/BoxesCarousel';
 import Loader from 'components/Loader';
 import Field from 'patterns/Field';
 import NextLinkStyle from 'patterns/NextLinkStyle';
@@ -183,7 +181,6 @@ interface Partner {
 interface IFetch {
   products: Product[];
   partners: Partner[];
-  boxes: Boxes[];
 }
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const LandingPage = () => {
@@ -199,7 +196,7 @@ const LandingPage = () => {
     return <Loader />;
   }
 
-  const { partners, products, boxes }: IFetch = data.data;
+  const { partners, products }: IFetch = data.data;
   return (
     <PageLayout title="Сидр дегустатор | Купить сидр">
       <Box
@@ -255,14 +252,7 @@ const LandingPage = () => {
                     {t('description')}
                   </Typography>
                 </Box>
-                <Box
-                  display="flex"
-                  alignItems="center"
-                  flexDirection={{ xs: 'column', md: 'row' }}
-                >
-                  <NextLinkStyle link="/products" text="siders" />
-                  <NextLinkStyle link="/boxes" text="boxes" />
-                </Box>
+                <NextLinkStyle link="/products" text="siders" />
               </Box>
             </Box>
             <Box
@@ -380,7 +370,6 @@ const LandingPage = () => {
         </Box>
       </Box>
 
-      <BoxesCarousel title={t('titleBoxes')} items={boxes} />
       <ProductsCarousel title={t('titleSiders')} items={products} />
       <PartnerCarousel title={t('titlePartners')} items={partners} />
 
