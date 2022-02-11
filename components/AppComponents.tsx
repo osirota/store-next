@@ -6,7 +6,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { createGlobalStyle } from 'styled-components';
 import theme from 'styles/theme';
 import { themeState } from 'recoils/themeType';
-import Snowfall from 'react-snowfall';
 
 const GlobalStyle = createGlobalStyle`
   html,
@@ -14,11 +13,6 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
     font-family: Montserrat;
-    overflow-x: hidden;
-    min-height: 100vh;
-    min-height: -webkit-fill-available;
-    height: 100%;
-    widht: 100%;
   }
 
   a {
@@ -48,7 +42,6 @@ const AppComponents = ({ Component, pageProps }: IAppComponentsProps) => {
         <CssBaseline />
         <Component {...pageProps} />
       </ThemeProvider>
-      <Snowfall snowflakeCount={100} speed={[0, 1]} wind={[0, 0.5]} />
     </>
   );
 };

@@ -90,7 +90,7 @@ const PartnerCarousel = ({
           {items.map(({ logoLight, logoDark, _id }) => (
             <SwiperSlide key={logoLight}>
               <Box position="relative" width="80%" height="240px">
-                <Link href={`/partner/${_id}`}>
+                <Link href={`/products/${_id}`}>
                   <Image
                     src={choosenLogo(logoLight, logoDark)}
                     layout="fill"

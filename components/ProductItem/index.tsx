@@ -42,7 +42,7 @@ const ProductItem = ({ product, mb }: IProps) => {
   }, []);
 
   const handleProduct = () => {
-    gtag.event('add_product', product.name);
+    gtag.event('add_product', { name: product.name });
     snackbarStore.showSnackbar();
     if (!cartState) {
       cartStore.setCart([{ ...product, count: 1 }]);
@@ -122,10 +122,12 @@ const ProductItem = ({ product, mb }: IProps) => {
             </Typography>
           )}
 
-          <Typography gutterBottom variant="body1">
-            <strong>{t('recommendation')}: </strong>
-            {product.recommendation}
-          </Typography>
+          {product.recommendation && (
+            <Typography gutterBottom variant="body1">
+              <strong>{t('recommendation')}: </strong>
+              {product.recommendation}
+            </Typography>
+          )}
           <Box mb="2rem">
             <Typography gutterBottom variant="body1">
               <strong>ABV: </strong>
