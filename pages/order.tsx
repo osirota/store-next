@@ -110,7 +110,7 @@ const Order = () => {
     (acc: number, value: any) => acc + value.price * value.count,
     0
   )} ${t('uah')}`;
-  const minOrder = 400;
+  const minOrder = 250;
 
   const handleRemoveProduct = (id: string) => () => {
     const newCart = cartState.filter(

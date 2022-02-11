@@ -89,7 +89,7 @@ const ProductItem = ({ item }: ProductItemProps) => {
   }
 
   const handleProduct = () => {
-    gtag.event('add_product', item.name);
+    gtag.event('add_product', { name: item.name });
     snackbarStore.showSnackbar();
     if (!cartState) {
       cartStore.setCart([{ ...item, count: 1 }]);
