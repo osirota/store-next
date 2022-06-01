@@ -2,49 +2,49 @@
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
     <loc>http://localhost:3000/boxes</loc>
-    <lastmod>2022-02-11T10:13:14.830Z</lastmod>
+    <lastmod>2022-06-01T07:58:00.348Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://localhost:3000</loc>
-    <lastmod>2022-02-11T10:13:14.830Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>http://localhost:3000/invites</loc>
-    <lastmod>2022-02-11T10:13:14.830Z</lastmod>
+    <lastmod>2022-06-01T07:58:00.348Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://localhost:3000/order</loc>
-    <lastmod>2022-02-11T10:13:14.830Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>http://localhost:3000/products</loc>
-    <lastmod>2022-02-11T10:13:14.830Z</lastmod>
+    <lastmod>2022-06-01T07:58:00.348Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://localhost:3000/success</loc>
-    <lastmod>2022-02-11T10:13:14.830Z</lastmod>
+    <lastmod>2022-06-01T07:58:00.348Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://localhost:3000/terms-and-conditions</loc>
-    <lastmod>2022-02-11T10:13:14.830Z</lastmod>
+    <lastmod>2022-06-01T07:58:00.348Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://localhost:3000/partner/[id]</loc>
-    <lastmod>2022-02-11T10:13:14.830Z</lastmod>
+    <lastmod>2022-06-01T07:58:00.348Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>http://localhost:3000/products/index</loc>
+    <lastmod>2022-06-01T07:58:00.348Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>http://localhost:3000/products/[id]</loc>
+    <lastmod>2022-06-01T07:58:00.348Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
