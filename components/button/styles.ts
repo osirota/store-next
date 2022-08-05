@@ -12,7 +12,7 @@ export const ButtonStyled = styled.a`
   text-decoration: none;
   color: inherit;
   text-transform: uppercase;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 600;
   letter-spacing: 0.04em;
 
