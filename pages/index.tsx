@@ -99,10 +99,12 @@ const LandingPage = () => {
         </Typography>
         <Wrapper>
           <Button
+            href="https://www.ciderdegustator.com/"
             title={t('store')}
             img="https://res.cloudinary.com/df6zjl5hp/image/upload/v1659688593/c333_ylqs2t.png"
           />
           <Button
+            href="https://www.instagram.com/cider_degustator/"
             title={t('instagram')}
             img="https://res.cloudinary.com/df6zjl5hp/image/upload/v1659688594/cd_1_jrlvp8.png"
           />

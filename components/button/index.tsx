@@ -7,12 +7,13 @@ import { ButtonStyled } from './styles.ts';
 interface IButton {
   title: string;
   img: string;
+  href: string;
 }
 
-const Button = ({ title, img, ...rest }: IButton) => {
+const Button = ({ title, img, href }: IButton) => {
   return (
     // eslint-disable-next-line react/react-in-jsx-scope
-    <ButtonStyled {...rest}>
+    <ButtonStyled href={href} target="_blank">
       {/* eslint-disable-next-line react/react-in-jsx-scope */}
       <Box display="flex" alignItems="center" justifyContent="space-around">
         {/* eslint-disable-next-line react/react-in-jsx-scope */}

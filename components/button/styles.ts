@@ -9,11 +9,11 @@ export const ButtonStyled = styled.a`
   background-color: rgb(67, 230, 96);
   border: none;
   border-radius: 0.4em;
-
+  text-decoration: none;
+  color: inherit;
   text-transform: uppercase;
-  font-size: 1.4em;
-  font-family: 'Work Sans', sans-serif;
-  font-weight: 500;
+  font-size: 1.2rem;
+  font-weight: 600;
   letter-spacing: 0.04em;
 
   mix-blend-mode: color-dodge;
