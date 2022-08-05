@@ -17,7 +17,10 @@ const Button = ({ title, img, href }: IButton) => {
       {/* eslint-disable-next-line react/react-in-jsx-scope */}
       <Box display="flex" alignItems="center" justifyContent="space-around">
         {/* eslint-disable-next-line react/react-in-jsx-scope */}
-        <Image src={img} height={48} width={48} layout="fixed" />
+        <Box mr={1}>
+          {/* eslint-disable-next-line react/react-in-jsx-scope */}
+          <Image src={img} height={48} width={48} layout="fixed" />
+        </Box>
         {title}
       </Box>
     </ButtonStyled>
